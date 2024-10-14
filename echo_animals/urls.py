@@ -18,9 +18,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from home import views as index_views
+from blog import views as blog_views
 
 urlpatterns = [ 
+    path('home/', index_views.index, name='index'),
+    path('blog/', blog_views.blog_page, name='blog'),
     path('admin/', admin.site.urls),
-    path('summernote/', include('django_summernote.urls')),
-    path('', index_views.index, name='index'),
 ]
