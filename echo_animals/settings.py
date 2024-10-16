@@ -94,9 +94,12 @@ DATABASES = {
     'default': dj_database_url.config()
 }
 
-# CSRF_TRUSTED_ORIGINS = [
-#     "https://*.herokuapp.com"
-# ]
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.herokuapp.com",
+    "https://*.codeinstitute-ide.net/",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]
 
 # SECRET_KEY = os.environ.get("SECRET_KEY")
 
