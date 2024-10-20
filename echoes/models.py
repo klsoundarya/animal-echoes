@@ -16,3 +16,24 @@ class BlogPost(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0)
+
+    class Meta:
+        ordering = ["-created_on", "author"]
+
+    def __str__(self):
+        return f"{self.title} | written by {self.author}"
+
+class Comment(models.Model):
+    post = models.ForeignKey(
+        BlogPost, on_delete=models.CASCADE, related_name="comments")
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="commenter")
+    body = models.TextField()
+    approved = models.BooleanField(default=False)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["created_on"]
+    
+    def __str__(self):
+        return f"Comment by {self.author} on {self.post.title}"
