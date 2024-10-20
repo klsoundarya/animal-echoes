@@ -17,11 +17,8 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from home import views as index_views
-from echoes import views as echo_views
 
 urlpatterns = [ 
-    path('home/', index_views.index, name='index'),
-    path('echoes/', echo_views.blog_page, name='animal_echoes'),
     path('admin/', admin.site.urls),
+    path('', include('echoes.urls'), name='echoes-urls'),
 ]
