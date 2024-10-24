@@ -5,20 +5,21 @@ from .models import BlogPost
 class EchoList(generic.ListView):
     queryset = BlogPost.objects.filter(status=1).order_by("-created_on")
     template_name = 'echoes/echoes.html'
+    context_object_name = 'echo_list'
     paginate_by = 6
 
 def post_detail(request, slug):
     """
-    Display an individual :model:`blog.Post`.
+    Display an individual :model:`echoes.BlogPost`.
 
     **Context**
 
     ``post``
-        An instance of :model:`blog.Post`.
+        An instance of :model:`echoes.BlogPost`.
 
     **Template:**
 
-    :template:`blog/post_detail.html`
+    :template:`echoes/post_detail.html`
     """
 
     queryset = BlogPost.objects.filter(status=1)

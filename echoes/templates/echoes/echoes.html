@@ -14,12 +14,21 @@
         {% for post in echo_list %}
         <div class="col-md-4">
             <div class="card mb-4">
-                <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+                <img src="..." class="card-img-top" alt="{{ post.title }}">
                 <div class="card-body">
-                    <h2 class="card-title">{{ post.title }}</h2>
-                    <p class="card-excerpt">{{ post.excerpt }}</p>
-                    <p class="card-text">Author: {{ post.author }}</p>
-                    <a href="{% url 'echo_detail' post.id %}" class="btn btn-primary">Listen to Echo</a>
+                    <div class="image-container">
+                        <div class="image-flash">
+                            <p class="author">Author: {{ post.author }}</p>
+                        </div>
+                        <br>
+                    </div>
+                    <a href="{% url 'post_detail' post.slug%}" class="post-link"></a>
+                        <h2 class="card-title">{{ post.title }}</h2>
+                        <p class="card-text">{{post.excerpt}}</p>
+                    </a>
+                    <hr/>
+                    <p class="card-text text-muted h6">{{ post.created_on}}
+                    </p>
                 </div>
             </div>
         </div>
