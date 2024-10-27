@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
@@ -14,9 +15,15 @@
         {% for post in echo_list %}
         <div class="col-md-4">
             <div class="card mb-4">
-                <img src="..." class="card-img-top" alt="{{ post.title }}">
                 <div class="card-body">
                     <div class="image-container">
+                        {% if "placeholder" in post.featured_image.url %}
+                        <img class="card-img-top" src="{% static 'images/echo-of-animals.jpg' %}"
+                          alt="placeholder image">
+                        {% else %}
+                        <img class="card-img-top" src=" {{ post.featured_image.url }}"
+                          alt="{{ post.title }}">
+                        {% endif %}
                         <div class="image-flash">
                             <p class="author">Author: {{ post.author }}</p>
                         </div>
