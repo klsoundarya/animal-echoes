@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'echoes',
     'about',
     'accounts',
+    'contact',
 ]
 
 SITE_ID = 1
@@ -138,7 +139,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 
 # Internationalization

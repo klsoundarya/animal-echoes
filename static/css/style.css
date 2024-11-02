@@ -9,9 +9,13 @@ body {
     color: #4A4A4F;
 }
 
-.red-o {
-    color: #E84610;
+.tagline {
+    font-size: 14px; /* Adjust the font size as needed */
+    color: #6c757d; /* Bootstrap's muted color */
+    margin-top: 4px; /* Space between title and tagline */
+    text-align: center; /* Center the tagline */
 }
+
 
 .thin {
     font-weight: 300;

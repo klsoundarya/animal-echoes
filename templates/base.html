@@ -11,125 +11,133 @@
 <html class="h-100" lang="en">
 
 <head>
-
-    <title>{% block title %}Echo of Animals{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Discover the sounds of animals and information about them.">
+    <title>{% block title %}Echo of Animals{% endblock %}</title>
 
+    {% block head %}{% endblock head %}
 
     <!-- Google Fonts CSS -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Lato:wght@300;700&display=swap"
+        rel="stylesheet">
 
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+
 </head>
 
-<body class="d-flex flex-column h-100 main-bg">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-md fixed-top" id="navbar">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}"><span class="brand">Echo of <span
-                        class="red-o">Animals</span></span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <a class="navbar-brand" id="logo" href="{% url 'home' %}">Echo of Animals</a>
+            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" id="burger-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mb-2 mb-md-0" id="nav-link-container">
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
-                            aria-current="page" href="{% url 'home' %}">Home</a>
+                        <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
+                            href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}"
-                            aria-current="page" href="{% url 'about' %}">About</a>
+                        <a class="nav-link {% if request.path == about_url %}active{% endif %}"
+                            href="{% url 'about' %}">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'echoes' %}active{% endif %}"
-                            aria-current="page" href="{% url 'echo_list' %}">Echoes</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'echo_list' %}active{% endif %}"
+                            href="{% url 'echo_list' %}">Echoes</a>
                     </li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page"
-                            href="{% url 'account_logout' %}">Logout</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
-                            href="{% url 'account_signup' %}">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
-                            href="{% url 'account_login' %}">Login</a>
-                    </li>
-                    {% endif %}
-                </ul>
 
-                <span class="navbar-text text-muted">
-                    Discover the sounds of nature
-                </span>
+                    <!-- Accounts Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {% if request.resolver_match.url_name == 'accounts' %}active{% endif %}"
+                            href="#" data-bs-toggle="dropdown" aria-expanded="false">Accounts</a>
+                        <ul class="dropdown-menu">
+                            {% if user.is_authenticated %}
+                            <li><a class="dropdown-item {% if request.path == profile_url %}active{% endif %}"
+                                    href="{% url 'account_profile' %}">Profile</a></li>
+                            <li><a class="dropdown-item {% if request.path == logout_url %}active{% endif %}"
+                                    href="{% url 'account_logout' %}">Logout</a></li>
+                            {% else %}
+                            <li><a class="dropdown-item {% if request.path == signup_url %}active{% endif %}"
+                                    href="{% url 'account_signup' %}">Register</a></li>
+                            <li><a class="dropdown-item {% if request.path == login_url %}active{% endif %}"
+                                    href="{% url 'account_login' %}">Login</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
+</body>
 
-    <!-- displaying Django messages -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                {% for message in messages %}
-                <div class="alert {{ message.tags }} alert-dismissible
+<!-- displaying messages -->
+{% if messages %}
+<div class="container centered">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 mt-2">
+            {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible
           fade show" id="msg" role="alert">
-                    {{ message | safe }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                {% endfor %}
+                {{ message | safe }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+            {% endfor %}
         </div>
     </div>
+</div>
+{% endif %}
 
-    <main class="flex-shrink-0 main-bg">
-        {% if user.is_authenticated %}
-        <p class="text-end m-3">You are logged in as {{ user }}</p>
-        {% else %}
-        <p class="text-end m-3">You are not logged in</p>
-        {% endif %}
+<main class="flex-shrink-0 main-bg">
+    {% if user.is_authenticated %}
+    <p class="text-end m-3">You are logged in as {{ user }}</p>
+    {% else %}
+    <p class="text-end m-3">You are not logged in</p>
+    {% endif %}
 
-        {% block content %}
-        <!-- Content Goes here -->
-        {% endblock content %}
+    {% block content %}
+    <!-- Placeholder for page-specific content -->
+    {% endblock content %}
 
-    </main>
+</main>
 
-    <!-- Footer -->
-    <footer class="footer mt-auto py-3 dark-bg">
-        <p class="m-0 text-center text-white">{% block copyright %}Created by Soundarya | 2024 {% endblock copyright %}
-        </p>
-        <p class="m-0 text-center text-white">Follow me on:
-            <a href="https://www.linkedin.com/in/soundarya-kantimahanti/" class="text-white"
-                target="_blank">LinkedIn</a>
-            <a href="https://github.com/klsoundarya" class="text-white" target="_blank">GitHub</a>
-            <a href="https://shorturl.at/KD5V8" class="text-white ms-3" target="_blank">Instagram</a>
-            <a href="https://x.com/soundarya2408" class="text-white" target="_blank">Twitter</a>
-        </p>
+<!-- Footer -->
+<footer class="footer mt-auto py-3 dark-bg">
+    <p class="m-0 text-center text-white">{% block copyright %}Created by Soundarya | 2024 {% endblock copyright %}
+    </p>
+    <p class="m-0 text-center text-white">Follow me on:
+        <a href="https://www.linkedin.com/in/soundarya-kantimahanti/" class="text-white" target="_blank">LinkedIn</a>
+        <a href="https://github.com/klsoundarya" class="text-white" target="_blank">GitHub</a>
+        <a href="https://shorturl.at/KD5V8" class="text-white ms-3" target="_blank">Instagram</a>
+        <a href="https://x.com/soundarya2408" class="text-white" target="_blank">Twitter</a>
+    </p>
 
-    </footer>
+</footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
-        </script>
-    <script src="{% static 'js/script.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMF6QB0hYj7Dl6Mbx5fypvUb/IejgGF6TrFAZ5mGE7mZ4Y3hZ1aKHwpzPNg"
+    crossorigin="anonymous"></script>
+<script src="{% static 'js/script.js' %}"></script>
 </body>
 
 </html>
