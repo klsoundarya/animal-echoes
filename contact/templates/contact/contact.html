@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Get in Touch </h1>
+    <p>Fill out the form below to reach us.</p>
+
+    <!-- Contact Form -->
+    <form method="POST" class="mb-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <!-- Contact List Display (Admin Only) -->
+    {% if contacts %}
+    <h2>Contact Messages</h2>
+    <ul class="list-group mb-4">
+        {% for contact in contacts %}
+        <li class="list-group-item">
+            <h5>{{ contact.name }} - {{ contact.email }}</h5>
+            <p>{{ contact.message }}</p>
+            <small>Sent on {{ contact.created_at }}</small>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+

@@ -163,3 +163,18 @@ body {
 .approval {
     color: rgb(222, 146, 168);
 }
+
+/* contact page style */
+
+.list-group-item h5 {
+    font-weight: bold;
+}
+
+.list-group-item p {
+    margin-bottom: 5px;
+}
+
+.list-group-item small {
+    font-size: 0.9em;
+    color: #777;
+}

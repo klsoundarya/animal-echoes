@@ -23,6 +23,7 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")), # Django Allauth URLs
     path('accounts/', include('accounts.urls')),  # Profile and other custom account URLs
     path('admin/', admin.site.urls),
+    path('contact/', include('contact.urls')),
     path('echoes/', include('echoes.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('', include('home.urls'), name='home-urls'),
