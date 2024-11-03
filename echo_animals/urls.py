@@ -20,8 +20,8 @@ from django.urls import path, include
 
 urlpatterns = [ 
     path('about/', include('about.urls')), 
-    path("accounts/", include("allauth.urls")), # Django Allauth URLs
-    path('accounts/', include('accounts.urls')),  # Profile and other custom account URLs
+    path('accounts/', include("allauth.urls")), # Django Allauth URLs
+    path('accounts/', include('accounts.urls')), 
     path('admin/', admin.site.urls),
     path('contact/', include('contact.urls')),
     path('echoes/', include('echoes.urls')),

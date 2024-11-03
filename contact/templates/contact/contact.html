@@ -16,19 +16,18 @@
 
     <!-- Contact List Display (Admin Only) -->
     {% if contacts %}
-    <h2>Contact Messages</h2>
-    <ul class="list-group mb-4">
-        {% for contact in contacts %}
-        <li class="list-group-item">
-            <h5>{{ contact.name }} - {{ contact.email }}</h5>
-            <p>{{ contact.message }}</p>
-            <small>Sent on {{ contact.created_at }}</small>
-        </li>
-        {% endfor %}
-    </ul>
+        <h2>Contact Messages</h2>
+        <ul class="list-group mb-4">
+            {% for contact in contacts %}
+            <li class="list-group-item">
+                <h5>{{ contact.name }} - {{ contact.email }}</h5>
+                <p>{{ contact.message }}</p>
+                <small>Sent on {{ contact.created_at }}</small>
+            </li>
+            {% endfor %}
+        </ul>
+    {% elif request.user.is_superuser %}
+        <p>No messages to display.</p>
     {% endif %}
 </div>
 {% endblock %}
-
-
-

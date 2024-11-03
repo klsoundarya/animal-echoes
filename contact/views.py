@@ -16,7 +16,7 @@ def contact(request):
         messages.success(request, "Thank you for submitting the form!")
         return redirect('contact')
         
-    if request.user.is_staff:
+    if request.user.is_superuser:
         contacts = Contact.objects.all().order_by('-created_at')
 
     return render(request, 'contact/contact.html', {'form': form, 'contacts': contacts})
