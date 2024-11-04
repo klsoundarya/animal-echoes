@@ -1,131 +1,100 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Echo of Animals
 
-Welcome USER_NAME,
+**Echo of Animals** is a unique platform dedicated to helping children and animal enthusiasts learn more about animals through engaging blog posts and interactive audio experiences. This website serves as both an educational tool and a fun resource, designed to introduce kids to various animals and the sounds they make, fostering a deeper understanding and appreciation for the natural world.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+Through **Echo of Animals**, users can explore a variety of blog posts on different animal species, their habitats, and fascinating traits, with the added feature of listening to the actual sounds made by these animals. This auditory experience not only supports children’s learning but also encourages curiosity about nature and wildlife.
 
-You can safely delete this README.md file or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **June 18, 2024**
+- GitHub Profile: <https://github.com/klsoundarya/echo-of-animals>
+- Deployed Site: <https://echo-animals-project-6ca0ed3f7e25.herokuapp.com/>
+- For Admin access with relevant sign-in information: [Echo of Animals Admin Access (https://echo-animals-project-6ca0ed3f7e25.herokuapp.com/admin)]
 
-## Gitpod Reminders
+![Am I Responsive](read-me/am-i-responsive/am-i-responsive.PNG)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+<hr>
 
-`python3 -m http.server`
+## Table of Contents
 
-A blue button should appear to click: _Make Public_,
+- [User Stories](#user-stories)
+  - [First Time User Goals](#first-time-user-goals)
+  - [Returning Site Users](#returning-site-users)
+  - [Site Owner Goals](#site-owner-goals)
+  - [Target Audience](#target-audience)
+- [Wireframes](#wireframes)
+  - [Mobile Wireframes](#mobile-wireframes)
+  - [Laptop & Desktop Wireframes](#laptop--desktop-wireframes)
+- [Deployment](#deployment)
+  - [GitHub Pages](#github-pages)
+  - [Forking](#forking)
+  - [Making a Local Clone](#making-a-local-clone)
+  - [Django Project Setup](#django-project-setup)
+  - [Cloudinary API](#cloudinary-api)
+  - [PostgreSQL](#elephant-sql)
+  - [Heroku deployment](#heroku-deployment)
+- [Features](#features)
+  - [Existing Features](#existing-features)
+  - [Features to Implement](#features-to-implement)
+- [Design](#design)
+  - [UX](#ux)
+  - [Typography](#typography)
+  - [Gallery](#gallery)
+  - [Color Scheme](#color-scheme)
+- [Project Planning](#project-planning)
+  - [Strategy Plane](#strategy-plane)
+    - [Site Goals](#site-goals)
+  - [Agile Methodologies - Project Management](#agile-methodologies-project-management)
+    - [MoSCoW Prioritization](#moscow-prioritization)
+    - [Sprints](#sprints)
+  - [Scope Plane](#scope-plane)
+  - [Structural Plane](#structural-plane)
+  - [Skeleton \& Surface Planes](#skeleton-surface-planes)
+    - [Database Schema - Entity Relationship Diagram](#database-schema---entity-relationship-diagram)
+    - [Security](#security)
+- [Testing](#testing)
+  - [Manual Testing](#manual-testing)
+    - [Testing User Stories](#testing-user-stories)
+  - [Validator Testing](#validator-testing)
+    - [HTML](#html)
+    - [CSS](#css)
+    - [JavaScript](#javascript)
+    - [Python](#python)
+    - [Wave Accessibility Evaluation](#wave-accessibility-evaluation)
+  - [Bugs](#bugs)
+    - [Unfixed Bugs](#unfixed-bugs)
+- [Credits](#credits)
+  - [Tools & Technologies Used](#tools--technologies-used)
+  - [Acknowledgments](#acknowledgements)
+  - [Disclaimer](#disclaimer)
 
-Another blue button should appear to click: _Open Browser_.
+### User Stories
+<!-- Read few README documents of previous batches to understand user stories and wrote accordingly -->
+<!-- Some of the mentioned user stories have already been implemented, while the remaining ones are planned for future features. -->
 
-To run a backend Python file, type `python3 app.py` if your Python file is named `app.py`, of course.
+<details>
+<summary>User Goals</summary>
+<br>
 
-A blue button should appear to click: _Make Public_,
+#### First time User Goals
 
-Another blue button should appear to click: _Open Browser_.
+- As a first-time user, I want to easily understand the purpose of the website and how it will help me (or my child) learn about animals and nature.
+- As a first-time user, I would like to navigate quickly to content that allows me to listen to animal sounds and read blog posts for an engaging experience.
+- As a first-time user, I am looking for an intuitive and accessible interface that makes it easy for kids to explore safely.
 
-By Default, Gitpod gives you superuser security privileges. Therefore, you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+#### Returning Site Users
 
-To log into the Heroku toolbelt CLI:
+- As a returning site user, I want to discover new blog posts about animals or updated content to keep learning more about wildlife.
+- As a returning site user, I would like to revisit and listen to the animal sounds my child enjoyed or search for new animals to add variety.
+- As a returning site user, I want the site to save or suggest content based on my previous visits for a more personalized experience.
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+#### Site Owner Goals
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, you can create a new one with _Regenerate API Key_.
+- As the site owner, I want to provide accurate, engaging, and educational content to foster a love for animals and nature.
+- As the site owner, I aim to design a safe, child-friendly interface that encourages curiosity and learning without overwhelming the user.
+- As the site owner, I want to create a user-friendly system for easy content management, including blog posts, animal sound uploads, and user registration for interactive features.
 
-### Connecting your Mongo database
+### Target Audience
 
-- **Connect to Mongo CLI on a IDE**
-- navigate to your MongoDB Clusters Sandbox
-- click **"Connect"** button
-- select **"Connect with the MongoDB shell"**
-- select **"I have the mongo shell installed"**
-- choose **mongosh (2.0 or later)** for : **"Select your mongo shell version"**
-- choose option: **"Run your connection string in your command line"**
-- in the terminal, paste the copied code `mongo "mongodb+srv://<CLUSTER-NAME>.mongodb.net/<DBname>" --apiVersion 1 --username <USERNAME>`
-  - replace all `<angle-bracket>` keys with your own data
-- enter password _(will not echo **\*\*\*\*** on screen)_
+- Young learners and children (ages 4-10) who are curious about animals and enjoy interactive learning experiences.
+- Parents and educators looking for safe, educational resources to introduce children to nature and wildlife.
+- Animal enthusiasts of any age interested in exploring different species, their sounds, and habitats for educational or personal interest.
 
-------
-
-## Release History
-
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
-
-**June 18, 2024,** Add Mongo back into template
-
-**June 14, 2024,** Temporarily remove Mongo until the key issue is resolved
-
-**May 28 2024:** Fix Mongo and Links installs
-
-**April 26 2024:** Update node version to 16
-
-**September 20 2023:** Update Python version to 3.9.17.
-
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
-
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
-
-**July 2 2021:** Remove extensions that are not available in Open VSX.
-
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
-
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
-
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
-
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+</details>
