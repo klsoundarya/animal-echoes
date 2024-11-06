@@ -2,15 +2,226 @@ body {
     background-color: #F9FAFC;
 }
 
-.brand {
+/* ------- Error Page Styles ------- */
+.wrap-error {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+}
+
+#custom-msg-number {
+    font-size: 6rem;
+    color: #dc3545;
+    display: flex;
+    justify-content: center;
+}
+
+#custom-msg-number span {
+    margin: 0 5px;
+    animation: pop 0.6s ease forwards;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.wrap-error h2 {
+    font-size: 2rem;
+    margin: 20px 0;
+    color: #333;
+}
+
+.wrap-error p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.wrap-error .btn-primary {
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+
+/* ------- nav-bar styles ------- */
+#logo img {
+    width: 70px;
+}
+
+.toggler-custom {
+    border: none;
+}
+
+.toggler-custom i {
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+.toggler-custom:hover i {
+    color: #6e3030;
+}
+
+.navbar-nav .dropdown-menu {
+    left: 0;
+    right: auto;
+    margin-top: 0.5rem;
+    min-width: 100%;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0;
+}
+
+.navbar-nav .dropdown-item {
+    padding: 5px 10px;
+    white-space: nowrap;
+}
+
+#navbarCollapse {
+    text-align: end;
+}
+
+a.dropdown-item {
+    text-align: center;
+    background-color: transparent;
+}
+
+.link {
+    color: #23BBBB;
+    text-decoration: none;
+}
+
+.navbar-nav .nav-link.active {
+    color: #007bff;
+    font-weight: bold;
+    border-bottom: 2px solid #007bff;
+}
+
+
+.navbar-nav .nav-link:hover {
+    color: #0056b3;
+}
+
+/* -------- Hero Banner Styling -------- */
+.hero-banner {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    object-fit:contain;
+    z-index: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.explore-btn {
+    background-color: #f5f5f5;
+    color: green;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-color:darkcyan;
+    border-radius: 15px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    z-index: 2;
+}
+
+.explore-btn:hover {
+    background-color: rgb(214, 173, 50);
+    color:white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+
+    .hero-banner {
+        height: 90vh;
+    }
+
+    .explore-btn {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .hero-banner {
+        height: 80vh;
+    }
+
+    .explore-btn {
+        font-size: 0.9rem;
+        padding: 7px 14px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .explore-btn {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+
+    .hero-image {
+        width: 110%;
+        object-fit: contain;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* echoes */
+/* .brand {
     font-family: Lato, sans-serif;
     font-size: 1.4rem;
     font-weight: 700;
     color: #4A4A4F;
 }
 
-.red-o {
-    color: #E84610;
+.tagline {
+    font-size: 14px;
+    color: #6c757d; 
+    margin-top: 4px; 
+    text-align: center; 
 }
 
 .thin {
@@ -158,4 +369,19 @@ body {
 
 .approval {
     color: rgb(222, 146, 168);
+} */
+
+/* contact page style */
+
+.list-group-item h5 {
+    font-weight: bold;
+}
+
+.list-group-item p {
+    margin-bottom: 5px;
+}
+
+.list-group-item small {
+    font-size: 0.9em;
+    color: #777;
 }
