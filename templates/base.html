@@ -29,7 +29,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -42,58 +43,61 @@
 
 </head>
 
-<body>
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-md fixed-top" id="navbar">
-        <div class="container-fluid">
-            <a class="navbar-brand" id="logo" href="{% url 'home' %}">Echo of Animals</a>
-            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon" id="burger-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav mb-2 mb-md-0" id="nav-link-container">
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
-                            href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == about_url %}active{% endif %}"
-                            href="{% url 'about' %}">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'echo_list' %}active{% endif %}"
-                            href="{% url 'echo_list' %}">Echoes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}"
-                            href="{% url 'contact' %}">Contact</a>
-                    </li>
+<body class="d-flex flex-column h-100">
+    <div class="wrapper">
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-expand-md fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" id='logo' href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}"
+                        alt="echo-of-animals">Echo of Animals</a>
+                <button class="navbar-toggler toggler-custom" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mb-2 mb-md-0" id="nav-link-container">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
+                                href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == about_url %}active{% endif %}"
+                                href="{% url 'about' %}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'echo_list' %}active{% endif %}"
+                                href="{% url 'echo_list' %}">Echoes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}"
+                                href="{% url 'contact' %}">Contact</a>
+                        </li>
 
-                    <!-- Accounts Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {% if request.resolver_match.url_name == 'profile' or request.resolver_match.url_name == 'account_login' or request.resolver_match.url_name == 'account_signup' %}active{% endif %}"
-                            href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">Accounts</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            {% if user.is_authenticated %}
-                            <li><a class="dropdown-item {% if request.resolver_match.url_name == 'profile' %}active{% endif %}"
-                                    href="{% url 'profile' %}">Profile</a></li>
-                            <li><a class="dropdown-item {% if request.resolver_match.url_name == 'account_logout' %}active{% endif %}"
-                                    href="{% url 'account_logout' %}">Logout</a></li>
-                            {% else %}
-                            <li><a class="dropdown-item {% if request.resolver_match.url_name == 'account_login' %}active{% endif %}"
-                                    href="{% url 'account_login' %}">Login</a></li>
-                            <li><a class="dropdown-item {% if request.resolver_match.url_name == 'account_signup' %}active{% endif %}"
-                                    href="{% url 'account_signup' %}">Register</a></li>
-                            {% endif %}
-                        </ul>
-                    </li>
-                </ul>
+                        <!-- Accounts Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {% if request.resolver_match.url_name == 'profile' or request.resolver_match.url_name == 'account_login' or request.resolver_match.url_name == 'account_signup' %}active{% endif %}"
+                                href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">Accounts</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% if user.is_authenticated %}
+                                <li><a class="dropdown-item {% if request.resolver_match.url_name == 'profile' %}active{% endif %}"
+                                        href="{% url 'profile' %}">Profile</a></li>
+                                <li><a class="dropdown-item {% if request.resolver_match.url_name == 'account_logout' %}active{% endif %}"
+                                        href="{% url 'account_logout' %}">Logout</a></li>
+                                {% else %}
+                                <li><a class="dropdown-item {% if request.resolver_match.url_name == 'account_login' %}active{% endif %}"
+                                        href="{% url 'account_login' %}">Login</a></li>
+                                <li><a class="dropdown-item {% if request.resolver_match.url_name == 'account_signup' %}active{% endif %}"
+                                        href="{% url 'account_signup' %}">Register</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
 
     <!-- displaying messages -->
     {% if messages %}
@@ -113,11 +117,11 @@
     {% endif %}
 
     <main class="flex-shrink-0 main-bg">
-        {% if user.is_authenticated %}
+        <!-- {% if user.is_authenticated %}
         <p class="text-end m-3">You are logged in as {{ user }}</p>
         {% else %}
         <p class="text-end m-3">You are not logged in</p>
-        {% endif %}
+        {% endif %} -->
 
         {% block content %}
         <!-- Placeholder for page-specific content -->
@@ -127,14 +131,13 @@
 
     <!-- Footer -->
     <footer class="footer mt-auto py-3 dark-bg">
-        <p class="m-0 text-center text-white">{% block copyright %}Created by Soundarya | 2024 {% endblock copyright %}
+        <p class="m-0 text-center text-black">{% block copyright %}Created by Soundarya | 2024 {% endblock copyright%}
         </p>
-        <p class="m-0 text-center text-white">Follow me on:
-            <a href="https://www.linkedin.com/in/soundarya-kantimahanti/" class="text-white"
-                target="_blank">LinkedIn</a>
-            <a href="https://github.com/klsoundarya" class="text-white" target="_blank">GitHub</a>
-            <a href="https://shorturl.at/KD5V8" class="text-white ms-3" target="_blank">Instagram</a>
-            <a href="https://x.com/soundarya2408" class="text-white" target="_blank">Twitter</a>
+        <p class="m-0 text-center text-black">Follow me on:
+            <a href="https://www.linkedin.com/in/soundarya-kantimahanti/" class="text-black" target="_blank">LinkedIn</a>
+            <a href="https://github.com/klsoundarya" class="text-black" target="_blank">GitHub</a>
+            <a href="https://shorturl.at/KD5V8" class="text-black ms-3" target="_blank">Instagram</a>
+            <a href="https://x.com/soundarya2408" class="text-black" target="_blank">Twitter</a>
         </p>
 
     </footer>

@@ -1,22 +1,17 @@
 {% extends "base.html" %}
+{% load static %}
+
+<!-- Home Page Content -->
 
 {% block content %}
-<!-- Home Page Content -->
-<h1>Welcome to the Echo of Animals</h1>
-<p>Your go-to resource for animal sounds and information.</p>
+<!-- HERO SECTION -->
 
-<h2>Featured Animals</h2>
-<div>
-    {% for post in featured_posts %}
-        <div>
-            <h3>{{ post.title }}</h3>
-            {% if post.image %}
-                <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 200px;">
-            {% endif %}
-            <p>{{ post.excerpt }}</p>
-            <p><a href="{% url 'post_detail' post.slug %}">Read More</a></p>
+<div class="px-4 py-5 my-2 hero-banner" id="hero">
+    <img src="{% static 'images/hero-banner.png' %}" alt="Hero Banner" class="hero-image">
+    <div class="hero-overlay">
+            <a class="btn explore-btn" href="{% url 'echo_list' %}">Explore More</a>
         </div>
-    {% endfor %}
+    </div>
 </div>
 
 {% endblock %}
