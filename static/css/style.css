@@ -74,7 +74,7 @@ body {
 }
 
 .navbar {
-    background-color:#9acd32;
+    background-color: #9acd32;
 }
 
 .toggler-custom {
@@ -201,12 +201,13 @@ hr {
 }
 
 .about-section p {
-    font-family: 'Georgia', serif; 
-    font-size: 1rem; 
-    line-height: 1.6; 
-    text-align: justify; 
-    margin-bottom: 1.2rem; 
-    color: #333333; 
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    letter-spacing: -2;
+    text-align: justify;
+    margin-bottom: 1.2rem;
+    color: #333333;
 }
 
 /* ------ featured animals section------- */
@@ -216,7 +217,7 @@ hr {
 }
 
 .card:hover {
-    transform: scale(1.05); /* Slight zoom effect on hover */
+    transform: scale(1.05);
 }
 
 .bg-image {
@@ -229,10 +230,8 @@ hr {
 }
 
 .bg-image:hover .mask {
-    background-color: rgba(0, 0, 0, 0.3); /* Darker overlay on hover */
+    background-color: rgba(0, 0, 0, 0.3);
 }
-
-
 
 
 
@@ -249,7 +248,8 @@ hr {
     padding: 10px 0 5px 0;
 }
 
-.footer-description, .footer-links {
+.footer-description,
+.footer-links {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -257,7 +257,8 @@ hr {
 }
 
 .footer-logo img {
-    max-height:80px; /* Adjust the height of the logo */
+    max-height: 80px;
+    /* Adjust the height of the logo */
 }
 
 .footer-links ul {
@@ -305,7 +306,7 @@ hr {
     color: #0000ff;
     margin-top: 4px 0px;
     opacity: 0.5;
-    display:flex;
+    display: flex;
     justify-content: center;
     text-align: center;
 }
@@ -330,7 +331,7 @@ hr {
     }
 
     /*-------- footer -------- */
-    .footer .footer-links{
+    .footer .footer-links {
         display: flex;
         text-align: center;
         justify-content: center;
