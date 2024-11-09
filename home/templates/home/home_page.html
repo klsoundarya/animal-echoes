@@ -4,14 +4,75 @@
 <!-- Home Page Content -->
 
 {% block content %}
-<!-- HERO SECTION -->
+<div class="container my-5">
+    <!-- Hero Section -->
 
-<div class="px-4 py-5 my-2 hero-banner" id="hero">
-    <img src="{% static 'images/hero-banner.png' %}" alt="Hero Banner" class="hero-image">
-    <div class="hero-overlay">
+    <div class="my-2 hero-banner" id="hero">
+        <img src="{% static 'images/hero-banner.png' %}" alt="Hero Banner" class="hero-image">
+        <div class="hero-overlay">
             <a class="btn explore-btn" href="{% url 'echo_list' %}">Explore More</a>
         </div>
     </div>
+
+
+    <!-- About Us Section -->
+    <div class="about-section container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h3 class="">About Us</h3>
+                <hr class="mb-2">
+                <p>Welcome to <strong>Echo of Animals</strong>, where curiosity and compassion meet to explore the
+                    animal
+                    kingdom. Our website is designed with the heart of a teacher and the curiosity of a learner, aiming
+                    to
+                    connect people, especially kids, with the natural world through interactive learning and discovery.
+                    <br><br>
+                    Echo of Animals brings the sounds and stories of animals to life, providing an engaging experience
+                    that
+                    helps children and animal lovers alike to deepen their understanding and love for nature. Through
+                    our
+                    educational blogs, authentic animal sounds, and hands-on activities, we strive to make learning
+                    about
+                    animals fun, accessible, and meaningful.
+                    <br><br>
+                    Whether you're here to listen to the echoes of wildlife, read fascinating blog posts, or contribute
+                    your
+                    knowledge, Echo of Animals is a welcoming space for all who share a passion for the planet's
+                    incredible
+                    creatures. Join us in fostering a community where everyone, young and old, can explore, learn, and
+                    grow
+                    with animals at the heart of it all.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="mb-3 mt-4 text-center">Featured Animals</h3>
+    <hr class="mb-4">
+    <div class="row">
+        {% for post in featured_posts %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+                <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
+                    {% if post.image %}
+                    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="img-fluid" />
+                    {% else %}
+                    <img src="default-image-url.jpg" alt="Default Image" class="img-fluid" />
+                    {% endif %}
+                    <a href="{% url 'post_detail' post.slug %}">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.excerpt }}</p>
+                    <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary text-center">Read More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
+
 
 {% endblock %}

@@ -47,16 +47,18 @@
     <div class="wrapper">
         <!-- NAVBAR -->
         <nav class="navbar navbar-expand-md fixed-top">
-            <div class="container-fluid">
+            <div class="container-fluid" id="nav-style">
                 <a class="navbar-brand" id='logo' href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}"
                         alt="echo-of-animals">Echo of Animals</a>
+
                 <button class="navbar-toggler toggler-custom" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav mb-2 mb-md-0" id="nav-link-container">
+                <!-- Navigation Links -->
+                <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+                    <ul class="navbar-nav mb-2 mb-md-0">
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
                                 href="{% url 'home' %}">Home</a>
@@ -129,18 +131,34 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer class="footer mt-auto py-3 dark-bg">
-        <p class="m-0 text-center text-black">{% block copyright %}Created by Soundarya | 2024 {% endblock copyright%}
-        </p>
-        <p class="m-0 text-center text-black">Follow me on:
-            <a href="https://www.linkedin.com/in/soundarya-kantimahanti/" class="text-black" target="_blank">LinkedIn</a>
-            <a href="https://github.com/klsoundarya" class="text-black" target="_blank">GitHub</a>
-            <a href="https://shorturl.at/KD5V8" class="text-black ms-3" target="_blank">Instagram</a>
-            <a href="https://x.com/soundarya2408" class="text-black" target="_blank">Twitter</a>
-        </p>
 
-    </footer>
+    <!-- Footer -->
+    <div class="footer-container">
+        <footer class="footer">
+            <div class="mt-2">
+                <section class="social-links">
+                    <a href="https://www.linkedin.com/in/soundarya-kantimahanti/" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/klsoundarya" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://shorturl.at/KD5V8" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://x.com/soundarya2408" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+
+            </div>
+
+            <!-- Copyright Section -->
+            <div class="text-center mb-2">
+                <hr class="text-line">
+                <p>&copy; 2024 Created by Soundarya | Echo of Animals. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>

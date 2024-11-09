@@ -13,7 +13,7 @@ class BlogPost(models.Model):
     featured_image = CloudinaryField('image', default='placeholder')
     content = models.TextField()
     excerpt = models.TextField(blank=True)
-    sound = models.FileField(upload_to='animals_sounds/', null=True, blank=True)
+    sound = models.FileField(upload_to='static/sound/animals_sounds/', null=True, blank=True, default='no sound')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0)

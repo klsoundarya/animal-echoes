@@ -1,5 +1,9 @@
 body {
-    background-color: #F9FAFC;
+    margin-top: 0px;
+    background-color: #ffffff;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 200;
+    font-size: 18px;
 }
 
 /* ------- Error Page Styles ------- */
@@ -53,8 +57,24 @@ body {
 }
 
 /* ------- nav-bar styles ------- */
+
+
 #logo img {
-    width: 70px;
+    width: 75px;
+}
+
+#logo {
+    color: #08313A;
+    font-weight: bold;
+    margin-right: 0;
+}
+
+#logo:hover {
+    color: #ffffff;
+}
+
+.navbar {
+    background-color:#9acd32;
 }
 
 .toggler-custom {
@@ -63,11 +83,27 @@ body {
 
 .toggler-custom i {
     font-size: 24px;
+    color: blanchedalmond;
     transition: color 0.3s ease;
 }
 
 .toggler-custom:hover i {
-    color: #6e3030;
+    color: #ffffff;
+}
+
+.navbar-nav .nav-link {
+    color: #08313A;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #fff;
+}
+
+.navbar-nav .nav-link.active {
+    color: #0000ff;
+    opacity: 0.8;
 }
 
 .navbar-nav .dropdown-menu {
@@ -78,11 +114,18 @@ body {
     border-radius: 5px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     padding: 0;
+    background-color: #2e8b57;
 }
 
 .navbar-nav .dropdown-item {
     padding: 5px 10px;
-    white-space: nowrap;
+    color: #f5f5dc;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .dropdown-item:hover {
+    color: #98fb98;
+    background-color: #3b6b4c;
 }
 
 #navbarCollapse {
@@ -94,26 +137,14 @@ a.dropdown-item {
     background-color: transparent;
 }
 
-.link {
-    color: #23BBBB;
-    text-decoration: none;
-}
-
-.navbar-nav .nav-link.active {
-    color: #007bff;
-    font-weight: bold;
-    border-bottom: 2px solid #007bff;
-}
-
-
-.navbar-nav .nav-link:hover {
-    color: #0056b3;
+.nav-link.active {
+    margin-bottom: 4px;
 }
 
 /* -------- Hero Banner Styling -------- */
 .hero-banner {
     position: relative;
-    height: 100vh;
+    min-height: 87vh;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -124,21 +155,21 @@ a.dropdown-item {
 
 .hero-image {
     position: absolute;
-    top: 0;
+    top: 60px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100%;
-    height: 100%;
-    object-fit:contain;
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
     z-index: 1;
 }
 
 .hero-overlay {
     position: absolute;
-    width: 100%;
     display: flex;
-    align-items:center;
-    justify-content:center;
+    align-items: center;
+    justify-content: center;
+    bottom: 95px;
 }
 
 .explore-btn {
@@ -147,7 +178,7 @@ a.dropdown-item {
     padding: 10px 20px;
     font-size: 18px;
     font-weight: bold;
-    border-color:darkcyan;
+    border-color: darkcyan;
     border-radius: 15px;
     text-decoration: none;
     transition: background-color 0.3s ease;
@@ -156,45 +187,188 @@ a.dropdown-item {
 
 .explore-btn:hover {
     background-color: rgb(214, 173, 50);
-    color:white;
+    color: white;
 }
 
-/* Responsive adjustments */
-@media (max-width: 992px) {
+/* -----About us section ----- */
 
-    .hero-banner {
-        height: 90vh;
+hr {
+    color: #0000ff;
+    opacity: 0.5;
+    width: 30%;
+    margin: 0 auto;
+    padding: 2px;
+}
+
+.about-section p {
+    font-family: 'Georgia', serif; 
+    font-size: 1rem; 
+    line-height: 1.6; 
+    text-align: justify; 
+    margin-bottom: 1.2rem; 
+    color: #333333; 
+}
+
+/* ------ featured animals section------- */
+
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.bg-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.mask {
+    transition: background-color 0.3s ease;
+}
+
+.bg-image:hover .mask {
+    background-color: rgba(0, 0, 0, 0.3); /* Darker overlay on hover */
+}
+
+
+
+
+
+
+
+
+
+/* -------- footer ------ */
+
+.footer-container {
+    width: 100%;
+    background-color: #9acd32;
+    color: #08313A;
+    padding: 10px 0 5px 0;
+}
+
+.footer-description, .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 20px;
+}
+
+.footer-logo img {
+    max-height:80px; /* Adjust the height of the logo */
+}
+
+.footer-links ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.footer-link-heading {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #0000ff;
+}
+
+
+.footer-links .nav-link {
+    font-weight: 500;
+    color: #08313A;
+    margin-bottom: 5px;
+}
+
+.footer .nav-link:hover {
+    color: #ffffff;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.footer .social-links i {
+    color: #08313A;
+    font-size: 1.5rem;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer .social-links i:hover {
+    color: #ffffff;
+}
+
+.text-center .text-line {
+    color: #0000ff;
+    margin-top: 4px 0px;
+    opacity: 0.5;
+    display:flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.text-center p {
+    font-size: 16px;
+    margin-top: 2px;
+    margin-bottom: 0px;
+}
+
+/* ----- Responsive hero-banner adjustments ----- */
+@media (max-width: 1492px) {
+
+    /* ----hero banner ---- */
+    .hero-overlay {
+        bottom: 0%;
     }
 
     .explore-btn {
-        font-size: 1rem;
-        padding: 8px 16px;
+        font-size: 14px;
+        padding: 7px 14px;
+    }
+
+    /*-------- footer -------- */
+    .footer .footer-links{
+        display: flex;
+        text-align: center;
+        justify-content: center;
     }
 }
 
 @media (max-width: 768px) {
 
-    .hero-banner {
-        height: 80vh;
+    /* ----hero banner ---- */
+    .hero-overlay {
+        bottom: 0%;
     }
 
     .explore-btn {
-        font-size: 0.9rem;
-        padding: 7px 14px;
+        font-size: 14px;
     }
 }
 
 @media (max-width: 576px) {
 
-    .explore-btn {
-        font-size: 0.85rem;
-        padding: 6px 12px;
+    /* ----hero banner ---- */
+    .hero-overlay {
+        bottom: 4%;
     }
 
-    .hero-image {
-        width: 110%;
-        object-fit: contain;
+    .explore-btn {
+        padding: 5px 10px;
+        font-size: 12px;
     }
+}
+
+@media (max-width: 425px) {
+
+    /* ----hero banner ---- */
+    .hero-overlay {
+        bottom: 3%;
+    }
+
 }
 
 
