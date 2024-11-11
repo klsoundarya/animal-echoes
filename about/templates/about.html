@@ -1,48 +1,56 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<h1 class="my-5 text-center">About Echo of Animals</h1>
 
-<!-- ABOUT US FEATURES -->
-<div class="container marketing">
-    
-    <!-- FIRST FEATURE -->
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h2 class="featurette-heading fw-normal lh-1">Discover Animal Sounds</h2>
-            <p class="lead">Echo of Animals brings the beauty and diversity of animal sounds to your fingertips. From the soothing chirps of birds to the majestic roars of wild animals, our soundboard lets you explore and learn about various animal species in a fun, interactive way.</p>
-        </div>
-        <div class="col-md-5">
-            <img src="{% static 'img/animal-sounds.webp' %}" alt="Animal sounds illustration" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto">
+
+<!-- About Us Features -->
+<section class="py-5">
+    <div class="container">
+        <div class="row gx-4 align-items-center justify-content-between">
+            <!-- Image Grid - Displayed First on Larger Screens, Second on Small Screens -->
+            <div class="col-md-6 offset-md-1 order-1 order-md-2">
+                <div class="row gx-2">
+                    <div class="col-6">
+                        <div class="mb-2"><img class="img-fluid rounded-5"
+                                src="{% static 'about-images/1.png' %}"></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-2"><img class="img-fluid rounded-5"
+                                src="{% static 'about-images/2.png' %}"></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-2"><img class="img-fluid rounded-5"
+                                src="{% static 'about-images/3.png' %}"></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-2"><img class="img-fluid rounded-5"
+                                src="{% static 'about-images/4.png' %}"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text Content - Displayed Second on Larger Screens, First on Small Screens -->
+            <div class="col-md-5 order-2 order-md-1">
+                <div class="mt-5 mt-md-0">
+                    <h2 class="d-5 fw-bold text-center" id="about-title">About Us</h2>
+                    <hr class="mb-2">
+                    <span class="text-muted">Discover the captivating sounds of animals, explore their diverse habitats,
+                        and deepen your connection to the natural world</span>
+                    <p class="lead mt-3">Echo of Animals brings the beauty and diversity of animal sounds to your fingertips.
+                        From the soothing chirps of birds to the majestic roars of wild animals, our soundboard lets you
+                        explore and learn about various animal species in a fun, interactive way.</p>
+                    <p class="lead">Our platform is designed to be accessible for all ages. Whether you’re a student,
+                        educator, or simply an animal enthusiast, you can enjoy this sound experience without any
+                        barriers. Just log in or explore as a guest and start listening to nature’s wonders!</p>
+                    <p class="lead">Each animal profile provides insights into its natural habitat, diet, and
+                        conservation status, making it an educational tool for those eager to learn about wildlife.
+                        Discover the incredible stories of animals and their habitats as you explore our library of
+                        sounds and facts.</p>
+                </div>
+            </div>
         </div>
     </div>
+</section>
 
-    <hr class="featurette-divider">
 
-    <!-- SECOND FEATURE -->
-    <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading fw-normal lh-1">Accessible to Everyone</h2>
-            <p class="lead">Our platform is designed to be accessible for all ages. Whether you’re a student, educator, or simply an animal enthusiast, you can enjoy this sound experience without any barriers. Just log in or explore as a guest and start listening to nature’s wonders!</p>
-        </div>
-        <div class="col-md-5 order-md-1">
-            <img src="{% static 'img/accessibility.webp' %}" alt="Accessible design illustration" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto">
-        </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <!-- THIRD FEATURE -->
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h2 class="featurette-heading fw-normal lh-1">Learn About Animal Habitats</h2>
-            <p class="lead">Each animal profile provides insights into its natural habitat, diet, and conservation status, making it an educational tool for those eager to learn about wildlife. Discover the incredible stories of animals and their habitats as you explore our library of sounds and facts.</p>
-        </div>
-        <div class="col-md-5">
-            <img src="{% static 'img/animal-habitat.webp' %}" alt="Animal habitat illustration" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto">
-        </div>
-    </div>
-    
-    <hr class="featurette-divider">
-</div>
 {% endblock content %}

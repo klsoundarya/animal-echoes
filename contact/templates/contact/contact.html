@@ -1,33 +1,45 @@
 {% extends "base.html" %}
-
 {% load static %}
 
 {% block content %}
-<div class="container mt-5">
-    <h1>Get in Touch </h1>
-    <p>Fill out the form below to reach us.</p>
 
-    <!-- Contact Form -->
-    <form method="POST" class="mb-4">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+<div class="container mt-5 mb-2">
+    <h1 class="custom-h1 text-center">Get in Touch</h1>
+    <hr class="mb-2">
 
-    <!-- Contact List Display (Admin Only) -->
-    {% if contacts %}
-        <h2>Contact Messages</h2>
-        <ul class="list-group mb-4">
-            {% for contact in contacts %}
-            <li class="list-group-item">
-                <h5>{{ contact.name }} - {{ contact.email }}</h5>
-                <p>{{ contact.message }}</p>
-                <small>Sent on {{ contact.created_at }}</small>
-            </li>
-            {% endfor %}
-        </ul>
-    {% elif request.user.is_superuser %}
-        <p>No messages to display.</p>
-    {% endif %}
+    <div class="row">
+        <div class="col-md-6">
+            <form method="POST" class="mb-4 custom-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary" id="custom-submit">Submit</button>
+            </form>
+        </div>
+
+        <!-- Video -->
+        <div class="col-md-6 d-flex justify-content-center align-items-center" id="video-custom">
+            <video autoplay loop muted playsinline width="400" height="400" class="img-fluid">
+                <source src="{% static 'videos/animal_animation.mp4' %}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
 </div>
+
+<!-- Contact List Display (Admin Only) -->
+{% if contacts %}
+<h2>Contact Messages</h2>
+<ul class="list-group mb-4">
+    {% for contact in contacts %}
+    <li class="list-group-item">
+        <h5>{{ contact.first_name }} {{ contact.last_name }} - {{ contact.email }}</h5>
+        <p>{{ contact.message }}</p>
+        <small>Sent on {{ contact.created_at }}</small>
+    </li>
+    {% endfor %}
+</ul>
+{% elif request.user.is_superuser %}
+<p>No messages to display.</p>
+{% endif %}
+
 {% endblock %}
