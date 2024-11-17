@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.timezone import now
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from cloudinary.models import CloudinaryField
@@ -7,10 +8,18 @@ from cloudinary.models import CloudinaryField
 # Create your models here.
 
 class Profile(models.Model):
+    TITLE_CHOICES = [
+        ('Child', 'Child'),
+        ('Parent', 'Parent'),
+        ('Teacher', 'Teacher'),
+        ('Guardian', 'Guardian'),
+        ('Other', 'Other'),
+    ]
+    
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(default = 'Steph Burris (Default)', max_length=200, null=True)
-    profile_image = CloudinaryField('image', default='placeholder')
-    title = models.CharField(max_length=200)
+    name = models.CharField(default = 'Steph Burris (Default)', max_length=150, null=True)
+    profile_image = CloudinaryField('image', default='default')
+    title = models.CharField(max_length=200, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     updated_on = models.DateTimeField(auto_now=True)
 

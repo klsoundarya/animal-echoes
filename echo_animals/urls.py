@@ -18,10 +18,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-urlpatterns = [ 
-    path('about/', include('about.urls')), 
-    path('accounts/', include("allauth.urls")), # Django Allauth URLs
-    path('accounts/', include('accounts.urls')), 
+urlpatterns = [
+    path('about/', include('about.urls')),
+    path('accounts/', include("allauth.urls")),  # Allauth URLs
+    path('accounts/', include('accounts.urls')),  # Custom accounts URLs
     path('admin/', admin.site.urls),
     path('contact/', include('contact.urls')),
     path('echoes/', include('echoes.urls')),

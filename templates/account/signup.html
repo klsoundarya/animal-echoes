@@ -12,24 +12,29 @@
       <h2 class="custom-heading mt-5 text-center">{% trans "Sign Up" %}</h2>
       <hr class="mb-2">
     </div>
-    <div class="row">
-      <div class="col-md-8 mt-3 offset-md-2">
-        <div class="signup-box mb-3">
-          <p>
-            <span class="text-muted custom-signup-p mt-2">Please fill in the registration form</span>
-            <a class="custom-signup-link" href="{% url 'account_login' %}">Already have an account? Please log in.</a>
-          </p>
-          <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  </div>
+  <div class="row">
+    <div class="col-md-8 mt-3 offset-md-2">
+      <div class="signup-box mb-3">
+        <p>
+          <span class="text-muted custom-signup-p mt-2">Please fill with your details</span>
+          <a class="custom-link" href="{% url 'account_login' %}">Already have an account? Please log in.</a>
+        </p>
+        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+          <div>
             {% csrf_token %}
             {% crispy form %}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <!-- Button should be inside the form tag -->
             <button class="btn btn-signup" id="custom-register-btn" type="submit">
               {% trans "Register" %} &raquo;
             </button>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
-
 {% endblock %}
