@@ -347,7 +347,7 @@ The following technologies were used in this overall project.
 - I used [Am I Responsive](https://ui.dev/amiresponsive) design to show my webiste in various screen sizes.
 - [CI Python Linter](https://pep8ci.herokuapp.com/) is been used to check for the bugs
 - I referred to resources such as [stack overflow](https://stackoverflow.com/), [W3Schools](https://www.w3schools.com/css/default.asp), [twilio](https://www.twilio.com/en-us/blog/build-contact-form-python-django-twilio-sendgrid), [freefrontend](https://freefrontend.dev/) for assistance in understanding code in few places and finding answers to questions relevant to my coding.
-- [Django Docs](https://www.djangoproject.com/), [Bootstrap Docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/) used as the resources.
+- [Django Docs](https://www.djangoproject.com/), [Bootstrap Docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/) and codemy.com used as the resources.
 - [Visual Studio Code](https://code.visualstudio.com/) used as a remote code editor.
 - [Gitpod Enterprise](https://www.gitpod.io/docs/enterprise) used as a cloud-based IDE for development.
 - [GitHub](https://github.com) used for secure online code storage.

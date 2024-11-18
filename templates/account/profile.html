@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Profile" %}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Update Your Profile</h2>
+    <div class="card shadow-sm p-4">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <!-- User Form Fields -->
+                <div class="col-md-6">
+                    <h4>Account Information</h4>
+                    {{ user_form.as_p }}
+                </div>
+                <!-- Profile Form Fields -->
+                <div class="col-md-6">
+                    <h4>Profile Information</h4>
+                    <div class="form-group">
+                        <label for="id_title">Title</label>
+                        {{ profile_form.title }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_name">Full Name</label>
+                        {{ profile_form.name }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_profile_image">Profile Image</label>
+                        {{ profile_form.profile_image }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_birth_date">Birth Date</label>
+                        {{ profile_form.birth_date }}
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

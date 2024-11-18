@@ -1,9 +1,9 @@
 # accounts/forms.py
 from django import forms
 from django.contrib.auth.models import User
-from allauth.account.forms import SignupForm, LoginForm
+from allauth.account.forms import SignupForm
 from .models import Profile
-from crispy_forms.helper import FormHelper
+
 
 # signup form
 class CustomSignupForm(SignupForm):
@@ -26,26 +26,28 @@ class CustomSignupForm(SignupForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields["username"].widget.attrs.update({"placeholder": "Username"})
-        self.fields["first_name"].widget.attrs.update({"placeholder": "First Name"})
-        self.fields["last_name"].widget.attrs.update({"placeholder": "Last Name"})
-        self.fields["email"].widget.attrs.update({"placeholder": "Email Address"})
-        self.fields["password1"].widget.attrs.update({"placeholder": "Password"})
-        self.fields["password2"].widget.attrs.update({"placeholder": "Repeat Password"})
+        self.fields['email'].label = "Email"
+        self.fields['email'].widget.attrs.update({'placeholder': 'Email Address'})
+
+        self.fields['username'].label = "Username"
+        self.fields['username'].widget.attrs.update({'placeholder': 'Username'})
+
+        self.fields['first_name'].label = "First Name"
+        self.fields['first_name'].widget.attrs.update({'placeholder': 'First Name'})
+
+
+        self.fields['last_name'].label = "Last Name"
+        self.fields['last_name'].widget.attrs.update({'placeholder': 'Last Name'})
+
+        self.fields['password1'].label = "Password"
+        self.fields['password1'].widget.attrs.update({'placeholder': 'Password'})
+
+        self.fields['password2'].label = "Repeat Password"
+        self.fields['password2'].widget.attrs.update({'placeholder': '****Repeat Password****'})
 
     def save(self, request):
         user = super(CustomSignupForm, self).save(request)
         return user
-
-# Login Form
-class CustomLoginForm(LoginForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
-
-    class Meta:
-        model = User
-        fields = ['username', 'password']
         
 
 # Profile Update Form

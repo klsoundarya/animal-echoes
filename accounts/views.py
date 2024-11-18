@@ -1,12 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from django.contrib.auth.models import User, auth
-from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from .models import Profile
 from .forms import (
-    CustomLoginForm,
     CustomSignupForm,
     ProfileForm,
     UserUpdateForm,
@@ -40,37 +37,37 @@ def profile_view(request):
 
 # Signup View
 def signup_view(request):
+    form = CustomSignupForm()
     if request.method == 'POST':
         form = CustomSignupForm(request.POST)
         if form.is_valid():
             form.save()
-            user = form.cleaned_data.get('username')
-            messages.success(request, user + ', Your account has been created.')
-            return redirect('accounts:account_login')
+            username = form.cleaned_data('username')
+            password = form.cleaned_data('password1')
+            # log in user
+            user = authenticate (username=username, password=password)
+            login(request, user)
+            messages.success(request, ("Your account has been created."))
+            return redirect('home')
+        else:
+            messages.error(request, ("There was a problem registering, please try again."))
+            return redirect('account_signup')
     else:
-        messages.error(request, "Please fill out all fields")
         return render(request, 'accounts/signup.html', {'form': form})
     
-form = CustomSignupForm()
-
 
 # Login View
 def login_view(request):
     if request.method == 'POST':
-        form = CustomLoginForm(request.POST)
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
+            email = request.POST('email')
+            password = request.POST('password')
+            user = authenticate(request, email=email, password=password)
 
-        if user is not None:
-            login(request, user)
-            messages.success(request, username + ', you are successfully logged in!')
-            if user.is_superuser:
-                return HttpResponseRedirect('../admin/')
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+                
             else:
-                messages.error(request, "Invalid username or password! Try again")
-                return redirect('login_view')
+                return redirect('login')
     else:
-        form = CustomLoginForm()
-        return render(request, 'accounts/login.html', {'form': form})
-
+        return render(request, 'accounts/login.html', {})

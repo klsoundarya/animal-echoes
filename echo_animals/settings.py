@@ -67,7 +67,6 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 ACCOUNT_FORMS = {
     "signup": "accounts.forms.CustomSignupForm",
-    "login": "accounts.forms.CustomLoginForm"
 }
 
 MIDDLEWARE = [
@@ -145,10 +144,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-ACCOUNT_EMAIL_REQUIRED = True
+
 ACCOUNT_AUTHENTICATED_REMEMBER = True
 ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_UNIQUE_EMAIL = True
 
@@ -156,6 +156,8 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend'
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 # Internationalization
