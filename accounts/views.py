@@ -1,38 +1,66 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Profile
 from .forms import (
     CustomSignupForm,
-    ProfileForm,
-    UserUpdateForm,
+    UpdateProfileForm,
+    PasswordChangeForm,
 )
 
 
 # Profile Update View
 @login_required
-def profile_view(request):
-    profile = Profile.objects.get_or_create(user=request.user)
+def update_profile_view(request):
+    if request.user.is_authenticated:
+        current_user = User.objects.get(id=request.user.id)
+        user_form = UpdateProfileForm(request.POST or None, instance=current_user)
 
-    if request.method == 'POST':
-        user_form = UserUpdateForm(request.POST, instance=request.user)
-        profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
-
-        if user_form.is_valid() and profile_form.is_valid():
+        if user_form.is_valid():
             user_form.save()
-            profile_form.save()
-            messages.success(request, 'Your profile has been updated successfully.')
-            return redirect('profile')
+
+            current_user.backend = 'django.contrib.auth.backends.ModelBackend'
+
+            login(request, current_user)
+            messages.success(request, "Wooho!! Your Profile has been updated!!")
+            return redirect('home') 
+
+        return render(request, 'accounts/userprofile_update.html', {'user_form': user_form})
+    else:
+        messages.success(request, "Please log in to view this page.!!")
+        return redirect('home') 
+
+# password update
+def password_update_view(request):
+    if request.user.is_authenticated:
+        current_user = request.user
+
+        if request.method == 'POST':
+            form = PasswordChangeForm(current_user, request.POST)
+
+            if form.is_valid():
+                form.save()
+
+                current_user.backend = 'django.contrib.auth.backends.ModelBackend'
+
+                messages.success(request, "Woohoo!! Your Password Has Been Updated")
+                login(request, current_user)
+
+                return redirect('accounts:userprofile_update')
+            else:
+                for error in list(form.errors.values()):
+                    messages.error(request, error)
+
+                return redirect('accounts:password_update')
+        else:
+            form = PasswordChangeForm(current_user)
+            return render(request, "accounts/password_update.html", {'form': form})
 
     else:
-        user_form = UserUpdateForm(instance=request.user)
-        profile_form = ProfileForm(instance=profile)
-
-    return render(request, 'accounts/profile.html', {
-        'user_form': user_form,
-        'profile_form': profile_form,
-    })
+        messages.error(request, "Please log in to view this page!")
+        return redirect('home')
+            
 
 
 # Signup View

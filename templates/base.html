@@ -83,8 +83,8 @@
                                 aria-expanded="false">Accounts</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% if user.is_authenticated %}
-                                <li><a class="dropdown-item {% if request.resolver_match.url_name == 'profile' %}active{% endif %}"
-                                        href="{% url 'accounts:profile' %}">Profile</a></li>
+                                <li><a class="dropdown-item {% if request.resolver_match.url_name == 'userprofile_update' %}active{% endif %}"
+                                        href="{% url 'accounts:userprofile_update' %}">Profile</a></li>
                                 <li><a class="dropdown-item {% if request.resolver_match.url_name == 'account_logout' %}active{% endif %}"
                                         href="{% url 'account_logout' %}">Logout</a></li>
                                 {% else %}
