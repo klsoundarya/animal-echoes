@@ -1,8 +1,31 @@
-# from django.contrib import admin
-# from .models import Profile
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
 
-# @admin.register(Profile)
-# class ProfileAdmin(admin.ModelAdmin):
-#     list_display = ('user', 'title', 'name', 'birth_date', 'updated_on')
-#     list_filter = ('title',)
-#     search_fields = ('user__username', 'name')
+# Unregister the default User model
+admin.site.unregister(User)
+
+# Extend UserAdmin to include custom fields
+@admin.register(User)
+class CustomUserAdmin(UserAdmin):
+    model = User
+
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff')
+    list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
+    search_fields = ('username', 'email', 'first_name', 'last_name')
+    ordering = ('username',)
+
+  
+    fieldsets = (
+        (None, {'fields': ('username', 'password')}),
+        ('Personal Info', {'fields': ('first_name', 'last_name', 'email')}),
+        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+        ('Important Dates', {'fields': ('last_login', 'date_joined')}),
+    )
+
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('username', 'email', 'password1', 'password2'),
+        }),
+    )

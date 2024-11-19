@@ -24,6 +24,7 @@ class PasswordChangeForm(SetPasswordForm):
 		self.fields['new_password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
 
 
+
 # Profile Update Form
 class UpdateProfileForm(UserChangeForm):
     # Hide password field
