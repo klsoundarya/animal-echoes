@@ -632,32 +632,100 @@ footer {
 
 
 
+/* ---------- echoes app styling-------- */
+
+.echo-custom{
+    padding-top: 70px;
+}
+
+.custom-title{
+    font-size: 2.4rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.echo-line{
+    color: #0000ff;
+    opacity: 0.5;
+    width: 30%;
+    margin: 0 auto;
+    padding: 2px;
+}
+
+
+/* Card Styling */
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    height: 95%;
+    border: 1.5px solid rgba(84, 82, 82, 0.749);
+    background-color: transparent;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-title {
+    font-size: 18px;
+    color: mediumseagreen;
+    font-weight: 600;
+    text-align: center;
+}
+
+.card-title a {
+    text-decoration: none;
+    color: mediumseagreen;
+}
+
+.card-title a:hover {
+    text-decoration: underline;
+}
+
+.post-link {
+    text-decoration: none;
+    color: #445261;
+}
+
+.post-link:hover,
+.page-link {
+    color: #0000ff;
+}
+
+.image-container {
+    position: relative;
+}
+
+.pagination .page-link {
+    color: #0000ff;
+    font-weight: bold;
+    padding: 10px 10px; 
+    margin: 0 15px; 
+    border: 2px solid #08313A; 
+    transition: all 0.3s ease-in-out;
+}
+
+.pagination .page-link:hover {
+    background-color: #9acd32;
+    color: #fff;
+    text-decoration: none;
+}
+
+.bold-symbol {
+    font-weight: bold;
+    font-size: 1.3em;
+}
 
 
 
-
-
-
-
-
-
-
-
-
-
-/* echoes */
 /* .brand {
     font-family: Lato, sans-serif;
     font-size: 1.4rem;
     font-weight: 700;
     color: #4A4A4F;
-}
-
-.tagline {
-    font-size: 14px;
-    color: #6c757d; 
-    margin-top: 4px; 
-    text-align: center; 
 }
 
 .thin {
@@ -674,23 +742,6 @@ footer {
 
 .main-bg {
     background-color: #F9FAFC;
-}
-
-.card {
-    border: none;
-    background-color: transparent;
-}
-
-.image-container {
-    position: relative;
-}
-
-.image-flash {
-    position: absolute;
-    bottom: 5%;
-    min-width: 30%;
-    left: -2px;
-    background-color: #188181;
 }
 
 .scale {
@@ -736,16 +787,6 @@ footer {
     -moz-transform: skew(15deg);
     transform: skew(15deg);
     z-index: 100;
-}
-
-.post-link {
-    text-decoration: none;
-    color: #445261;
-}
-
-.post-link:hover,
-.page-link {
-    color: #E84610;
 }
 
 .post-title {
@@ -806,7 +847,3 @@ footer {
 .approval {
     color: rgb(222, 146, 168);
 } */
-
-/* contact page style */
-
-/*  */

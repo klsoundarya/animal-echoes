@@ -1,9 +1,9 @@
 # echoes/urls.py
 from django.urls import path
-from . import views
+from .views import EchoList, post_detail
 
 urlpatterns = [
-    path('', views.EchoList.as_view(), name='echo_list'),
-    path('post/<slug:slug>/', views.post_detail, name='post_detail'),
+    path('', EchoList.as_view(), name='echo_list'),
+    path('post/<slug:slug>/', post_detail, name='post_detail'),
 
 ]
