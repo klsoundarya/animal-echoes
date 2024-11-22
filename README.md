@@ -10,6 +10,8 @@ Through **Echo of Animals**, users can explore a variety of blog posts on differ
 
 ![Am I Responsive](read-me/am-i-responsive/am-i-responsive.PNG)
 
+![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white),![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white),![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54),![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E),![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white),![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+
 <hr>
 
 ## Table of Contents
@@ -342,7 +344,7 @@ __Press Enter and your local clone will be created.__
 The following technologies were used in this overall project.
 
 - My project is inspired from [code institute](https://learn.codeinstitute.net/) django blog Walkthrough Project.
-- I used [Canva](https://www.canva.com/) to create the color scheme, readme images collage, favicon image, wireframes. Additionally, I used it to resize all images to a consistent size, and also [unsplash](https://unsplash.com/), [freepik](https://www.freepik.com/), [mdbootstrap](https://mdbootstrap.com/), [shutterstock](https://www.shutterstock.com/) and animal audio sounds from [Sound Effect from Pixabay](https://pixabay.com/).
+- I used [Canva](https://www.canva.com/) to create the color scheme, readme images collage, favicon image, wireframes. Additionally, I used it to resize all images to a consistent size, and also [unsplash](https://unsplash.com/), [freepik](https://www.freepik.com/), [mdbootstrap](https://mdbootstrap.com/), [shutterstock](https://www.shutterstock.com/) and animal audio sounds from [Pixabay](https://pixabay.com/), [sounddino](https://sounddino.com/).
 - [ChatGPT](https://chat.openai.com/), [Grammarly](https://app.grammarly.com/) and a [plagiarism checker](https://www.duplichecker.com/) is used to review the text, code and ensure there were no grammar or spelling mistakes.
 - I used [Am I Responsive](https://ui.dev/amiresponsive) design to show my webiste in various screen sizes.
 - [CI Python Linter](https://pep8ci.herokuapp.com/) is been used to check for the bugs

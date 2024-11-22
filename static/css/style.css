@@ -195,6 +195,7 @@ a.dropdown-item {
     text-decoration: none;
     transition: background-color 0.3s ease;
     z-index: 2;
+    margin-bottom: 35px;
 }
 
 .explore-btn:hover {
@@ -371,7 +372,7 @@ hr {
 /* ------- Custom Password Styling ---- */
 
 .btn-secondary {
-    display: inline-block; 
+    display: inline-block;
     text-align: center;
     font-weight: bold;
     background-color: transparent;
@@ -634,17 +635,17 @@ footer {
 
 /* ---------- echoes app styling-------- */
 
-.echo-custom{
+.echo-custom {
     padding-top: 70px;
 }
 
-.custom-title{
+.custom-title {
     font-size: 2.4rem;
     color: #2c3e50;
     margin-bottom: 1rem;
 }
 
-.echo-line{
+.echo-line {
     color: #0000ff;
     opacity: 0.5;
     width: 30%;
@@ -671,7 +672,7 @@ footer {
 
 .card-title {
     font-size: 18px;
-    color: mediumseagreen;
+    color: #3cb371;
     font-weight: 600;
     text-align: center;
 }
@@ -702,9 +703,9 @@ footer {
 .pagination .page-link {
     color: #0000ff;
     font-weight: bold;
-    padding: 10px 10px; 
-    margin: 0 15px; 
-    border: 2px solid #08313A; 
+    padding: 10px 10px;
+    margin: 0 15px;
+    border: 2px solid #08313A;
     transition: all 0.3s ease-in-out;
 }
 
@@ -719,6 +720,103 @@ footer {
     font-size: 1.3em;
 }
 
+/* ----- Echoes Post style ----- */
+
+.echoes-post {
+    margin-top: 120px;
+}
+
+.image-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-hover:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.post-title {
+    margin: 10px;
+    background: #fff8dc;
+    color: rgb(8, 25, 123);
+    border-radius: 5px;
+}
+
+.post-subtitle {
+    margin-left: 5%;
+    color: rgb(27, 26, 26);
+    background-color: rgb(219, 219, 127);
+    display: flex;
+    justify-content: flex-end;
+}
+
+#custom-echoes {
+    margin-top: 120px;
+}
+
+#echo-audio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#echo-audio audio {
+    border: 5px solid black;
+    border-radius: 25px;
+}
+
+.comment-custom{
+    border: 2px solid lightgray;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.comment-custom .p-4 {
+    border-left: 3px solid #0000ff;
+  }
+
+  .comment-custom h4 {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .comment-custom p {
+    font-size: 1rem;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.faded{
+    opacity: 0.6;
+    background-color: #ffe6e6;
+}
+
+.text-warning{
+    color: #ff4207 !important;
+}
+
+.approval {
+    color: blue;
+}
 
 
 /* .brand {
@@ -742,61 +840,6 @@ footer {
 
 .main-bg {
     background-color: #F9FAFC;
-}
-
-.scale {
-    width: 100%;
-    height: auto;
-}
-
-.author {
-    color: white;
-    margin: 4px;
-    text-transform: uppercase;
-}
-
-.masthead {
-    margin-top: 10px;
-    overflow: hidden;
-    position: relative;
-    display: inline-block;
-    height: 33vh;
-    width: 100%;
-}
-
-.masthead-text {
-    background-color: #445261;
-    color: white;
-    position: relative;
-}
-
-.masthead-image {
-    position: relative;
-    overflow: hidden;
-}
-
-.masthead-image:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 90%;
-    height: 100%;
-    width: 150%;
-    background: #445261;
-    -webkit-transform: skew(15deg);
-    -moz-transform: skew(15deg);
-    transform: skew(15deg);
-    z-index: 100;
-}
-
-.post-title {
-    margin-top: 10%;
-    margin-left: 5%;
-}
-
-.post-subtitle {
-    margin-left: 5%;
-    color: lightgray;
 }
 
 .btn-signup,
@@ -840,10 +883,4 @@ footer {
     border: none;
 }
 
-.faded {
-    color: rgb(172, 175, 175);
-}
-
-.approval {
-    color: rgb(222, 146, 168);
 } */
