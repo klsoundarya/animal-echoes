@@ -6,5 +6,5 @@ class HomePageView(View):
     
     def get(self, request):
 
-        featured_posts = BlogPost.objects.all()[:6] 
+        featured_posts = BlogPost.objects.filter(status=1)[:6]
         return render(request, 'home/home_page.html', {'featured_posts': featured_posts})

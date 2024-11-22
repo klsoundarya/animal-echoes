@@ -19,11 +19,11 @@
     <div class="col-md-6 text-center card card-body" id="custom-echoes">
       <!-- Image with Hover Effect -->
       <div class="mb-4">
-        {% if post.featured_image_local and post.featured_image_local.url %}
-        <img src="{{ post.featured_image_local.url }}" alt="{{ post.title }}" class="img-fluid rounded image-hover"
-          style="width: 100%; max-width: 400px; height: auto; object-fit: cover;">
-        {% elif post.featured_image.url %}
+        {% if post.featured_image.url %}
         <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="img-fluid rounded image-hover"
+          style="width: 100%; max-width: 400px; height: auto; object-fit: cover;">
+        {% elif post.featured_image_local and post.featured_image_local.url %}
+        <img src="{{ post.featured_image_local.url }}" alt="{{ post.title }}" class="img-fluid rounded image-hover"
           style="width: 100%; max-width: 400px; height: auto; object-fit: cover;">
         {% else %}
         <img src="{% static 'images/default.jpg' %}" alt="No Image Available" class="img-fluid rounded image-hover"
@@ -33,14 +33,14 @@
 
       <!-- Audio -->
       <div class="mb-4" id="echo-audio">
-        {% if post.sound_local %}
-        <audio controls>
-          <source src="{{ post.sound_local.url }}" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-        {% elif post.sound_cloudinary %}
+        {% if post.sound_cloudinary %}
         <audio controls>
           <source src="{{ post.sound_cloudinary.url }}" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+        {% elif post.sound_local %}
+        <audio controls>
+          <source src="{{ post.sound_local.url }}" type="audio/mpeg">
           Your browser does not support the audio element.
         </audio>
         {% else %}

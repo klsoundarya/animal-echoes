@@ -87,8 +87,8 @@
                     our mission to make learning about animals fun, accessible, and impactful!</p>
                 <a href="{% url 'accounts:account_signup' %}" class="btn btn-primary mt-3">Register</a>
                 {% else %}
-                <!-- Optionally, show something else for logged-in users, like a message or button -->
-                <p>Welcome back! Feel free to explore more content.</p>
+                <p>Welcome back! Feel free to <a href="{% url 'echo_list' %}">explore more</a>
+                    content.</p>
                 {% endif %}
             </div>
         </div>
