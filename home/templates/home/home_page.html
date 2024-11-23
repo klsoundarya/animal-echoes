@@ -4,95 +4,98 @@
 <!-- Home Page Content -->
 
 {% block content %}
-<div class="container my-5">
-    <!-- Hero Section -->
+<div class="my-2 hero-banner">
+    <img src="{% static 'images/hero-banner.png' %}" alt="Hero Banner" class="hero-image">
+    <div class="hero-overlay fw-bold">
+        <a class="btn explore-btn" href="{% url 'about' %}">Read More</a>
+    </div>
+</div>
 
-    <div class="my-2 hero-banner" id="hero">
-        <img src="{% static 'images/hero-banner.png' %}" alt="Hero Banner" class="hero-image">
-        <div class="hero-overlay">
-            <a class="btn explore-btn" href="{% url 'echo_list' %}">Explore More</a>
+
+<!-- About Us Section -->
+<div class="about-section container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h3 class="">About Us</h3>
+            <hr class="mb-2">
+            <p>Welcome to <strong>Echo of Animals</strong>, where curiosity and compassion meet to explore the
+                animal
+                kingdom. Our website is designed with the heart of a teacher and the curiosity of a learner,
+                aiming
+                to
+                connect people, especially kids, with the natural world through interactive learning and
+                discovery.
+                <br><br>
+                Echo of Animals brings the sounds and stories of animals to life, providing an engaging
+                experience
+                that
+                helps children and animal lovers alike to deepen their understanding and love for nature.
+                Through
+                our
+                educational blogs, and animal sounds, we strive to make learning
+                about
+                animals fun, accessible, and meaningful.
+            </p>
+            <a href="{% url 'about' %}" class="btn btn-primary mt-3">Find Out More</a>
         </div>
     </div>
+</div>
 
-
-    <!-- About Us Section -->
-    <div class="about-section container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h3 class="">About Us</h3>
-                <hr class="mb-2">
-                <p>Welcome to <strong>Echo of Animals</strong>, where curiosity and compassion meet to explore the
-                    animal
-                    kingdom. Our website is designed with the heart of a teacher and the curiosity of a learner, aiming
-                    to
-                    connect people, especially kids, with the natural world through interactive learning and discovery.
-                    <br><br>
-                    Echo of Animals brings the sounds and stories of animals to life, providing an engaging experience
-                    that
-                    helps children and animal lovers alike to deepen their understanding and love for nature. Through
-                    our
-                    educational blogs, and animal sounds, we strive to make learning
-                    about
-                    animals fun, accessible, and meaningful.
-                </p>
-                <a href="{% url 'about' %}" class="btn btn-primary mt-3">Find Out More</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Featured Animals Section -->
-    <div class="container">
-        <h3 class="mb-3 mt-4 text-center">Featured Animals</h3>
-        <hr class="mb-4">
-        <div class="row">
-            {% for post in featured_posts %}
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card">
-                    <div class="bg-image hover-overlay">
-                        {% if post.featured_image_local and post.featured_image_local.url %}
-                        <img class="card-img-top" src="{{ post.featured_image_local.url }}" alt="{{ post.title }}"
-                            class="img-fluid rounded d-block mx-auto"
-                            style="width: 200px; height: 200px; object-fit: cover;">
-                        {% elif "placeholder" in post.featured_image.url %}
-                        <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="No Image Available"
-                            class="img-fluid rounded d-block mx-auto"
-                            style="width: 200px; height: 200px; object-fit: cover;">
-                        {% else %}
-                        <img class="card-img-top" src="{{ post.featured_image.url }}" alt="{{ post.title }}"
-                            class="img-fluid rounded">
-                        {% endif %}
-                        <a href="{% url 'post_detail' post.slug %}">
-                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                        </a>
-                    </div>
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{ post.title }}</h5>
-                        <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary mt-3">Read More</a>
-                    </div>
+<!-- Featured Animals Section -->
+<div class="container">
+    <h3 class="mb-3 mt-4 text-center">Featured Animals</h3>
+    <hr class="mb-4">
+    <div class="row">
+        {% for post in featured_posts %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+                <div class="bg-image hover-overlay">
+                    {% if post.featured_image_local and post.featured_image_local.url %}
+                    <img class="card-img-top" src="{{ post.featured_image_local.url }}" alt="{{ post.title }}"
+                        class="img-fluid rounded d-block mx-auto"
+                        style="width: 200px; height: 200px; object-fit: cover;">
+                    {% elif "placeholder" in post.featured_image.url %}
+                    <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="No Image Available"
+                        class="img-fluid rounded d-block mx-auto"
+                        style="width: 200px; height: 200px; object-fit: cover;">
+                    {% else %}
+                    <img class="card-img-top" src="{{ post.featured_image.url }}" alt="{{ post.title }}"
+                        class="img-fluid rounded">
+                    {% endif %}
+                    <a href="{% url 'post_detail' post.slug %}">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary mt-3">Read More</a>
                 </div>
             </div>
-            {% endfor %}
         </div>
+        {% endfor %}
     </div>
+</div>
 
-    <!-- Register section -->
-    <div class="container">
-        <div class="row justify-content-center my-5">
-            <div class="col-md-8 text-center">
-                {% if not user.is_authenticated %}
-                <h3>Register Now</h3>
-                <hr class="mb-4">
-                <p> Whether you're passionate about protecting wildlife or simply curious to learn more, Echo of Animals
-                    offers a welcoming space to explore, discover, and inspire others. Sign up today and become part of
-                    our mission to make learning about animals fun, accessible, and impactful!</p>
-                <a href="{% url 'accounts:account_signup' %}" class="btn btn-primary mt-3">Register</a>
-                {% else %}
-                <p>Welcome back! Feel free to <a href="{% url 'echo_list' %}">explore more</a>
-                    content.</p>
-                {% endif %}
-            </div>
+<!-- Register section -->
+<div class="container">
+    <div class="row justify-content-center my-5">
+        <div class="col-md-8 text-center">
+            {% if not user.is_authenticated %}
+            <h3>Register Now</h3>
+            <hr class="mb-4">
+            <p> Whether you're passionate about protecting wildlife or simply curious to learn more, Echo of
+                Animals
+                offers a welcoming space to explore, discover, and inspire others. Sign up today and become part
+                of
+                our mission to make learning about animals fun, accessible, and impactful!</p>
+            <a href="{% url 'accounts:account_signup' %}" class="btn btn-primary mt-3">Register</a>
+            {% else %}
+            <p class="fw-bold"><i class="fa-solid fa-heart"></i> Welcome back! Feel free to <a href="{% url 'echo_list' %}">explore more</a>
+                content.
+            {% endif %}
         </div>
     </div>
+</div>
 </div>
 
 </div>

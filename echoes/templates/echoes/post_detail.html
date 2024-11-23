@@ -96,6 +96,8 @@
 
                 <!-- Approval Message for Pending Comments -->
                 {% if not comment.approved and comment.author == user %}
+                <button class="btn btn-delete" comment_id="{{ comment.id }}">Delete</button>
+                <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
                 <p class="approval text-warning mt-2">
                   <i class="fa-solid fa-clock-rotate-left"></i> This comment is awaiting approval....
                 </p>
@@ -134,6 +136,27 @@
       </div>
     </div>
   </section>
+  <!-- Delete confirmation modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              Are you sure you want to delete your comment? This action cannot be undone.
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
+          </div>
+      </div>
+  </div>
+</div>
 
+{% endblock content %}
 
-  {% endblock %}
+{% block extras %}
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}
