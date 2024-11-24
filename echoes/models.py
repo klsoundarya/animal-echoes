@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from datetime import timedelta
+from django.utils.timezone import now
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
@@ -51,10 +53,14 @@ class Comment(models.Model):
     name = models.CharField(max_length=255, default="Default Name")
     body = models.TextField()
     approved = models.BooleanField(default=False)
+    approved_on = models.DateTimeField(null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ["created_on"]
+
+    def was_approved_recently(self):
+        return self.approved and self.approved_on and self.approved_on >= now() - timedelta(days=1)
     
     def __str__(self):
         return f"Comment by {self.author} on {self.post.title}"

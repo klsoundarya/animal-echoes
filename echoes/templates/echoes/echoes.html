@@ -19,7 +19,7 @@
                 <div class="alert alert-info p-4 shadow-lg rounded"
                     style="background-color: #f8f9fa; border: 2px solid #007bff;">
                     <h4 class="text-primary mb-3">Share Your Voice!</h4>
-                    <p class="text-muted mb-4">Have an interesting animal story or sound?<br> Submit your blog now and share
+                    <p class="text-muted mb-4">Have an interesting animal story or sound? Submit your blog now and share
                         it with the world!</p>
                     <a href="{% url 'submit_blog_post' %}" class="btn btn-primary btn-lg"
                         style="border-radius: 30px; padding: 12px 24px; font-size: 1.1rem;">
@@ -73,27 +73,41 @@
     </div>
 </section>
 
+<!-- Register section -->
+<div class="container">
+    <div class="row justify-content-center my-5">
+        <div class="col-md-8 text-center">
+            {% if not user.is_authenticated %}
+            <h3>Interested to see more?<br>Click the link below to signup</h3>
+            <hr class="mb-4">
+            <a href="{% url 'accounts:account_signup' %}" class="btn btn-primary btn-lg">Register Now</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
 
 <!-- Pagination -->
 {% if is_paginated %}
 <nav aria-label="Page navigation" class="pagination-container">
     <ul class="pagination justify-content-center">
-        {% if page_obj.has_previous %}
+        {% if echo_list.has_previous %}
         <li class="page-item">
-            <a href="?page={{ page_obj.previous_page_number }}" class="page-link">
+            <a href="?page={{ echo_list.previous_page_number }}" class="page-link">
                 <span class="bold-symbol">&laquo;</span>
             </a>
         </li>
         {% endif %}
-        {% if page_obj.has_next %}
+        {% if echo_list.has_next %}
         <li class="page-item">
-            <a href="?page={{ page_obj.next_page_number }}" class="page-link">
+            <a href="?page={{ echo_list.next_page_number }}" class="page-link">
                 <span class="bold-symbol">&raquo;</span>
             </a>
         </li>
         {% endif %}
     </ul>
 </nav>
+
 {% endif %}
 
 {% endblock %}

@@ -43,7 +43,7 @@ class BlogPostForm(forms.ModelForm):
         return instance
 
 
-class CommentField(forms.ModelForm):
+class CommentForm(forms.ModelForm):
     """
     Form class for users to comment on a post 
     """

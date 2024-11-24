@@ -69,7 +69,6 @@
     <p class="post-subtitle text-center mt-4">Written by: {{ post.author }} | {{ post.created_on }}</p>
   </div>
 
-
   <!-- Comments Section -->
   <section style="background-color: rgba(211, 211, 211, 0.232);">
     <div class="container my-5 py-5">
@@ -77,61 +76,45 @@
         <!-- Recent Comments Section-->
         <div class="col-md-6 mb-4">
           <h5 class="text-muted"><i class="far fa-comments"></i> ({{ comment_count }})</h5>
-          <div class="comment-custom">
-            <div class="p-4">
-              <h4 class="mb-0 text-center">Recent Comments</h4>
-              <br>
-              {% for comment in comments %}
-              <div class="comment-item my-3 p-3 border rounded {% if not comment.approved and comment.author == user %}
+          <div id="post-container" data-post-slug="{{ post.slug }}">
+            <div class="comment-custom">
+              <div class="p-4">
+                <h4 class="mb-0 text-center">Recent Comments</h4>
+                <br>
+                {% for comment in comments %}
+                <div class="comment-item my-3 p-3 border rounded {% if not comment.approved and comment.author == user %}
               faded{% elif not comment.approved %} d-none{% endif %}" style="background-color: #f9f9f9;">
-                <!-- Author Name -->
-                <div class="comment-author mb-2">
-                  <strong class="text-primary">{{ comment.name }}</strong>
+                  <!-- Author Name -->
+                  <div class="comment-author mb-2">
+                    <strong class="text-primary">{{ comment.name }}</strong>
+                  </div>
+
+                  <!-- Comment Body -->
+                  <div class="comment-body mb-2" id="comment{{ comment.id }}">
+                    <p class="mb-1" style="font-size: 1rem; color: #333;">{{ comment.body }}</p>
+                  </div>
+
+
+                  <!-- Timestamp -->
+                  <div class="comment-timestamp text-muted" style="font-size: 0.875rem;">
+                    Posted on: {{ comment.created_on|date:"F j, Y, g:i a" }}
+                  </div>
+
+                  <!-- Message for Pending Approval -->
+                  {% if not comment.approved and comment.author == user %}
+                  <p class="approval text-warning mt-2">
+                    <i class="fa-solid fa-clock-rotate-left"></i> This comment is awaiting approval...
+                  </p>
+                  {% endif %}
+                  {% if user.is_authenticated and comment.author == user %}
+                  <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>
+                  <button class="btn btn-edit" data-comment_id="{{ comment.id }}">Edit</button>
+                  {% endif %}
                 </div>
-
-                <!-- Comment Body -->
-                <div class="comment-body mb-2">
-                  <p class="mb-1" style="font-size: 1rem; color: #333;">{{ comment.body }}</p>
-                </div>
-
-
-                <!-- Timestamp -->
-                <div class="comment-timestamp text-muted" style="font-size: 0.875rem;">
-                  Posted on: {{ comment.created_on|date:"F j, Y, g:i a" }}
-                </div>
-
-                <!-- Approved Message -->
-                {% if comment.was_approved_recently %}
-                <p class="text-success mt-2">
-                  Your comment has been approved!
-                </p>
-                {% endif %}
-
-                <!-- Buttons for Edit and Delete -->
-                {% if comment.author == user %}
-                <div class="d-flex justify-content-end">
-                  <!-- Edit Button -->
-                  <a href="{% url 'comment_edit' slug=post.slug comment_id=comment.id %}"
-                    class="btn btn-sm btn-warning me-2">
-                    <i class="fa fa-edit"></i> Edit
-                  </a>
-
-                  <!-- Delete Button -->
-                  <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                    data-bs-target="#deleteModal" data-comment-id="{{ comment.id }}">
-                    <i class="fa fa-trash"></i> Delete
-                  </button>
-                </div>
-
-                <!-- Message for Pending Approval -->
-                <p class="approval text-warning mt-2">
-                  <i class="fa-solid fa-clock-rotate-left"></i> This comment is awaiting approval...
-                </p>
-                {% endif %}
+                {% empty %}
+                <p class="text-muted">No comments yet. Be the first to comment!</p>
+                {% endfor %}
               </div>
-              {% empty %}
-              <p class="text-muted">No comments yet. Be the first to comment!</p>
-              {% endfor %}
             </div>
           </div>
         </div>
@@ -154,7 +137,8 @@
             </form>
             {% else %}
             <p class="text-center fw-bold" style="color:rgb(96, 78, 78);"><i
-                class="fa-solid fa-arrow-right-to-bracket"></i> Please <a href="{% url 'account_login' %}">log in</a> to
+                class="fa-solid fa-arrow-right-to-bracket"></i> Please <a href="{% url 'account_login' %}">log in</a>
+              to
               leave a comment.</p>
             {% endif %}
           </div>
@@ -162,6 +146,7 @@
       </div>
     </div>
   </section>
+
   <!-- Delete confirmation modal -->
   <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -184,5 +169,5 @@
   {% endblock content %}
 
   {% block extras %}
-  <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/comments.js' %}"></script>
   {% endblock %}
