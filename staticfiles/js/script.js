@@ -20,11 +20,13 @@ const deleteConfirm = document.getElementById("deleteConfirm");
 
 for (let button of editButtons) {
     button.addEventListener("click", (e) => {
-        let commentId = e.target.getAttribute("comment_id");
-        let commentContent = document.getElementById(`comment${commentId}`).innerText;
-        commentText.value = commentContent;
-        submitButton.innerText = "Update";
-        commentForm.setAttribute("action", `edit_comment/${commentId}`);
+        const commentId = e.target.getAttribute("comment_id");
+        const commentContent = document.getElementById(`comment${commentId}`).innerText;
+
+        commentText.value = commentContent; // Populate the textarea with the comment text
+        submitButton.innerText = "Update"; // Update button text
+        const slug = document.querySelector('meta[name="slug"]').content; // Assuming slug is passed as a meta tag
+        commentForm.setAttribute("action", `/${slug}/edit_comment/${commentId}/`); // Set the form action
     });
 }
 

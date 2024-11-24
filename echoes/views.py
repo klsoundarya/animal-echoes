@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from .models import BlogPost, Comment
-from .forms import CommentField
+from .forms import CommentField, BlogPostForm
 
 
 class EchoList(generic.ListView):
@@ -141,3 +141,20 @@ def comment_delete(request, slug, comment_id):
                              'You can only delete your own comments!')
 
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+
+@login_required
+def submit_blog_post(request):
+    if request.method == "POST":
+        form = BlogPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            blog_post = form.save(commit=False)
+            blog_post.author = request.user
+            blog_post.status = 0 
+            blog_post.save()
+            messages.success(request, "Your blog post has been submitted for review!")
+            return redirect('home') 
+    else:
+        form = BlogPostForm()
+    
+    return render(request, 'submit_blog_post.html', {'form': form})
