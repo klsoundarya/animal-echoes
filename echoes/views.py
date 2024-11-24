@@ -152,7 +152,8 @@ def submit_blog_post(request):
             blog_post.author = request.user
             blog_post.status = 0 
             blog_post.save()
-            messages.success(request, "Your blog post has been submitted for review!")
+            messages.success(request, "Your blog post is under review!<br> Approval may take up to two days. Stay tuned!")
+
             return redirect('home') 
     else:
         form = BlogPostForm()

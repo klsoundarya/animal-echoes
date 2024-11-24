@@ -13,7 +13,7 @@ def contact(request):
     if request.method == "POST":
         if form.is_valid():
             form.save()
-            messages.success(request, "Thank you for submitting the form!")
+            messages.success(request, "I aim to respond within 2 working days. Thank you for submitting the form!")
             return redirect('contact') 
             
     if request.user.is_superuser:

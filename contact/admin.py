@@ -5,6 +5,7 @@ from .models import Contact
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'email', 'created_at')
+    list_display = ('message', 'email', 'read')
+    list_editable = ('read',)
     search_fields = ('first_name', 'email')
-    list_filter = ('created_at',)
+    list_filter = ('created_at', 'first_name')
