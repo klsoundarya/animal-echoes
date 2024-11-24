@@ -1,14 +1,34 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
-{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Submit Blog Post" %}{% endblock %}
 
 {% block content %}
-<div class="form-container">
-    <h2>Submit a Blog Post</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mt-3 offset-md-2">
+            <h2 class="custom-heading mt-5 fw-bold text-center">{% trans "Submit a Blog Post" %}</h2>
+            <hr class="mb-2">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 mt-3 offset-md-2">
+            <div class="submit-box mb-3">
+                <form class="submit" method="post" enctype="multipart/form-data" id="submit_form">
+                    <div style>
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                        {% endif %}
+                        <button class="btn btn-success" type="submit">
+                            {% trans "Submit Blog Post" %} &raquo;
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

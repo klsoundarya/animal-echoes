@@ -157,4 +157,5 @@ def submit_blog_post(request):
     else:
         form = BlogPostForm()
     
-    return render(request, 'submit_blog_post.html', {'form': form})
+    return render(request, 'echoes/submit_blog_post.html', {'form': form})
+

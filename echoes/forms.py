@@ -5,12 +5,14 @@ from django import forms
 class BlogPostForm(forms.ModelForm):
     class Meta:
         model = BlogPost
-        fields = ['title', 'slug', 'featured_image', 'content', 'excerpt', 'sound_cloudinary']
+        fields = ['title', 'featured_image', 'content', 'excerpt', 'sound_cloudinary']
         widgets = {
-            'title': forms.TextInput(attrs={'placeholder': 'Enter title'}),
-            'slug': forms.TextInput(attrs={'placeholder': 'Enter slug'}),
-            'content': forms.Textarea(attrs={'placeholder': 'Write your blog content here...'}),
-            'excerpt': forms.Textarea(attrs={'placeholder': 'Short summary of your blog'}),
+            'title': forms.TextInput(attrs={'class': 'form-control',
+                'rows': 3, 'placeholder': 'Enter title'}),
+            'content': forms.Textarea(attrs={'class': 'form-control',
+                'rows': 3, 'placeholder': 'Write your blog content here...'}),
+            'excerpt': forms.Textarea(attrs={'class': 'form-control',
+                'rows': 3, 'placeholder': 'Short summary of your blog'}),
         }
 
 

@@ -13,46 +13,63 @@
                 world.</span>
         </div>
 
-        <!-- Animal Echoes Cards -->
-        <div class="row">
-            <!-- Animal Echoes Loop -->
-            {% for post in echo_list %}
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="image-flash">
-                            <a href="{% url 'post_detail' post.slug%}" class="post-link">
-                                <h2 class="card-title">{{ post.title }}</h2>
-                        </div>
-                        <div class="image-container">
-                            {% if post.featured_image_local and post.featured_image_local.url %}
-                            <img class="card-img-top" src="{{ post.featured_image_local.url }}" alt="{{ post.title }}"
-                                class="img-fluid rounded d-block mx-auto"
-                                style="width: 200px; height: 200px; object-fit: cover;">
-                            {% elif "placeholder" in post.featured_image.url %}
-                            <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="No Image Available"
-                                class="img-fluid rounded d-block mx-auto"
-                                style="width: 200px; height: 200px; object-fit: cover;">
-                            {% else %}
-                            <img class="card-img-top" src="{{ post.featured_image.url }}" alt="{{ post.title }}"
-                                class="img-fluid rounded">
-                            {% endif %}
-                            <br>
-                        </div>
-                        <a href="{% url 'post_detail' post.slug%}" class="post-link">
-                            <p class="card-text">{{post.excerpt}}</p>
-                        </a>
-                        <p class="card-text text-muted h6">{{ post.created_on}}
-                        </p>
-                    </div>
+        <!-- Add a call-to-action for submitting a blog -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-12 col-md-6 text-center">
+                <div class="alert alert-info p-4 shadow-lg rounded"
+                    style="background-color: #f8f9fa; border: 2px solid #007bff;">
+                    <h4 class="text-primary mb-3">Share Your Voice!</h4>
+                    <p class="text-muted mb-4">Have an interesting animal story or sound?<br> Submit your blog now and share
+                        it with the world!</p>
+                    <a href="{% url 'submit_blog_post' %}" class="btn btn-primary btn-lg"
+                        style="border-radius: 30px; padding: 12px 24px; font-size: 1.1rem;">
+                        Submit a Blog
+                    </a>
                 </div>
             </div>
-            {% if forloop.counter|divisibleby:3 %}
         </div>
-        <div class="row">
-            {% endif %}
-            {% endfor %}
+    </div>
+
+    <!-- Animal Echoes Cards -->
+    <div class="row">
+        <!-- Animal Echoes Loop -->
+        {% for post in echo_list %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="image-flash">
+                        <a href="{% url 'post_detail' post.slug%}" class="post-link">
+                            <h2 class="card-title">{{ post.title }}</h2>
+                    </div>
+                    <div class="image-container">
+                        {% if post.featured_image_local and post.featured_image_local.url %}
+                        <img class="card-img-top" src="{{ post.featured_image_local.url }}" alt="{{ post.title }}"
+                            class="img-fluid rounded d-block mx-auto"
+                            style="width: 200px; height: 200px; object-fit: cover;">
+                        {% elif "placeholder" in post.featured_image.url %}
+                        <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="No Image Available"
+                            class="img-fluid rounded d-block mx-auto"
+                            style="width: 200px; height: 200px; object-fit: cover;">
+                        {% else %}
+                        <img class="card-img-top" src="{{ post.featured_image.url }}" alt="{{ post.title }}"
+                            class="img-fluid rounded">
+                        {% endif %}
+                        <br>
+                    </div>
+                    <a href="{% url 'post_detail' post.slug%}" class="post-link">
+                        <p class="card-text">{{post.excerpt}}</p>
+                    </a>
+                    <p class="card-text text-muted h6">{{ post.created_on}}
+                    </p>
+                </div>
+            </div>
         </div>
+        {% if forloop.counter|divisibleby:3 %}
+    </div>
+    <div class="row">
+        {% endif %}
+        {% endfor %}
+    </div>
     </div>
 </section>
 
