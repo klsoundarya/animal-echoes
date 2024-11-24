@@ -4,9 +4,11 @@ from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
-# Create your models here.
 
 class BlogPost(models.Model):
+    """
+    Stores a single blogpost entry related to :model:`auth.User`.
+    """
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="animal_blog_posts")
@@ -19,9 +21,13 @@ class BlogPost(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0)
+    likes = models.ManyToManyField(User, related_name='blog_posts')
 
     class Meta:
         ordering = ["-created_on", "author"]
+
+    def total_likes(self):
+        return self.likes.count()
 
     def save(self, *args, **kwargs):
 
@@ -33,6 +39,10 @@ class BlogPost(models.Model):
         return f"{self.title} | written by {self.author}"
 
 class Comment(models.Model):
+    """
+    Stores a single comment entry related to :model:`auth.User`
+    and :model:`blog.Post`.
+    """
     post = models.ForeignKey(
         BlogPost, on_delete=models.CASCADE, related_name="comments")
     author = models.ForeignKey(

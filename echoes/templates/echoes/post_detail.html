@@ -53,6 +53,19 @@
     </div>
   </div>
   <div>
+    <div>
+      <span>{{ total_likes }} Likes</span>
+      <form action="{% url 'like_post' post.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary btn-sm">
+          {% if liked %}
+          <p style="letter-spacing: 0.6px;" class="btn-custom"><i class="fa-solid fa-heart-crack"> Dislike</i></p>
+          {% else %}
+          <p style="letter-spacing: 2px;" class="btn-custom"><i class="fa-regular fa-heart"> Like</i></p>
+          {% endif %}
+        </button>
+      </form>
+    </div>
     <p class="post-subtitle text-center mt-4">Written by: {{ post.author }} | {{ post.created_on }}</p>
   </div>
 
@@ -63,7 +76,7 @@
       <div class="row d-flex justify-content-center">
         <!-- Recent Comments Section-->
         <div class="col-md-6 mb-4">
-          <h5 class="text-muted">Comments <i class="far fa-comments"></i> ({{ comment_count }})</h5>
+          <h5 class="text-muted"><i class="far fa-comments"></i> ({{ comment_count }})</h5>
           <div class="comment-custom">
             <div class="p-4">
               <h4 class="mb-0 text-center">Recent Comments</h4>
@@ -94,12 +107,25 @@
                 </p>
                 {% endif %}
 
-                <!-- Approval Message for Pending Comments -->
-                {% if not comment.approved and comment.author == user %}
-                <button class="btn btn-delete" comment_id="{{ comment.id }}">Delete</button>
-                <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
+                <!-- Buttons for Edit and Delete -->
+                {% if comment.author == user %}
+                <div class="d-flex justify-content-end">
+                  <!-- Edit Button -->
+                  <a href="{% url 'comment_edit' slug=post.slug comment_id=comment.id %}"
+                    class="btn btn-sm btn-warning me-2">
+                    <i class="fa fa-edit"></i> Edit
+                  </a>
+
+                  <!-- Delete Button -->
+                  <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                    data-bs-target="#deleteModal" data-comment-id="{{ comment.id }}">
+                    <i class="fa fa-trash"></i> Delete
+                  </button>
+                </div>
+
+                <!-- Message for Pending Approval -->
                 <p class="approval text-warning mt-2">
-                  <i class="fa-solid fa-clock-rotate-left"></i> This comment is awaiting approval....
+                  <i class="fa-solid fa-clock-rotate-left"></i> This comment is awaiting approval...
                 </p>
                 {% endif %}
               </div>
@@ -137,26 +163,26 @@
     </div>
   </section>
   <!-- Delete confirmation modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              Are you sure you want to delete your comment? This action cannot be undone.
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
-          </div>
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete your comment? This action cannot be undone.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
+        </div>
       </div>
+    </div>
   </div>
-</div>
 
-{% endblock content %}
+  {% endblock content %}
 
-{% block extras %}
-<script src="{% static 'js/script.js' %}"></script>
-{% endblock %}
+  {% block extras %}
+  <script src="{% static 'js/script.js' %}"></script>
+  {% endblock %}

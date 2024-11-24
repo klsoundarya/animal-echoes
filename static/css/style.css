@@ -434,6 +434,13 @@ hr {
     font-size: 1.3em;
 }
 
+/* ------ Card post styling ------ */
+
+.btn-custom {
+    display: block;
+    margin: 0 auto;
+}
+
 /* ------- Contact form ------ */
 
 .custom-heading {

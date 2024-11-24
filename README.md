@@ -8,7 +8,7 @@ Through **Echo of Animals**, users can explore a variety of blog posts on differ
 - Deployed Site: <https://echo-animals-project-6ca0ed3f7e25.herokuapp.com/>
 - For Admin access with relevant sign-in information: [Echo of Animals Admin Access (https://echo-animals-project-6ca0ed3f7e25.herokuapp.com/admin)]
 
-![Am I Responsive](read-me/am-i-responsive/am-i-responsive.PNG)
+![Am I Responsive](read-me/am-i-responsive/am-i-responsive.png)
 
 ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white),![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white),![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54),![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E),![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white),![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
 
@@ -52,23 +52,15 @@ Through **Echo of Animals**, users can explore a variety of blog posts on differ
     - [Database Schema - Entity Relationship Diagram](#database-schema---entity-relationship-diagram)
     - [Security](#security)
 - [Testing](#testing)
-  - [Manual Testing](#manual-testing)
-    - [Testing User Stories](#testing-user-stories)
-  - [Validator Testing](#validator-testing)
-    - [HTML](#html)
-    - [CSS](#css)
-    - [JavaScript](#javascript)
-    - [Python](#python)
-    - [Wave Accessibility Evaluation](#wave-accessibility-evaluation)
-  - [Bugs](#bugs)
-    - [Unfixed Bugs](#unfixed-bugs)
 - [Credits](#credits)
   - [Tools & Technologies Used](#tools--technologies-used)
   - [Acknowledgments](#acknowledgements)
   - [Disclaimer](#disclaimer)
 
 ### User Stories
-<!-- Read few README documents of previous batches to understand user stories and wrote accordingly -->
+
+User stories and features recorded and managed on [GitHub Projects](<https://github.com/users/klsoundarya/projects/4>)
+
 <!-- Some of the mentioned user stories have already been implemented, while the remaining ones are planned for future features. -->
 
 <details>
@@ -107,6 +99,7 @@ I have used [Canva](https://www.canva.com/) to design my website wireframes for 
 
 ### Mobile Wireframes
 <!-- learnt the dropdown from https://dev.to/asyraf/how-to-add-dropdown-in-markdown-o78 -->
+<!-- My website has evolved from the initial wireframes I created earlier in the project. While the design now looks different from the original plan, I see this as a natural progression as the project developed. The changes reflect new ideas and insights that came up during the development process, resulting in a structure that aligns better with the project’s goals. -->
 
 <details>
 <summary>Mobile Wireframes</summary>
@@ -336,6 +329,21 @@ __Press Enter and your local clone will be created.__
 9. Ensure that your **env.py** file is placed in your **.gitignore** file and follow the remaining steps in the above Django Project Setup section before pushing your code to GitHub.
 
 </details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Credits
 
