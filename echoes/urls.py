@@ -7,7 +7,6 @@ urlpatterns = [
     path('post/<slug:slug>/', post_detail, name='post_detail'),
     path('like/<int:pk>/', Like_view, name='like_post'),
     path('<slug:slug>/edit_comment/<int:comment_id>/', comment_edit, name='comment_edit'),
-    path('<slug:slug>/delete_comment/<int:comment_id>/',
-         comment_delete, name='comment_delete'),
+    path('<slug:slug>/delete_comment/<int:comment_id>/', comment_delete, name='comment_delete'),
     path('submit-blog/', submit_blog_post, name='submit_blog_post'),
 ]

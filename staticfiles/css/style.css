@@ -208,10 +208,10 @@ hr {
 
 #about-title {
     padding-top: 45px;
-    
+
 }
 
-.about-images{
+.about-images {
     margin-top: 80px;
 }
 
@@ -337,6 +337,23 @@ hr {
     color: blue;
 }
 
+.btn-danger {
+    display: inline-block;
+    font-weight: bold;
+    color: white;
+    border: 2px solid #000000;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 100px;
+}
+
+.btn-danger:hover {
+    background-color: #45a049;
+    color: black;
+}
+
+
 /* Card Styling */
 .card {
     border: none;
@@ -443,6 +460,22 @@ hr {
     color: #777;
     text-align: center;
 }
+
+.btn-delete,
+.btn-edit {
+    color: black;
+    background: yellowgreen;
+    font-weight: bold;
+}
+
+#deleteModalLabel {
+    display: block;
+    margin-left: 150px;
+    background-color: yellow;
+    padding:9px;
+    border-radius: 5px;
+}
+
 
 /* ------- Contact form ------ */
 
@@ -795,6 +828,10 @@ footer {
     /* ----hero banner ---- */
     .hero-banner {
         height: 45vh;
+    }
+
+    .comment-custom {
+        text-align: left;
     }
 
 }
