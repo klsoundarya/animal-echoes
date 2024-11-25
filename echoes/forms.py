@@ -24,23 +24,6 @@ class BlogPostForm(forms.ModelForm):
         if BlogPost.objects.filter(slug=slug).exists():
             raise forms.ValidationError("A blog post with a similar title already exists. Please choose a different title.")
         return title
-    
-    def save(self, commit=True):
-        """
-        Override save to auto-generate a unique slug for the blog post
-        """
-        instance = super().save(commit=False)
-        if not instance.slug:  # This generate slug if it's empty
-            base_slug = slugify(instance.title)
-            unique_slug = base_slug
-            counter = 1
-            while BlogPost.objects.filter(slug=unique_slug).exists():
-                unique_slug = f"{base_slug}-{counter}"
-                counter += 1
-            instance.slug = unique_slug
-        if commit:
-            instance.save()
-        return instance
 
 
 class CommentForm(forms.ModelForm):

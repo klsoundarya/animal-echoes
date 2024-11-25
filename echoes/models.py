@@ -1,15 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
-from datetime import timedelta
+from django.utils.text import slugify
 from django.utils.timezone import now
+from datetime import timedelta
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
 
 class BlogPost(models.Model):
     """
-    Stores a single blogpost entry related to :model:`auth.User`.
+    Stores a single blog post entry related to :model:`auth.User`.
     """
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -23,7 +24,7 @@ class BlogPost(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0)
-    likes = models.ManyToManyField(User, related_name='blog_posts')
+    likes = models.ManyToManyField(User, related_name='blog_posts', blank=True)
     read = models.BooleanField(default=False)
 
     class Meta:
@@ -33,18 +34,34 @@ class BlogPost(models.Model):
         return self.likes.count()
 
     def save(self, *args, **kwargs):
+        """
+        Override save to auto-generate a unique slug for the blog post
+        and handle local and cloudinary images.
+        """
+        # Generate a unique slug if it doesn't exist
+        if not self.slug:
+            base_slug = slugify(self.title)
+            unique_slug = base_slug
+            counter = 1
+            while BlogPost.objects.filter(slug=unique_slug).exists():
+                unique_slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = unique_slug
 
+        # Prioritize Cloudinary image, clear local image if a Cloudinary image is set
         if self.featured_image:
-            self.local_image = None
-        super().save(*args, **kwargs)
+            self.featured_image_local = None
+
+        super().save(*args, **kwargs)  # Call the parent save method
 
     def __str__(self):
         return f"{self.title} | written by {self.author}"
 
+
 class Comment(models.Model):
     """
     Stores a single comment entry related to :model:`auth.User`
-    and :model:`blog.Post`.
+    and :model:`blog.BlogPost`.
     """
     post = models.ForeignKey(
         BlogPost, on_delete=models.CASCADE, related_name="comments")
@@ -60,7 +77,10 @@ class Comment(models.Model):
         ordering = ["created_on"]
 
     def was_approved_recently(self):
+        """
+        Check if the comment was approved in the last day.
+        """
         return self.approved and self.approved_on and self.approved_on >= now() - timedelta(days=1)
-    
+
     def __str__(self):
         return f"Comment by {self.author} on {self.post.title}"
