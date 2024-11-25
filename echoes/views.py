@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from .models import BlogPost, Comment
 from .forms import CommentForm, BlogPostForm
 
-
+@login_required
 def EchoList(request):
     if request.user.is_authenticated:
         blog_posts = BlogPost.objects.filter(status=1).order_by("-created_on")
@@ -16,7 +16,7 @@ def EchoList(request):
     paginator = Paginator(blog_posts, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-
+ 
     context = {
         'echo_list': page_obj,
         'is_authenticated': request.user.is_authenticated,

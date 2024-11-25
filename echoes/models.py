@@ -8,7 +8,7 @@ from datetime import timedelta
 STATUS = ((0, "Draft"), (1, "Published"))
 
 
-class BlogPost(models.Model):
+class BlogPost(models.Model): 
     """
     Stores a single blog post entry related to :model:`auth.User`.
     """
