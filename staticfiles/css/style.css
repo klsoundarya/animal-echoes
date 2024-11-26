@@ -200,7 +200,7 @@ hr {
     font-family: 'Georgia', serif;
     font-size: 1rem;
     line-height: 1.6;
-    letter-spacing: -2;
+    letter-spacing: -2px;
     text-align: justify;
     margin-bottom: 1.2rem;
     color: #333333;
@@ -780,7 +780,7 @@ footer {
 
 .text-center .text-line {
     color: #0000ff;
-    margin-top: 4px 0px;
+    margin-top: 4px;
     opacity: 0.5;
 }
 
