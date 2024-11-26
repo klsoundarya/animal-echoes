@@ -26,6 +26,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),  # Custom accounts URLs
     path('admin/', admin.site.urls),
     path('contact/', include('contact.urls')),
+    path('quiz/', include('quiz.urls')),
     path('echoes/', include('echoes.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('', include('home.urls'), name='home-urls'),

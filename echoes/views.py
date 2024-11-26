@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from .models import BlogPost, Comment
 from .forms import CommentForm, BlogPostForm
 
-@login_required
+
 def EchoList(request):
     if request.user.is_authenticated:
         blog_posts = BlogPost.objects.filter(status=1).order_by("-created_on")
@@ -46,7 +46,11 @@ def post_detail(request, slug):
 
 
     # Like and comment logic
-    liked = post.likes.filter(id=request.user.id).exists() if request.user.is_authenticated else False
+    liked = (
+        post.id in request.session.get('liked_posts', [])
+        if not request.user.is_authenticated
+        else post.likes.filter(id=request.user.id).exists()
+    )
 
     comments = post.comments.all().order_by("-created_on")
     comment_count = post.comments.filter(approved=True).count()
@@ -79,14 +83,25 @@ def post_detail(request, slug):
     )
 
 
-@login_required
 def Like_view(request, pk):
     """
     Handles the like/unlike functionality for a post.
     """
     post = get_object_or_404(BlogPost, id=pk)
 
-    if request.user.is_authenticated:
+    if not request.user.is_authenticated:
+        liked_posts = request.session.get('liked_posts', [])
+        
+        if pk in liked_posts:
+            liked_posts.remove(pk)  # Unlike
+        else:
+            liked_posts.append(pk)  # Like
+
+        request.session['liked_posts'] = liked_posts
+        request.session.modified = True
+
+    else:
+        # Authenticated user: Toggle the like
         if post.likes.filter(id=request.user.id).exists():
             post.likes.remove(request.user)
         else:
@@ -95,7 +110,7 @@ def Like_view(request, pk):
     return HttpResponseRedirect(reverse('post_detail', args=[post.slug]))
 
 
-
+@login_required
 def comment_edit(request, slug, comment_id):
     """
     view to edit comments
@@ -119,7 +134,7 @@ def comment_edit(request, slug, comment_id):
 
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
-
+@login_required
 def comment_delete(request, slug, comment_id):
     """
     Delete an individual comment.
@@ -144,7 +159,6 @@ def comment_delete(request, slug, comment_id):
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
-@login_required
 def submit_blog_post(request):
     if request.method == "POST":
         form = BlogPostForm(request.POST, request.FILES)
@@ -160,4 +174,3 @@ def submit_blog_post(request):
         form = BlogPostForm()
     
     return render(request, 'echoes/submit_blog_post.html', {'form': form})
-

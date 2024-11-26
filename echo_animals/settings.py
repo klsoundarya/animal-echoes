@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'about',
     'accounts',
     'contact',
+    'quiz',
 ]
 
 SITE_ID = 1
