@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 # Unregister the default User model
 admin.site.unregister(User)
 
+
 # Extend UserAdmin to include custom fields
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
@@ -15,11 +16,12 @@ class CustomUserAdmin(UserAdmin):
     search_fields = ('username', 'email', 'first_name', 'last_name')
     ordering = ('username',)
 
-  
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         ('Personal Info', {'fields': ('first_name', 'last_name', 'email')}),
-        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+        ('Permissions', {'fields': (
+            'is_active', 'is_staff', 'is_superuser',
+            'groups', 'user_permissions')}),
         ('Important Dates', {'fields': ('last_login', 'date_joined')}),
     )
 
