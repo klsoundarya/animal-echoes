@@ -16,22 +16,23 @@
         <div class="col-md-8 mt-3 offset-md-2">
             <div class="profile-box mb-3">
                 <form class="profile" id="profile_form" method="post" action="{% url 'accounts:userprofile_update' %}">
-                    <div>
-                        {% csrf_token %}
-                        {{user_form.as_p}}
-                        {% if redirect_field_value %}
-                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                        {% endif %}
-                        <button class="btn btn-success" type="submit">
-                            {% trans "Update Profile" %} &raquo;
-                        </button>
-                    </div>
+                    {% csrf_token %}
+                    {{ user_form.as_p }}
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+                    {% endif %}
+                    <button class="btn btn-success" type="submit">
+                        {% trans "Update Profile" %} &raquo;
+                    </button>
                 </form>
-                <div style="text-align: center;">
-                    <a href="{% url 'accounts:password_update' %}" class="btn btn-secondary">Update Password&raquo;</a>
+                <div class="text-center mt-3">
+                    <a href="{% url 'accounts:password_update' %}" class="btn btn-secondary">
+                        {% trans "Update Password" %} &raquo;
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}

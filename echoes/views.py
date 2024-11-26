@@ -44,6 +44,8 @@ def post_detail(request, slug):
     queryset = BlogPost.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
 
+
+    # Like and comment logic
     liked = post.likes.filter(id=request.user.id).exists() if request.user.is_authenticated else False
 
     comments = post.comments.all().order_by("-created_on")

@@ -52,6 +52,7 @@
       </div>
     </div>
   </div>
+
   <div>
     <div>
       <span>{{ total_likes }} Likes</span>
@@ -59,9 +60,13 @@
         {% csrf_token %}
         <button type="submit" class="btn btn-primary btn-sm">
           {% if liked %}
-          <p style="letter-spacing: 0.6px;" class="btn-custom"><i class="fa-solid fa-heart-crack"> Dislike</i></p>
+          <span style="letter-spacing: 0.6px;" class="btn-custom">
+            <i class="fa-solid fa-heart-crack"></i> Dislike
+          </span>
           {% else %}
-          <p style="letter-spacing: 2px;" class="btn-custom"><i class="fa-regular fa-heart"> Like</i></p>
+          <span style="letter-spacing: 2px;" class="btn-custom">
+            <i class="fa-regular fa-heart"></i> Like
+          </span>
           {% endif %}
         </button>
       </form>
@@ -72,38 +77,31 @@
   <!-- Comments Section -->
   <section style="background-color: rgba(211, 211, 211, 0.232);">
     <div class="container my-5 py-5">
-      <!-- Side-by-Side Columns -->
       <div class="col-md-10 mx-auto">
         <div class="d-flex flex-column flex-md-row justify-content-between">
           <!-- Recent Comments Section -->
-          <div class="col-md-6 pe-md-3 border-md-end mb-4 mb-md-0" style="
-          margin-top: 60px;">
-            <h5 class="text-muted"><i class="far fa-comments"></i> ({{ comment_count }})</h5>
+          <div class="col-md-6 pe-md-3 border-md-end mb-4 mb-md-0" style="margin-top: 60px;">
+            <h5 class="text-muted">
+              <i class="far fa-comments"></i> ({{ comment_count }})
+            </h5>
             <div id="post-container" data-post-slug="{{ post.slug }}">
               <div class="comment-custom">
                 <div class="p-4">
                   <h4 class="mb-0 text-center">Recent Comments</h4>
                   <br>
                   {% for comment in comments %}
-                  <div class="comment-item my-3 p-3 border rounded {% if not comment.approved and comment.author == user %}
-              faded{% elif not comment.approved %} d-none{% endif %}" style="background-color: #f9f9f9;">
-                    <!-- Author Name -->
+                  <div
+                    class="comment-item my-3 p-3 border rounded {% if not comment.approved and comment.author == user %}faded{% elif not comment.approved %} d-none{% endif %}"
+                    style="background-color: #f9f9f9;">
                     <div class="comment-author mb-2">
                       <strong class="text-primary">{{ comment.name }}</strong>
                     </div>
-
-                    <!-- Comment Body -->
                     <div class="comment-body mb-2" id="comment{{ comment.id }}">
                       <p class="mb-1" style="font-size: 1rem; color: #333;">{{ comment.body }}</p>
                     </div>
-
-
-                    <!-- Timestamp -->
                     <div class="comment-timestamp text-muted" style="font-size: 0.875rem;">
                       Posted on: {{ comment.created_on|date:"F j, Y, g:i a" }}
                     </div>
-
-                    <!-- Message for Pending Approval -->
                     {% if not comment.approved and comment.author == user %}
                     <p class="approval text-warning mt-2">
                       <i class="fa-solid fa-clock-rotate-left"></i> This comment is awaiting approval...
@@ -130,20 +128,27 @@
               <form id="commentForm" method="post" style="margin-top: 1.3em;">
                 {% csrf_token %}
                 {{ comment_form|crispy }}
-                <p class="text-center" style="color:rgb(96, 78, 78);">Posting as: {{ user.username }}</p>
+                <p class="text-center" style="color: rgb(96, 78, 78);">Posting as: {{ user.username }}</p>
                 <button type="submit" class="btn btn-primary" id="custom-submit">Post Comment</button>
               </form>
               {% else %}
-              <p class="text-center fw-bold" style="color:rgb(96, 78, 78);"><i
-                  class="fa-solid fa-arrow-right-to-bracket"></i> Please <a href="{% url 'account_login' %}">log in</a>
-                to
-                leave a comment.</p>
+              <p class="text-center fw-bold" style="color: rgb(96, 78, 78);">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i> Please
+                <a href="{% url 'account_login' %}">log in</a> to leave a comment.
+              </p>
               {% endif %}
             </div>
           </div>
         </div>
       </div>
+    </div>
   </section>
+
+  <div class="post-navigation mb-4 d-flex justify-content-between">
+    <a href="{% url 'echo_list' %}" class="btn btn-secondary">
+      <i class="fas fa-arrow-left"></i> Back to all posts
+    </a>
+  </div>
 
   <!-- Delete confirmation modal -->
   <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -164,9 +169,11 @@
       </div>
     </div>
   </div>
+</div>
 
-  {% endblock content %}
 
-  {% block extras %}
-  <script src="{% static 'js/comments.js' %}"></script>
-  {% endblock %}
+{% endblock content %}
+
+{% block extras %}
+<script src="{% static 'js/comments.js' %}"></script>
+{% endblock %}

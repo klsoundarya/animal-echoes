@@ -8,7 +8,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 mt-3 offset-md-2">
-            <h2 class="custom-heading mt-5 fw-bold text-center">{% trans "Submit an Animal Blog Post" %}</h2>
+            <h2 class="custom-heading mt-5 fw-bold text-center">
+                {% trans "Submit an Animal Blog Post" %}
+            </h2>
             <hr class="mb-2">
         </div>
     </div>
@@ -16,19 +18,23 @@
         <div class="col-md-8 mt-3 offset-md-2">
             <div class="submit-box mb-3">
                 <form class="submit" method="post" enctype="multipart/form-data" id="submit_form">
-                    <div style>
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        {% if redirect_field_value %}
-                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                        {% endif %}
-                        <button class="btn btn-success" type="submit">
-                            {% trans "Submit Blog Post" %} &raquo;
-                        </button>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+                    {% endif %}
+                    <button class="btn btn-success" type="submit">
+                        {% trans "Submit Blog Post" %} &raquo;
+                    </button>
+                    <div class="text-center mt-3">
+                        <a href="{% url 'home' %}" class="btn btn-primary">
+                            {% trans "Back to Home" %}
+                        </a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}

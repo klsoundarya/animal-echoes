@@ -33,7 +33,7 @@
                 about
                 animals fun, accessible, and meaningful.
             </p>
-            <a href="{% url 'about' %}" class="btn btn-primary mt-3">Explore More</a>
+            <a href="{% url 'about' %}" class="btn btn-primary mt-3">Find Out More</a>
         </div>
     </div>
 </div>
@@ -48,24 +48,24 @@
             <div class="card">
                 <div class="bg-image hover-overlay">
                     {% if post.featured_image_local and post.featured_image_local.url %}
-                    <img class="card-img-top" src="{{ post.featured_image_local.url }}" alt="{{ post.title }}"
-                        class="img-fluid rounded d-block mx-auto"
+                    <img class="card-img-top img-fluid rounded d-block mx-auto"
+                        src="{{ post.featured_image_local.url }}" alt="{{ post.title }}"
                         style="width: 200px; height: 200px; object-fit: cover;">
                     {% elif "placeholder" in post.featured_image.url %}
-                    <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="No Image Available"
-                        class="img-fluid rounded d-block mx-auto"
-                        style="width: 200px; height: 200px; object-fit: cover;">
+                    <img class="card-img-top img-fluid rounded d-block mx-auto" src="{% static 'images/default.jpg' %}"
+                        alt="No Image Available" style="width: 200px; height: 200px; object-fit: cover;">
                     {% else %}
-                    <img class="card-img-top" src="{{ post.featured_image.url }}" alt="{{ post.title }}"
-                        class="img-fluid rounded">
+                    <img class="card-img-top img-fluid rounded d-block mx-auto" src="{{ post.featured_image.url }}"
+                        alt="{{ post.title }}">
                     {% endif %}
                     <a href="{% url 'post_detail' post.slug %}">
                         <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                     </a>
                 </div>
+
                 <div class="card-body text-center">
                     <h5 class="card-title">{{ post.title }}</h5>
-                    <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary mt-3">Read More</a>
+                    <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary mt-3">Find More</a>
                 </div>
             </div>
         </div>
@@ -87,14 +87,12 @@
                 our mission to make learning about animals fun, accessible, and impactful!</p>
             <a href="{% url 'accounts:account_signup' %}" class="btn btn-primary mt-3">Register</a>
             {% else %}
-            <p class="fw-bold"><i class="fa-solid fa-heart"></i> Welcome back! Feel free to <a href="{% url 'echo_list' %}">explore more</a>
+            <p class="fw-bold"><i class="fa-solid fa-heart"></i> Welcome back! Feel free to <a
+                    href="{% url 'echo_list' %}">explore more</a>
                 content.
-            {% endif %}
+                {% endif %}
         </div>
     </div>
-</div>
-</div>
-
 </div>
 
 {% endblock %}

@@ -13,24 +13,26 @@
       <h2 class="custom-heading mt-5 fw-bold text-center">{% trans "Log In" %}</h2>
       <hr class="mb-2">
     </div>
-    <div class="row">
-      <div class="col-md-8 mt-3 offset-md-2">
-        <div class="login-box mb-3">
-          <p><a class="custom-link pt-3" href="{{ signup_url }}">Don't have an account? Please sign up.</a>
-          </p>
-          <form class="login" id="login_form" method="post" action="{% url 'account_login' %}">
-            <div>
-              {% csrf_token %}
-              {% crispy form %}
-              {% if redirect_field_value %}
-              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-              {% endif %}
-              <button class="btn btn-success" type="submit">{% trans "Log In" %}</button>
-            </div>
-          </form>
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 mt-3 offset-md-2">
+      <div class="login-box mb-3">
+        <p>
+          <a class="custom-link pt-3" href="{{ signup_url }}">Don't have an account? Please sign up.</a>
+        </p>
+        <form class="login" id="login_form" method="post" action="{% url 'account_login' %}">
+          <div>
+            {% csrf_token %}
+            {% crispy form %}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+            {% endif %}
+            <button class="btn btn-success" type="submit">{% trans "Log In" %}</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
+
 {% endblock %}
