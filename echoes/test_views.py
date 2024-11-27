@@ -28,8 +28,8 @@ class TestBlogViews(TestCase):
             body="Initial test comment"
         )
 
-    def test_render_post_detail_page_with_comment_form(self):
-        response = self.client.get(reverse('post_detail', args=['echoes-title']))
+    def test_render_animal_detail_page_with_comment_form(self):
+        response = self.client.get(reverse('animal_detail', args=['echoes-title']))
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"Echoes title", response.content)
         self.assertIn(b"Echoes content", response.content)
@@ -48,7 +48,7 @@ class TestBlogViews(TestCase):
         }
 
         response = self.client.post(
-            reverse('post_detail', args=['echoes-title']), post_data
+            reverse('animal_detail', args=['echoes-title']), post_data
         )
 
         self.assertEqual(response.status_code, 302)

@@ -9,9 +9,38 @@
     <div class="col-md-6">
       <div class="post-content">
         <h2 class="post-title text-center mb-3">{{ post.title }}</h2>
-        <div>
-          {{ post.content | safe }}
+        <!-- Post Description with HTML rendering -->
+        <div class="post-description mt-5">
+          {{ post.description | safe }}
         </div>
+        <p class="species font-weight-bold mt-4" style="color:red;">
+          Species: <span class="text-muted">{{ post.species|default:"Not specified"|safe }}</span>
+        </p>
+        <p class="habitat font-weight-bold" style="color:red;">
+          Habitat: <span class="text-muted">{{ post.habitat|default:"Not specified"|safe }}</span>
+        </p>
+        <p class="diet font-weight-bold" style="color:red;">
+          Diet: <span class="text-muted">{{ post.diet|default:"Not specified"|safe }}</span>
+        </p>
+
+
+        <!-- Fun Facts -->
+        <p class="font-weight-bold" style='color:red;'>Fun Facts:</p>
+        <ul>
+          {% for fact in post.fun_facts.all %}
+          <li>{{ fact.fact_text|safe }}</li>
+          {% empty %}
+          <li>No fun facts available for this animal yet.</li>
+          {% endfor %}
+        </ul>
+
+        <!-- Tags -->
+        <p class="font-weight-bold" style='color:red;'>Tags:</p>
+        <ul class="list-unstyled">
+          {% for tag in post.tags.all %}
+          <li class="badge badge-info" style="color:blue;">{{ tag.name|safe }}</li>{% if not forloop.last %}, {% endif %}
+          {% endfor %}
+        </ul>
       </div>
     </div>
 
@@ -71,7 +100,7 @@
         </button>
       </form>
     </div>
-    <p class="post-subtitle text-center mt-4">Written by: {{ post.author }} | {{ post.created_on }}</p>
+    <p class="post-subtitle text-center mt-4">Written by: {{ post.author }} | {{ post.date }}</p>
   </div>
 
   <!-- Comments Section -->
@@ -170,7 +199,6 @@
     </div>
   </div>
 </div>
-
 
 {% endblock content %}
 

@@ -1,14 +1,22 @@
 from django.contrib.auth.views import LogoutView
 from django.urls import path
-from .views import signup_view, login_view, update_profile_view, password_update_view
-
+from . import views
 
 app_name = 'accounts'
 
 urlpatterns = [
-    path('login/', login_view, name='account_login'),
+    # Login page
+    path('login/', views.login_view, name='account_login'),
+    
+    # Logout page (uses Django's built-in LogoutView)
     path('logout/', LogoutView.as_view(), name='account_logout'),
-    path('userprofile_update/', update_profile_view, name='userprofile_update'),
-    path('password_update/', password_update_view, name='password_update'),
-    path('signup/', signup_view, name='account_signup'),
+    
+    # User profile update page
+    path('userprofile_update/', views.update_profile_view, name='userprofile_update'),
+    
+    # Password update page
+    path('password_update/', views.password_update_view, name='password_update'),
+    
+    # Signup page
+    path('signup/', views.signup_view, name='account_signup'),
 ]

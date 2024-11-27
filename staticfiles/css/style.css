@@ -200,7 +200,6 @@ hr {
     font-family: 'Georgia', serif;
     font-size: 1rem;
     line-height: 1.6;
-    letter-spacing: -2px;
     text-align: justify;
     margin-bottom: 1.2rem;
     color: #333333;
@@ -352,6 +351,24 @@ hr {
     background-color: #45a049;
     color: black;
 }
+
+#funFactsCarousel {
+    max-width: 100%;
+    margin: 0 auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .carousel-inner {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  
+  .carousel-item {
+    flex: 0 0 auto;
+    margin-right: 15px;
+  }  
 
 
 /* Card Styling */

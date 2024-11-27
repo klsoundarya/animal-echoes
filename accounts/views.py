@@ -15,7 +15,8 @@ from .forms import (
 def update_profile_view(request):
     if request.user.is_authenticated:
         current_user = User.objects.get(id=request.user.id)
-        user_form = UpdateProfileForm(request.POST or None, instance=current_user)
+        user_form = UpdateProfileForm(
+                request.POST or None, instance=current_user)
 
         if user_form.is_valid():
             user_form.save()
@@ -23,13 +24,16 @@ def update_profile_view(request):
             current_user.backend = 'django.contrib.auth.backends.ModelBackend'
 
             login(request, current_user)
-            messages.success(request, "Wooho!! Your Profile has been updated!!")
-            return redirect('home') 
+            messages.success(request, "Woho!! Your Profile has been updated!!")
+            return redirect('home')
 
-        return render(request, 'accounts/userprofile_update.html', {'user_form': user_form})
+        return render(
+                request, 'accounts/userprofile_update.html', {
+                        'user_form': user_form})
     else:
         messages.success(request, "Please log in to view this page.!!")
-        return redirect('home') 
+        return redirect('home')
+
 
 # password update
 def password_update_view(request):
@@ -44,7 +48,7 @@ def password_update_view(request):
 
                 current_user.backend = 'django.contrib.auth.backends.ModelBackend'
 
-                messages.success(request, "Woohoo!! Your Password Has Been Updated")
+                messages.success(request, "Your Password Has Been Updated")
                 login(request, current_user)
 
                 return redirect('accounts:userprofile_update')
@@ -60,7 +64,6 @@ def password_update_view(request):
     else:
         messages.error(request, "Please log in to view this page!")
         return redirect('home')
-            
 
 
 # Signup View
@@ -73,29 +76,28 @@ def signup_view(request):
             username = form.cleaned_data('username')
             password = form.cleaned_data('password1')
             # log in user
-            user = authenticate (username=username, password=password)
+            user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request, ("Your account has been created."))
             return redirect('home')
         else:
-            messages.error(request, ("There was a problem registering, please try again."))
+            messages.error(request, ("There was a problem registering, try again."))
             return redirect('account_signup')
     else:
         return render(request, 'accounts/signup.html', {'form': form})
-    
+
 
 # Login View
 def login_view(request):
     if request.method == 'POST':
-            email = request.POST('email')
-            password = request.POST('password')
-            user = authenticate(request, email=email, password=password)
+        email = request.POST('email')
+        password = request.POST('password')
+        user = authenticate(request, email=email, password=password)
 
-            if user is not None:
-                login(request, user)
-                return redirect('home')
-                
-            else:
-                return redirect('login')
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            return redirect('login')
     else:
         return render(request, 'accounts/login.html', {})

@@ -58,20 +58,29 @@
                     <img class="card-img-top img-fluid rounded d-block mx-auto" src="{{ post.featured_image.url }}"
                         alt="{{ post.title }}">
                     {% endif %}
-                    <a href="{% url 'post_detail' post.slug %}">
+                    <a href="{% url 'animal_detail' post.slug %}">
                         <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                     </a>
                 </div>
 
                 <div class="card-body text-center">
                     <h5 class="card-title">{{ post.title }}</h5>
-                    <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary mt-3">Find More</a>
+
+                    <!-- Display Tags Here -->
+                    <p class="card-text">
+                        {% for tag in post.tags.all %}
+                        <span class="badge bg-info text-white">{{ tag.name }}</span>
+                        {% endfor %}
+                    </p>
+
+                    <a href="{% url 'animal_detail' post.slug %}" class="btn btn-primary mt-3">Read More</a>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
+
 
 <!-- Register section -->
 <div class="container">

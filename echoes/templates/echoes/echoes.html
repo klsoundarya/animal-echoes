@@ -9,7 +9,8 @@
         <div class="row mt-3 echo-custom">
             <h2 class="custom-title fw-bold text-center">Discover Animal Echoes</h2>
             <hr class="mb-2 echo-line">
-            <span class="text-center text-muted mb-3">Listen to the unique sounds of different animals from around the world.</span>
+            <span class="text-center text-muted mb-3">Listen to the unique sounds of different animals from around the
+                world.</span>
         </div>
 
         <!-- Add a call-to-action for submitting a blog -->
@@ -18,7 +19,8 @@
                 <div class="alert alert-info p-4 shadow-lg rounded"
                     style="background-color: #f8f9fa; border: 2px solid #007bff;">
                     <h4 class="text-primary mb-3">Share Your Voice!</h4>
-                    <p class="text-muted mb-4">Have an interesting animal story or sound? Submit your blog now and share it with the world!</p>
+                    <p class="text-muted mb-4">Have an interesting animal story or sound? Submit your blog now and share
+                        it with the world!</p>
                     <a href="{% url 'submit_blog_post' %}" class="btn btn-primary btn-lg"
                         style="border-radius: 30px; padding: 12px 24px; font-size: 1.1rem;">
                         Submit a Blog
@@ -36,7 +38,7 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="image-flash">
-                        <a href="{% url 'post_detail' post.slug %}" class="post-link">
+                        <a href="{% url 'animal_detail' post.slug %}" class="post-link">
                             <h2 class="card-title">{{ post.title }}</h2>
                         </a>
                     </div>
@@ -50,15 +52,15 @@
                             src="{% static 'images/default.jpg' %}" alt="No Image Available"
                             style="width: 200px; height: 200px; object-fit: cover;">
                         {% else %}
-                        <img class="card-img-top img-fluid rounded d-block mx-auto"
-                            src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+                        <img class="card-img-top img-fluid rounded d-block mx-auto" src="{{ post.featured_image.url }}"
+                            alt="{{ post.title }}">
                         {% endif %}
                         <br>
                     </div>
-                    <a href="{% url 'post_detail' post.slug %}" class="post-link">
-                        <p class="card-text">{{ post.excerpt }}</p>
+                    <a href="{% url 'animal_detail' post.slug %}" class="post-link">
+                        <p class="card-text">{{ post.intro|safe }}</p>
                     </a>
-                    <p class="card-text text-muted h6">{{ post.created_on }}</p>
+                    <p class="card-text text-muted h6">{{ post.date }}</p>
                 </div>
             </div>
         </div>
@@ -69,6 +71,20 @@
         {% endfor %}
     </div>
 </section>
+
+<!-- Include Slider Facts Below Animal Cards -->
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-12 text-center alert alert-info p-4 shadow-lg rounded"
+            style="background-color: #00000027; color:rgba(71, 142, 255, 0.877); border: 2px solid transparent;">
+            <h3>Check out Fun Facts about Animals!</h3>
+            <hr class="mb-4">
+            <div class="slider-container">
+                <a href="{% url 'slider_facts' %}" class="btn btn-secondary btn-lg">See Slider Facts</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Register section -->
 <div class="container">
@@ -105,5 +121,6 @@
 </nav>
 
 {% endif %}
+
 
 {% endblock %}

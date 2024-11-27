@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from django.utils.text import slugify
 from django.utils.timezone import now
-from datetime import timedelta
+from datetime import timedelta, date
+
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
@@ -14,21 +15,27 @@ class BlogPost(models.Model):
     """
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="animal_blog_posts")
+    species = models.CharField(max_length=85, default=None)
+    habitat = models.CharField(max_length=255, default=None)
+    diet = models.CharField(max_length=255, blank=True, null=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="animal_blog_posts", blank=True)
     featured_image = CloudinaryField('image', null=True, blank=True, default=None)
     featured_image_local = models.ImageField(upload_to='animal_images/', null=True, blank=True)
-    content = models.TextField()
-    excerpt = models.TextField(blank=True)
+    intro = models.TextField(blank=True)
+    description = models.TextField()
     sound_cloudinary = CloudinaryField('sound', resource_type='auto', null=True, blank=True)
     sound_local = models.FileField(upload_to='animal_sounds/', null=True, blank=True)
-    created_on = models.DateTimeField(auto_now_add=True)
+    date = models.DateField("Post Date", default=date.today)
     updated_on = models.DateTimeField(auto_now=True)
-    status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, related_name='blog_posts', blank=True)
+    tags = models.ManyToManyField('Tag', related_name="blog_posts", blank=True)
+    fun_facts = models.ManyToManyField('AnimalFact', related_name="blog_posts_facts", blank=True, verbose_name="Fun Facts")
     approve = models.BooleanField(default=False)
+    status = models.IntegerField(choices=STATUS, default=0)
+    created_on = models.DateTimeField(auto_now_add=True, null=True)
 
     class Meta:
-        ordering = ["-created_on", "author"]
+        ordering = ["date", "author"]
 
     def total_likes(self):
         return self.likes.count()
@@ -52,10 +59,57 @@ class BlogPost(models.Model):
         if self.featured_image:
             self.featured_image_local = None
 
-        super().save(*args, **kwargs)  # Call the parent save method
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.title} | written by {self.author}"
+
+
+class BlogPostImage(models.Model):
+
+    blog_post = models.ForeignKey(BlogPost, related_name="image_gallery", on_delete=models.CASCADE)
+    image_gallery = CloudinaryField('image', null=True, blank=True, default=None)
+    image_gallery_local = models.ImageField(upload_to='animal_gallery_images/', null=True, blank=True)
+    caption = models.CharField(max_length=255, blank=True)
+    position = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['position']
+
+    def __str__(self):
+        return f"Image {self.position} for {self.blog_post.title}"
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.name
+    
+class AnimalFact(models.Model):
+    """
+    Stores fun facts about animals.
+    """
+    animal = models.ForeignKey(BlogPost, related_name='facts', on_delete=models.CASCADE)
+    fact_text = models.TextField()
+
+    def __str__(self):
+        return f"Fact about {self.animal.title}"
+    
+    
+class FunFactSlider(models.Model):
+    """
+    Stores fun facts and an associated image for the slider.
+    """
+    blog_post = models.ForeignKey(BlogPost, on_delete=models.CASCADE, default=1)
+    fact_text = models.TextField()
+    slider_image = CloudinaryField('image', null=True, blank=True, default=None)
+    slider_image_local = models.ImageField(upload_to='slider_images/', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Slider Fact for {self.blog_post}"
+
 
 
 class Comment(models.Model):

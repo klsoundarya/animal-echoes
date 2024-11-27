@@ -3,18 +3,19 @@ from .forms import CommentForm, BlogPostForm
 from .models import BlogPost
 from django.contrib.auth.models import User
 
+
 class TestCommentForm(TestCase):
     """Test cases for CommentForm."""
 
     def test_form_is_valid(self):
         """Check if the form is valid when body is provided."""
         form = CommentForm({'body': 'This is a valid comment'})
-        self.assertTrue(form.is_valid(), msg="Comment form should be valid with a body.")
+        self.assertTrue(form.is_valid(), msg="Comment form should be valid.")
 
     def test_form_is_invalid(self):
         """Check if the form is invalid when body is missing."""
         form = CommentForm({'body': ''})
-        self.assertFalse(form.is_valid(), msg="Comment form should be invalid without a body.")
+        self.assertFalse(form.is_valid(), msg="Comment form should be invalid.")
 
 
 class TestBlogPostForm(TestCase):
@@ -50,7 +51,6 @@ class TestBlogPostForm(TestCase):
     def test_clean_title(self):
         # Create a mock user for the test
         user = User.objects.create_user(username='san', password='password123')
-        
         # Create a blog post with a title that should already exist for the invalid test case
         BlogPost.objects.create(
             title="Cheetah: The Fastest Land Animal",
@@ -72,7 +72,7 @@ class TestBlogPostForm(TestCase):
         # Test for valid title
         form_valid = BlogPostForm(data=form_data_valid)
         self.assertTrue(form_valid.is_valid(), msg="Form should pass validation")
-        
+
         # Test for invalid title (that should raise ValidationError due to duplication)
         form_invalid = BlogPostForm(data=form_data_invalid)
         self.assertFalse(form_invalid.is_valid(), msg="Form should fail validation")

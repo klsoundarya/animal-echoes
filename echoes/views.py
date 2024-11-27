@@ -3,15 +3,24 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
-from .models import BlogPost, Comment
+from .models import BlogPost, Comment, FunFactSlider
 from .forms import CommentForm, BlogPostForm
+
+
+def slider_facts_view(request):
+    echo_list = BlogPost.objects.filter(status=1)
+    slider_facts = FunFactSlider.objects.all()
+    return render(request, 'echoes/slider_facts.html', {
+        'echo_list': echo_list,
+        'slider_facts': slider_facts,
+    })
 
 
 def EchoList(request):
     if request.user.is_authenticated:
-        blog_posts = BlogPost.objects.filter(status=1).order_by("-created_on")
+        blog_posts = BlogPost.objects.filter(status=1).order_by("-date")
     else:
-        blog_posts = BlogPost.objects.filter(status=1).order_by("-created_on")[:6]
+        blog_posts = BlogPost.objects.filter(status=1).order_by("-date")[:6]
 
     paginator = Paginator(blog_posts, 6)
     page_number = request.GET.get('page')
@@ -27,7 +36,7 @@ def EchoList(request):
 
 
 
-def post_detail(request, slug):
+def animal_detail(request, slug):
     """
     Display an individual BlogPost with its comments, like status, and the ability to submit new comments.
 
@@ -39,7 +48,7 @@ def post_detail(request, slug):
     - ``liked``: Whether the current user has liked the post.
     - ``total_likes``: The total number of likes for the post.
 
-    **Template:** echoes/post_detail.html"""
+    **Template:** echoes/animal_detail.html"""
      
     queryset = BlogPost.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
@@ -65,14 +74,14 @@ def post_detail(request, slug):
             comment.save()
 
             messages.success(request, 'Comment submitted and awaiting approval.')
-            return redirect('post_detail', slug=slug) 
+            return redirect('animal_detail', slug=slug) 
 
     else:
         comment_form = CommentForm()
 
     return render(
         request,
-        "echoes/post_detail.html",
+        "echoes/animal_detail.html",
         {"post": post,
         "comments": comments,
         "comment_count": comment_count,
@@ -107,7 +116,7 @@ def Like_view(request, pk):
         else:
             post.likes.add(request.user)
 
-    return HttpResponseRedirect(reverse('post_detail', args=[post.slug]))
+    return HttpResponseRedirect(reverse('animal_detail', args=[post.slug]))
 
 
 @login_required
@@ -132,7 +141,7 @@ def comment_edit(request, slug, comment_id):
         else:
             messages.add_message(request, messages.ERROR, 'Failed to update the comment. Please correct the errors.')
 
-    return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+    return HttpResponseRedirect(reverse('animal_detail', args=[slug]))
 
 @login_required
 def comment_delete(request, slug, comment_id):
@@ -156,7 +165,7 @@ def comment_delete(request, slug, comment_id):
     else:
         messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
 
-    return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+    return HttpResponseRedirect(reverse('animal_detail', args=[slug]))
 
 
 def submit_blog_post(request):

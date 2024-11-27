@@ -352,6 +352,24 @@ hr {
     color: black;
 }
 
+#funFactsCarousel {
+    max-width: 100%;
+    margin: 0 auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .carousel-inner {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  
+  .carousel-item {
+    flex: 0 0 auto;
+    margin-right: 15px;
+  }  
+
 
 /* Card Styling */
 .card {

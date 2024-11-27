@@ -5,14 +5,16 @@ from django.utils.text import slugify
 class BlogPostForm(forms.ModelForm):
     class Meta:
         model = BlogPost
-        fields = ['title', 'featured_image', 'content', 'excerpt', 'sound_cloudinary']
+        fields = ['title', 'featured_image', 'description', 'habitat', 'sound_cloudinary', 'author']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control',
-                'rows': 3, 'placeholder': 'Enter title'}),
-            'content': forms.Textarea(attrs={'class': 'form-control',
+                'rows': 3, 'placeholder': 'Enter name of the animal'}),
+            'description': forms.Textarea(attrs={'class': 'form-control',
                 'rows': 3, 'placeholder': 'Write your blog content here...'}),
-            'excerpt': forms.Textarea(attrs={'class': 'form-control',
-                'rows': 3, 'placeholder': 'Short summary of your blog'}),
+            'habitat': forms.Textarea(attrs={'class': 'form-control',
+                'rows': 3, 'placeholder': 'Write short on animal habitat'}),
+            'author': forms.TextInput(attrs={'class': 'form-control',
+                'rows': 3, 'placeholder': 'Enter your name'}),
         }
     
     def clean_title(self):

@@ -3,7 +3,6 @@
 {% url 'home' as home_url %}
 {% url 'about' as about_url %}
 {% url 'echo_list' as echo_url %}
-{% url 'quiz' as about_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -72,10 +71,6 @@
                         <li class="nav-item">
                             <a class="nav-link {% if '/echoes/' in request.path %}active{% endif %}"
                                 href="{% url 'echo_list' %}">Echoes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {% if request.path == quiz_url %}active{% endif %}"
-                                href="{% url 'quiz' %}">Quiz</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == contact_url %}active{% endif %}"
