@@ -72,20 +72,6 @@
     </div>
 </section>
 
-<!-- Include Slider Facts Below Animal Cards -->
-<div class="container my-5">
-    <div class="row">
-        <div class="col-md-12 text-center alert alert-info p-4 shadow-lg rounded"
-            style="background-color: #00000027; color:rgba(71, 142, 255, 0.877); border: 2px solid transparent;">
-            <h3>Check out Fun Facts about Animals!</h3>
-            <hr class="mb-4">
-            <div class="slider-container">
-                <a href="{% url 'slider_facts' %}" class="btn btn-secondary btn-lg">See Slider Facts</a>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Register section -->
 <div class="container">
     <div class="row justify-content-center my-5">
@@ -98,6 +84,22 @@
         </div>
     </div>
 </div>
+
+<!-- Include Slider Facts Below Animal Cards -->
+{% if user.is_authenticated %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-12 text-center alert alert-info p-4 shadow-lg rounded"
+            style="background-color: #00000027; color:rgba(71, 142, 255, 0.877); border: 2px solid transparent;">
+            <h3>Check out Fun Facts about Animals!</h3>
+            <hr class="mb-4">
+            <div class="slider-container">
+                <a href="{% url 'slider_facts' %}" class="btn btn-secondary btn-lg">See Slider Facts</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
 
 <!-- Pagination -->
 {% if is_paginated %}

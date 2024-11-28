@@ -9,16 +9,25 @@ from datetime import timedelta, date
 STATUS = ((0, "Draft"), (1, "Published"))
 
 
-class BlogPost(models.Model): 
+class GuestUser(models.Model):
+    name = models.CharField(max_length=100, default="Guest")
+    email = models.EmailField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+class BlogPost(models.Model):
     """
-    Stores a single blog post entry related to :model:`auth.User`.
+    Stores a single blog post entry related to :model:`auth.User` or :model:`GuestUser`.
     """
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
-    species = models.CharField(max_length=85, default=None)
-    habitat = models.CharField(max_length=255, default=None)
+    species = models.CharField(max_length=85, null=True, blank=True)
+    habitat = models.CharField(max_length=255, null=True, blank=True)
     diet = models.CharField(max_length=255, blank=True, null=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="animal_blog_posts", blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="animal_blog_posts", blank=True, null=True)
+    guest_author = models.ForeignKey(GuestUser, on_delete=models.SET_NULL, null=True, blank=True)  # For guest users
     featured_image = CloudinaryField('image', null=True, blank=True, default=None)
     featured_image_local = models.ImageField(upload_to='animal_images/', null=True, blank=True)
     intro = models.TextField(blank=True)
@@ -33,8 +42,9 @@ class BlogPost(models.Model):
     approve = models.BooleanField(default=False)
     status = models.IntegerField(choices=STATUS, default=0)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
 
-    class Meta:
+    class Meta: 
         ordering = ["date", "author"]
 
     def total_likes(self):
@@ -59,10 +69,17 @@ class BlogPost(models.Model):
         if self.featured_image:
             self.featured_image_local = None
 
+        # Assign a guest user if no authenticated user is available
+        if not self.author:
+            # You can create a default guest user if needed
+            guest_user, created = GuestUser.objects.get_or_create(name="Guest")
+            self.guest_author = guest_user  # Use guest_author for unauthenticated users
+
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.title} | written by {self.author}"
+        return f"{self.title} | written by {self.author if self.author else self.guest_author}"
+
 
 
 class BlogPostImage(models.Model):

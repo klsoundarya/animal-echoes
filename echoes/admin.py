@@ -1,8 +1,13 @@
 from django.contrib import admin
-from .models import BlogPost, BlogPostImage, Tag, Comment, FunFactSlider, AnimalFact
+from .models import BlogPost, BlogPostImage, Tag, Comment, FunFactSlider, AnimalFact, GuestUser
 from django_summernote.admin import SummernoteModelAdmin
 from django.utils.html import format_html
 from django.utils.timezone import now
+
+
+@admin.register(GuestUser)
+class GuestUserAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'created_at')
 
 
 @admin.register(FunFactSlider)
@@ -20,7 +25,7 @@ class AnimalFactAdmin(admin.ModelAdmin):
 
 @admin.register(BlogPost)
 class PostAdmin(SummernoteModelAdmin):
-    list_display = ('title', 'status', 'date', 'approve', 'created_on')
+    list_display = ('title', 'status', 'approve', 'created_on')
     list_editable = ('approve', 'status')
     search_fields = ['title', 'description']
     list_filter = ('status', 'date', 'approve')

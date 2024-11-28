@@ -1,20 +1,21 @@
-from .models import BlogPost, Comment
+from .models import BlogPost, Comment, GuestUser
 from django import forms
 from django.utils.text import slugify
 
+
 class BlogPostForm(forms.ModelForm):
+
     class Meta:
         model = BlogPost
-        fields = ['title', 'featured_image', 'description', 'habitat', 'sound_cloudinary', 'author']
+        fields = ['title', 'featured_image', 'description', 'habitat', 'species', 'sound_cloudinary']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control',
-                'rows': 3, 'placeholder': 'Enter name of the animal'}),
+                'rows': 5, 'placeholder': 'Enter name of the animal'}),
             'description': forms.Textarea(attrs={'class': 'form-control',
-                'rows': 3, 'placeholder': 'Write your blog content here...'}),
+                'rows': 5, 'placeholder': 'Write your blog content here...'}),
             'habitat': forms.Textarea(attrs={'class': 'form-control',
-                'rows': 3, 'placeholder': 'Write short on animal habitat'}),
-            'author': forms.TextInput(attrs={'class': 'form-control',
-                'rows': 3, 'placeholder': 'Enter your name'}),
+                'rows': 2, 'placeholder': 'Write short on animal habitat'}),
+            'species': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter species'}),
         }
     
     def clean_title(self):

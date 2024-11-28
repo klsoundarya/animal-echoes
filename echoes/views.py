@@ -3,10 +3,11 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
-from .models import BlogPost, Comment, FunFactSlider
+from django.contrib.auth.models import User
+from .models import BlogPost, Comment, FunFactSlider, GuestUser
 from .forms import CommentForm, BlogPostForm
 
-
+@login_required
 def slider_facts_view(request):
     echo_list = BlogPost.objects.filter(status=1)
     slider_facts = FunFactSlider.objects.all()
@@ -53,7 +54,7 @@ def animal_detail(request, slug):
     queryset = BlogPost.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
 
-
+ 
     # Like and comment logic
     liked = (
         post.id in request.session.get('liked_posts', [])
@@ -110,7 +111,7 @@ def Like_view(request, pk):
         request.session.modified = True
 
     else:
-        # Authenticated user: Toggle the like
+       
         if post.likes.filter(id=request.user.id).exists():
             post.likes.remove(request.user)
         else:
@@ -173,13 +174,21 @@ def submit_blog_post(request):
         form = BlogPostForm(request.POST, request.FILES)
         if form.is_valid():
             blog_post = form.save(commit=False)
-            blog_post.author = request.user
-            blog_post.status = 0 
-            blog_post.save()
-            messages.success(request, "Your blog post is under review!<br> Approval may take up to two days. Stay tuned!")
 
-            return redirect('home') 
+            # Handle guest author for unauthenticated users
+            if request.user.is_authenticated:
+                blog_post.author = request.user
+            else:
+                # Use or create a GuestUser for unauthenticated users
+                guest_user, created = GuestUser.objects.get_or_create(name="Guest")
+                blog_post.guest_author = guest_user
+
+            blog_post.status = 0  # Pending approval status
+            blog_post.save()
+
+            messages.success(request, "Your blog post is under review!<br> Approval may take up to two days. Stay tuned!")
+            return redirect('home')
     else:
         form = BlogPostForm()
-    
+
     return render(request, 'echoes/submit_blog_post.html', {'form': form})
