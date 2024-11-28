@@ -4,25 +4,32 @@ from django.contrib.auth.models import User
 from allauth.account.forms import SignupForm
 from django.contrib.auth.forms import UserChangeForm, SetPasswordForm
 
-# Password Update Form
 class PasswordChangeForm(SetPasswordForm):
-	class Meta:
-		model = User
-		fields = ['new_password1', 'new_password2']
+    class Meta:
+        model = User
+        fields = ['new_password1', 'new_password2']
 
-	def __init__(self, *args, **kwargs):
-		super(PasswordChangeForm, self).__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        super(PasswordChangeForm, self).__init__(*args, **kwargs)
 
-		self.fields['new_password1'].widget.attrs['class'] = 'form-control'
-		self.fields['new_password1'].widget.attrs['placeholder'] = 'Password'
-		self.fields['new_password1'].label = ''
-		self.fields['new_password1'].help_text = '<ul class="form-text text-muted small"><li>Your password can\'t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can\'t be a commonly used password.</li><li>Your password can\'t be entirely numeric.</li></ul>'
+        self.fields['new_password1'].widget.attrs['class'] = 'form-control'
+        self.fields['new_password1'].widget.attrs['placeholder'] = 'Password'
+        self.fields['new_password1'].label = ''
+        self.fields['new_password1'].help_text = (
+            '<ul class="form-text text-muted small">'
+            '<li>Your password can\'t be too similar to your other personal information.</li>'
+            '<li>Your password must contain at least 8 characters.</li>'
+            '<li>Your password can\'t be a commonly used password.</li>'
+            '<li>Your password can\'t be entirely numeric.</li>'
+            '</ul>'
+        )
 
-		self.fields['new_password2'].widget.attrs['class'] = 'form-control'
-		self.fields['new_password2'].widget.attrs['placeholder'] = 'Confirm Password'
-		self.fields['new_password2'].label = ''
-		self.fields['new_password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
-
+        self.fields['new_password2'].widget.attrs['class'] = 'form-control'
+        self.fields['new_password2'].widget.attrs['placeholder'] = 'Confirm Password'
+        self.fields['new_password2'].label = ''
+        self.fields['new_password2'].help_text = (
+            '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
+        )
 
 
 # Profile Update Form
@@ -97,7 +104,6 @@ class CustomSignupForm(SignupForm):
         self.fields['first_name'].label = "First Name"
         self.fields['first_name'].widget.attrs.update({'placeholder': 'First Name'})
 
-
         self.fields['last_name'].label = "Last Name"
         self.fields['last_name'].widget.attrs.update({'placeholder': 'Last Name'})
 
@@ -110,15 +116,12 @@ class CustomSignupForm(SignupForm):
             "<li>Your password can’t be a commonly used password.</li>"
             "<li>Your password can’t be entirely numeric.</li>"
             "</ul>"
-)
+        )
 
         self.fields['password2'].label = "Repeat Password"
         self.fields['password2'].widget.attrs.update({'placeholder': '****Repeat Password****'})
-        self.fields['password2'].help_text = "<ul>""<li>Enter the same password as before, for verification.</li>""</ul>"
-
-
+        self.fields['password2'].help_text = "<ul><li>Enter the same password as before, for verification.</li></ul>"
 
     def save(self, request):
         user = super(CustomSignupForm, self).save(request)
         return user
-        
