@@ -2,41 +2,39 @@
 {% load static %}
 {% block content %}
 
-
 <!-- About Us Features -->
 <section class="py-5">
     <div class="container">
         <div class="row gx-4 align-items-center justify-content-between">
-            <!-- Image Grid - Displayed First on Larger Screens, Second on Small Screens -->
             <div class="col-md-6 offset-md-1 order-1 order-md-2">
                 <div class="row gx-2 about-images">
                     <div class="col-6">
-                        <div class="mb-2"><img class="img-fluid rounded-5"
-                                src="{% static 'about-images/1.png' %}" alt="Image description for the first about image"></div>
+                        <div class="mb-2"><img class="img-fluid" src="{% static 'about-images/1.webp' %}"
+                                alt="Image description for the first about image"></div>
                     </div>
                     <div class="col-6">
-                        <div class="mb-2"><img class="img-fluid rounded-5"
-                                src="{% static 'about-images/2.png' %}"  alt="Image description for the first about image"></div>
+                        <div class="mb-2"><img class="img-fluid" src="{% static 'about-images/2.webp' %}"
+                                alt="Image description for the first about image"></div>
                     </div>
                     <div class="col-6">
-                        <div class="mb-2"><img class="img-fluid rounded-5"
-                                src="{% static 'about-images/3.png' %}"  alt="Image description for the first about image"></div>
+                        <div class="mb-2"><img class="img-fluid" src="{% static 'about-images/3.webp' %}"
+                                alt="Image description for the first about image"></div>
                     </div>
                     <div class="col-6">
-                        <div class="mb-2"><img class="img-fluid rounded-5"
-                                src="{% static 'about-images/4.png' %}"  alt="Image description for the first about image"></div>
+                        <div class="mb-2"><img class="img-fluid" src="{% static 'about-images/4.webp' %}"
+                                alt="Image description for the first about image"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Text Content - Displayed Second on Larger Screens, First on Small Screens -->
             <div class="col-md-5 order-2 order-md-1">
                 <div class="mt-5 mt-md-0">
                     <h2 class="d-5 fw-bold text-center" id="about-title">About Us</h2>
                     <hr class="mb-2">
                     <span class="text-muted">Discover the captivating sounds of animals, explore their diverse habitats,
                         and deepen your connection to the natural world</span>
-                    <p class="lead mt-3">Echo of Animals brings the beauty and diversity of animal sounds to your fingertips.
+                    <p class="lead mt-3">Echo of Animals brings the beauty and diversity of animal sounds to your
+                        fingertips.
                         From the soothing chirps of birds to the majestic roars of wild animals, our soundboard lets you
                         explore and learn about various animal species in a fun, interactive way.</p>
                     <p class="lead">Our platform is designed to be accessible for all ages. Whether you’re a student,
@@ -51,6 +49,5 @@
         </div>
     </div>
 </section>
-
 
 {% endblock content %}
