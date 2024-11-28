@@ -9,12 +9,9 @@ class BlogPostForm(forms.ModelForm):
         model = BlogPost
         fields = ['title', 'featured_image', 'description', 'habitat', 'species', 'sound_cloudinary']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control',
-                'rows': 5, 'placeholder': 'Enter name of the animal'}),
-            'description': forms.Textarea(attrs={'class': 'form-control',
-                'rows': 5, 'placeholder': 'Write your blog content here...'}),
-            'habitat': forms.Textarea(attrs={'class': 'form-control',
-                'rows': 2, 'placeholder': 'Write short on animal habitat'}),
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter name of the animal'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 5, 'placeholder': 'Write your blog content here...'}),
+            'habitat': forms.Textarea(attrs={'class': 'form-control', 'rows': 2, 'placeholder': 'Write short on animal habitat'}),
             'species': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter species'}),
         }
     

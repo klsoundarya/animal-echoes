@@ -55,12 +55,14 @@
                         <img class="card-img-top img-fluid rounded d-block mx-auto" src="{{ post.featured_image.url }}"
                             alt="{{ post.title }}">
                         {% endif %}
-                        <br>
                     </div>
                     <a href="{% url 'animal_detail' post.slug %}" class="post-link">
-                        <p class="card-text">{{ post.intro|safe }}</p>
+                        <div class="card-text">{{ post.intro|safe }}</div>
                     </a>
-                    <p class="card-text text-muted h6">{{ post.date }}</p>
+                    <p class="card-text text-muted h6 text-center"
+                        style="position: absolute; bottom: 10px; left: 0; right: 0;">
+                        {{ post.created_on }}
+                    </p>
                 </div>
             </div>
         </div>

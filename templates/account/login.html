@@ -21,14 +21,29 @@
           <a class="custom-link pt-3" href="{{ signup_url }}">Don't have an account? Please sign up.</a>
         </p>
         <form class="login" id="login_form" method="post" action="{% url 'account_login' %}">
-          <div>
-            {% csrf_token %}
-            {% crispy form %}
-            {% if redirect_field_value %}
-            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
-            {% endif %}
-            <button class="btn btn-success" type="submit">{% trans "Log In" %}</button>
+          {% csrf_token %}
+          <div id="div_id_login" class="mb-3">
+            <label for="id_login" class="form-label requiredField">
+              Email<span class="asteriskField">*</span>
+            </label>
+            {{ form.login }}
           </div>
+          <div id="div_id_password" class="mb-3">
+            <label for="id_password" class="form-label requiredField">
+              Password<span class="asteriskField">*</span>
+            </label>
+            {{ form.password }}
+          </div>
+          <div class="mb-3">
+            <div id="div_id_remember" class="mb-3 form-check">
+              {{ form.remember }}
+              <label for="id_remember" class="form-check-label">Remember Me</label>
+            </div>
+          </div>
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+          {% endif %}
+          <button class="btn btn-success" type="submit">{% trans "Log In" %}</button>
         </form>
       </div>
     </div>
