@@ -43,15 +43,13 @@ Through **Echo of Animals**, users can explore a variety of blog posts on differ
   - [Color Scheme](#color-scheme)
 - [Project Planning](#project-planning)
   - [Strategy Plane](#strategy-plane)
-    - [Site Goals](#site-goals)
-  - [Agile Methodologies - Project Management](#agile-methodologies-project-management)
+  - [Agile Methodologies](#agile-methodologies)
     - [MoSCoW Prioritization](#moscow-prioritization)
     - [Sprints](#sprints)
-  - [Scope Plane](#scope-plane)
-  - [Structural Plane](#structural-plane)
-  - [Skeleton \& Surface Planes](#skeleton-surface-planes)
-    - [Database Schema - Entity Relationship Diagram](#database-schema---entity-relationship-diagram)
-    - [Security](#security)
+  - [The Scope Plane](#the-scope-plane)
+  - [The Structure Plane](#the-structure-plane)
+  - [The Skeleton Plane](#the-skeleton-plane)
+  - [The Surface Plane](#the-surface-plane)
 - [Credits](#credits)
   - [Tools & Technologies Used](#tools--technologies-used)
   - [Acknowledgments](#acknowledgements)
@@ -384,6 +382,24 @@ __Press Enter and your local clone will be created.__
 
 - Logged-in users can log out to end their session and return to the public view of login site.
 
+**AllAuth**  
+
+
+Django AllAuth
+Django AllAuth is a versatile framework designed to handle user registration, login, and authentication seamlessly. It ensures secure access control by managing registered and unregistered users, determining what content is accessible on the "Echo of Animals" website.
+
+The setup process for AllAuth included the following steps:
+
+- Installing the package as a project dependency.
+- Adding it to the INSTALLED_APPS section in settings.py.
+- Configuring the AUTHENTICATION_BACKENDS as recommended in the AllAuth documentation.
+- Including AllAuth URLs in the project's urls.py file for routing.
+- Running database migrations to create the required authentication-related tables.
+
+**CSRF Tokens** 
+
+CSRF (Cross-Site Request Forgery) tokens are security features included in every form on the site. These tokens help ensure that form submissions are authenticated and come from legitimate users. Without CSRF tokens, the website could be vulnerable to malicious attacks where unauthorized users might attempt to steal sensitive user data or perform actions without permission.
+
 - When links are broken users can see the custom error code for 400, 403, 404, 500 pages.
 
 There are media query breakpoints used: 425px, 680px, 768px, above 1000px. This convenient feature allows users to easily access different sections of the website, making the browsing experience smoother and more efficient.
@@ -431,17 +447,113 @@ There are media query breakpoints used: 425px, 680px, 768px, above 1000px. This 
 
 </details>
 
+### Design
+
+## UX
+
+<details>
+<summary>User Experience</summary>
+<br>
+
+### Five Planes of User Experience
+
+The five planes are like layers that designers think about when making things for people to use. It starts with big ideas and end with the actual look and feel of what users interact with.
+
+<details>
+<summary>Design Overview</summary>
+<br>
+
+#### Typography
+
+In the header and main content sections - Georgia and 'Times New Roman' were used. Both fonts are imported from [Google Fonts](https://fonts.google.com/) and are specified in the body selector.
+
+#### Gallery
+
+- All app design, wireframes, favicon, structured images for readme are sourced  from [Canva](https://www.canva.com/).
+
+#### Color Scheme
+
+The website features a nature-inspired color scheme of yellow-green (#9acd32), white (#fff), and blue (#0000ff) to create a vibrant yet calming aesthetic. This palette combines dynamic, earthy tones with light and airy hues, enhancing the visual appeal and reflecting the site's animal-focused theme.
+
+![Primary colors used](read-me/features/color-scheme.PNG)
+</details>
+
+# Project Planning 
+
+<details>
+<summary></summary>
+<br>
+ 
+## Strategy Plane
+
+The "Echo of Animals" website aims to engage and educate users about animals through interactive content, fun facts, and user-submitted posts, fostering a vibrant community for animal enthusiasts.
+
+## Agile Methodologies
+
+The development of the "Echo of Animals" website followed Agile methodologies, focusing on iterative progress and continuous feedback. I used my [Github Projects Board](https://github.com/users/klsoundarya/projects/4) to plan and document all of my work.
+
+### MoSCoW Prioritization
+
+For the development of **Echo of Animals**, I applied the **MoSCoW Prioritization Method** to effectively organize and manage features. This method allowed me to focus on what’s essential while planning for future improvements:
+
+- **Must Haves**: These are the critical, non-negotiable components required for the project. By completing the "Must Haves," I was able to achieve the Minimum Viable Product (MVP) early on, providing a solid foundation for additional development.
+
+- **Should Haves**: Important but not essential features that add value to the project. These were prioritized only after completing all the "Must Haves."
+
+- **Could Haves**: Nice-to-have features that act as bonuses to enhance the project. These were considered only if time permitted after addressing higher-priority tasks.
+
+- **Won’t Haves**: Features that were either not aligned with the project’s goals or deemed unnecessary for this release. These were excluded or deprioritized to maintain focus.  
+
+This approach ensured efficient time management and helped deliver a polished and functional product within the given constraints.
+
+### Sprints
+
+The project was broken down into sprints to ensure efficient task management and timely delivery of features:
+
+**Sprint 1:**
+
+- Set up the project environment, database, and basic models.
+- Developed foundational pages: Home, About, and Echoes.
+- Implemented basic user authentication (login, signup, logout).
+
+**Sprint 2:**
+
+- Created the Contact page with a functional contact form.
+- Added profile update and password update functionalities for user accounts.
+- Integrated a responsive design using Bootstrap and ensured accessibility.
+
+**Sprint 3:**
+
+- Enhanced the Echoes page with dynamic post rendering and tags.
+- Implemented user interaction features such as comments and likes.
+- Validated HTML and CSS for compliance with standards and resolved design bugs.
+
+**Sprint 4:**
+
+- Added animal fun facts carousel and interactive UI elements.
+- Refined user notifications and profile enhancements.
+- Debugging and final testing before deployment.
+
+This structured sprint approach ensured incremental feature delivery, adaptability to changes, and improved collaboration for achieving project goals.
 
 
+#### The Scope Plane
 
+The website includes core features such as animal-related blog posts, user authentication, profile management, fun facts carousels, and nested comments, with future plans to implement tags, user notifications, and enhanced profile pages.
 
+#### The Structure Plane
 
+The website is structured with a clear navigation system, featuring dedicated pages for Home, About, Echoes (animal posts), Contact, and user account management (Login, Profile Update, Password Update), ensuring a seamless user experience.
 
+#### The Skeleton Plane
 
+Please refer to the [Wireframes](#wireframes) section.
 
+#### The Surface Plane
 
+[View the live site here.](https://echo-animals-project-6ca0ed3f7e25.herokuapp.com/)
 
-
+</details>
 
 
 ### Credits
