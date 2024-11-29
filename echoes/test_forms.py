@@ -15,7 +15,8 @@ class TestCommentForm(TestCase):
     def test_form_is_invalid(self):
         """Check if the form is invalid when body is missing."""
         form = CommentForm({'body': ''})
-        self.assertFalse(form.is_valid(), msg="Comment form should be invalid.")
+        self.assertFalse(
+            form.is_valid(), msg="Comment form should be invalid.")
 
 
 class TestBlogPostForm(TestCase):
@@ -49,9 +50,7 @@ class TestBlogPostForm(TestCase):
         self.assertFalse(form.is_valid(), msg="BlogPost form should be invalid without content.")
 
     def test_clean_title(self):
-        # Create a mock user for the test
         user = User.objects.create_user(username='san', password='password123')
-        # Create a blog post with a title that should already exist for the invalid test case
         BlogPost.objects.create(
             title="Cheetah: The Fastest Land Animal",
             slug="cheetah-the-fastest-land-animal",
@@ -69,11 +68,9 @@ class TestBlogPostForm(TestCase):
             'content': 'Some valid content for the post'
         }
 
-        # Test for valid title
         form_valid = BlogPostForm(data=form_data_valid)
         self.assertTrue(form_valid.is_valid(), msg="Form should pass validation")
 
-        # Test for invalid title (that should raise ValidationError due to duplication)
         form_invalid = BlogPostForm(data=form_data_invalid)
         self.assertFalse(form_invalid.is_valid(), msg="Form should fail validation")
         self.assertIn('title', form_invalid.errors)

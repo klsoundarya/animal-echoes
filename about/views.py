@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+
 # about/views.py
 
 def about_view(request):

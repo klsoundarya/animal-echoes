@@ -35,11 +35,12 @@
             {{ form.password }}
           </div>
           <div class="mb-3">
-            <div id="div_id_remember" class="mb-3 form-check">
+            <div id="div_id_remember" class="form-check form-check-inline">
               {{ form.remember }}
               <label for="id_remember" class="form-check-label">Remember Me</label>
             </div>
           </div>
+
           {% if redirect_field_value %}
           <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
           {% endif %}

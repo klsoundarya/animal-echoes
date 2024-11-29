@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import BlogPost, BlogPostImage, Tag, Comment, FunFactSlider, AnimalFact, GuestUser
+from .models import BlogPost, BlogPostImage
+from .models import Tag, Comment, FunFactSlider, AnimalFact, GuestUser
 from django_summernote.admin import SummernoteModelAdmin
 from django.utils.html import format_html
 from django.utils.timezone import now
@@ -20,7 +21,6 @@ class FunFactSliderAdmin(admin.ModelAdmin):
 class AnimalFactAdmin(admin.ModelAdmin):
     list_display = ('animal', 'fact_text')
     search_fields = ('animal__title', 'fact_text')
-    
 
 
 @admin.register(BlogPost)
@@ -40,13 +40,14 @@ class BlogPostImageInline(admin.StackedInline):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('author', 'post', 'approved', 'created_on', 'approve_comment_action')
+    list_display = ('author',
+                    'post', 'approved', 'created_on', 'approve_comment_action')
     list_filter = ('approved', 'created_on',)
     search_fields = ('author', 'body',)
     actions = ['approve_comments']
 
     def approve_comments(self, request, queryset):
-        queryset.update(approved=True, approved_on=now())  # Ensure 'approved_on' is updated
+        queryset.update(approved=True, approved_on=now())
     approve_comments.short_description = 'Approve selected comments'
 
     def approve_comment_action(self, obj):
@@ -55,5 +56,6 @@ class CommentAdmin(admin.ModelAdmin):
         return format_html('<span style="color: red;">Pending</span>')
 
     approve_comment_action.short_description = 'Approval Status'
+
 
 admin.site.register(Tag)

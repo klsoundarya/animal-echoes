@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from .models import BlogPost, Comment, FunFactSlider, GuestUser
 from .forms import CommentForm, BlogPostForm
 
+
 @login_required
 def slider_facts_view(request):
     echo_list = BlogPost.objects.filter(status=1)
@@ -26,15 +27,14 @@ def EchoList(request):
     paginator = Paginator(blog_posts, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
- 
+
     context = {
         'echo_list': page_obj,
         'is_authenticated': request.user.is_authenticated,
-        'is_paginated': paginator.num_pages > 1, 
+        'is_paginated': paginator.num_pages > 1,
     }
 
     return render(request, 'echoes/echoes.html', context)
-
 
 
 def animal_detail(request, slug):
@@ -50,11 +50,10 @@ def animal_detail(request, slug):
     - ``total_likes``: The total number of likes for the post.
 
     **Template:** echoes/animal_detail.html"""
-     
-    queryset = BlogPost.objects.filter(status=1)
+
+    queryset = BlogPost.objects.filter(status=1).order_by('-created_at')[:6]
     post = get_object_or_404(queryset, slug=slug)
 
- 
     # Like and comment logic
     liked = (
         post.id in request.session.get('liked_posts', [])
@@ -67,7 +66,7 @@ def animal_detail(request, slug):
 
     if request.method == "POST":
         comment_form = CommentForm(data=request.POST)
-        
+
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.author = request.user
@@ -75,7 +74,7 @@ def animal_detail(request, slug):
             comment.save()
 
             messages.success(request, 'Comment submitted and awaiting approval.')
-            return redirect('animal_detail', slug=slug) 
+            return redirect('animal_detail', slug=slug)
 
     else:
         comment_form = CommentForm()
@@ -84,13 +83,12 @@ def animal_detail(request, slug):
         request,
         "echoes/animal_detail.html",
         {"post": post,
-        "comments": comments,
-        "comment_count": comment_count,
-        "comment_form": comment_form,
-        "liked": liked,
-        "total_likes": post.total_likes(),
-        },
-    )
+            "comments": comments,
+            "comment_count": comment_count,
+            "comment_form": comment_form,
+            "liked": liked,
+            "total_likes": post.total_likes(), },
+            )
 
 
 def Like_view(request, pk):
@@ -101,7 +99,6 @@ def Like_view(request, pk):
 
     if not request.user.is_authenticated:
         liked_posts = request.session.get('liked_posts', [])
-        
         if pk in liked_posts:
             liked_posts.remove(pk)  # Unlike
         else:
@@ -111,7 +108,7 @@ def Like_view(request, pk):
         request.session.modified = True
 
     else:
-       
+
         if post.likes.filter(id=request.user.id).exists():
             post.likes.remove(request.user)
         else:
@@ -143,6 +140,7 @@ def comment_edit(request, slug, comment_id):
             messages.add_message(request, messages.ERROR, 'Failed to update the comment. Please correct the errors.')
 
     return HttpResponseRedirect(reverse('animal_detail', args=[slug]))
+
 
 @login_required
 def comment_delete(request, slug, comment_id):
@@ -186,7 +184,7 @@ def submit_blog_post(request):
             blog_post.status = 0  # Pending approval status
             blog_post.save()
 
-            messages.success(request, "Your blog post is under review!<br> Approval may take up to two days. Stay tuned!")
+            messages.success(request, "Your blog post is under review!")
             return redirect('home')
     else:
         form = BlogPostForm()

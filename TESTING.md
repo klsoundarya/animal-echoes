@@ -23,6 +23,17 @@ Return back to the [README.md](README.md) file.
 
 ### Manual Testing
 
+
+| Page   | Action                                                 | Expected Behavior                                                                                                                                                                                                                                                                                                                                                                                                                | Pass/Fail |
+|--------|--------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+| Home   | ![index](read-me/testing-validators/index-testing.PNG)    | The index page was manually tested and verified it includes a hero banner with the "Echo of Animals" image, followed by an "About Us" section with a "Find Out More" button linking to the About page. Below the About section, featured animal card images are displayed with a "Read More" button leading to individual animal blog posts. For unauthenticated users, a prompt message encouraging registration was tested, while logged-in users see a welcome message with an "Explore More" link directing to the Echoes blog area. | Pass      |
+| About   | ![About](read-me/testing-validators/game-testing.png)      |The about us app/page successfully displays an introduction about the application along with four beautifully presented animal images, ensuring an engaging and visually appealing user experience.                                                                      | Pass      |
+| Echoes   | ![Echoes](read-me/testing-validators/exit-testing.PNG)      | The Echoes app successfully displays blog posts for each individual animal, allowing users to read engaging content. Below the heading, a "Submit Blog Post" button is available, enabling users to submit posts for admin approval before being published in the app. Additionally, beneath the section displaying animal cards, a button is provided to access a slider showcasing fun facts about the animals.                                                    | Pass      |
+| Contact | ![Contact](read-me/testing-validators/footer.PNG) | The Contact app displays a form requiring users to input their first name, last name, email, subject, and message, along with a "Submit" button. Beside the form, a GIF video is included to enhance user-friendliness and engagement.                                                                                                                                               | Pass      |
+
+
+<hr>
+
 - Echo of Animals website is tested and verified with no issues in different browsers:
   
   - [Google Chrome](https://www.google.com/intl/en_in/chrome/)
@@ -78,8 +89,15 @@ JSHint was used to look for errors in comment.js. No errors found.
 
 ### Python
 
-[CI Python Linter](https://pep8ci.herokuapp.com/#) was used to validate the Python files. Couldn't able to make the long characters to adjust. I have included some screenshots with the results below.
+[CI Python Linter](https://pep8ci.herokuapp.com/#) was used to validate the Python files. Couldn't able to adjust the long characters. I have included some screenshots with the results below.
 
+| Features 	| models.py                                                                   	| test_forms.py                                                                    	| forms.py                                                                      	| test_views.py                                                                   	| views.py                                                                     	| admin.py                                                               	| urls.py                                                                     	|
+|----------	|-----------------------------------------------------------------------------	|----------------------------------------------------------------------------------	|-------------------------------------------------------------------------------	|---------------------------------------------------------------------------------	|------------------------------------------------------------------------------	|------------------------------------------------------------------------	|-----------------------------------------------------------------------------	|
+| Home     	| N/A                                                                         	| N/A                                                                              	| N/A                                                                           	| N/A                                                                             	| ![no errors](read-me/testing-validators/ci-linter/home-view-fix.PNG)           	| N/A                                                                    	| ![no errors](read-me/testing-validators/ci-linter/home-url-fix.PNG)           	|
+| About    	| N/A                                                                         	| N/A                                                                              	| N/A                                                                           	| N/A                                                                             	| ![no errors](read-me/testing-validators/ci-linter/about-view-fix.PNG)          	| N/A                                                                    	| no errors found                                                                 	|
+| Echoes   	| ![no errors](read-me/testing-validators/ci-linter/echoes-model-not-fixed.PNG) 	| ![no errors](read-me/testing-validators/ci-linter/echoes-test-forms-not-fixed.PNG) 	| ![no errors](read-me/testing-validators/ci-linter/echoes-forms-not-fixed.PNG)  	| ![no errors](read-me/testing-validators/ci-linter/echoes-test-view-not-fixed.PNG) 	| ![no errors](read-me/testing-validators/ci-linter/echoes-view-not-fixed.PNG)   	| ![no errors](read-me/testing-validators/ci-linter/echoes-admin-fix.PNG)  	| ![no errors](read-me/testing-validators/ci-linter/echoes-url-not-fixed.PNG)   	|
+| Contact  	| no errors found                                                                	| ![no errors](read-me/testing-validators/ci-linter/contact-test-forms-fix.PNG)              	| ![no errors](read-me/testing-validators/ci-linter/contact-forms-fix.PNG)        	| N/A                                                                             	| ![no errors](read-me/testing-validators/ci-linter/contact-view-fix.PNG)        	| ![no errors](read-me/testing-validators/ci-linter/contact-admin-fix.PNG) 	| no errors found                                                                 	|
+| Accounts 	| N/A                                                                         	| N/A                                                                              	| ![no errors](read-me/testing-validators/ci-linter/accounts-forms-not-fixed.PNG) 	| N/A                                                                             	| ![no errors](read-me/testing-validators/ci-linter/accounts-view-not-fixed.PNG) 	| no errors found                                                              	| ![no errors](read-me/testing-validators/ci-linter/accounts-url-not-fixed.PNG) 	|
 
 <hr>
 
@@ -112,3 +130,5 @@ User Stories are documented in the Echo of Animals [GitHub Projects Board](https
 | Add Animal Facts              	| Yes                      	|           	|
 
 <hr>
+
+### Bugs

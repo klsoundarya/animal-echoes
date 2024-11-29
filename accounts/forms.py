@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from allauth.account.forms import SignupForm
 from django.contrib.auth.forms import UserChangeForm, SetPasswordForm
 
+
 class PasswordChangeForm(SetPasswordForm):
     class Meta:
         model = User
@@ -68,11 +69,8 @@ class UpdateProfileForm(UserChangeForm):
         self.fields['first_name'].label = "First Name"
         self.fields['first_name'].widget.attrs.update({'placeholder': 'First Name'})
 
-
         self.fields['last_name'].label = "Last Name"
         self.fields['last_name'].widget.attrs.update({'placeholder': 'Last Name'})
-
-
 
 
 # signup form

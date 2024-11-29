@@ -17,9 +17,10 @@ class GuestUser(models.Model):
     def __str__(self):
         return self.name
 
+
 class BlogPost(models.Model):
     """
-    Stores a single blog post entry related to :model:`auth.User` or :model:`GuestUser`.
+    Stores a single blog post related to :model:`auth.User` :model:`GuestUser`.
     """
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -44,7 +45,7 @@ class BlogPost(models.Model):
     created_on = models.DateTimeField(auto_now_add=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
-    class Meta: 
+    class Meta:
         ordering = ["date", "author"]
 
     def total_likes(self):
@@ -81,7 +82,6 @@ class BlogPost(models.Model):
         return f"{self.title} | written by {self.author if self.author else self.guest_author}"
 
 
-
 class BlogPostImage(models.Model):
 
     blog_post = models.ForeignKey(BlogPost, related_name="image_gallery", on_delete=models.CASCADE)
@@ -102,7 +102,8 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class AnimalFact(models.Model):
     """
     Stores fun facts about animals.
@@ -112,8 +113,8 @@ class AnimalFact(models.Model):
 
     def __str__(self):
         return f"Fact about {self.animal.title}"
-    
-    
+
+
 class FunFactSlider(models.Model):
     """
     Stores fun facts and an associated image for the slider.
@@ -126,7 +127,6 @@ class FunFactSlider(models.Model):
 
     def __str__(self):
         return f"Slider Fact for {self.blog_post}"
-
 
 
 class Comment(models.Model):

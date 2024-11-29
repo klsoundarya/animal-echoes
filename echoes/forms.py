@@ -1,4 +1,4 @@
-from .models import BlogPost, Comment, GuestUser
+from .models import BlogPost, Comment
 from django import forms
 from django.utils.text import slugify
 
@@ -9,12 +9,15 @@ class BlogPostForm(forms.ModelForm):
         model = BlogPost
         fields = ['title', 'featured_image', 'description', 'habitat', 'species', 'sound_cloudinary']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter name of the animal'}),
-            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 5, 'placeholder': 'Write your blog content here...'}),
+            'title': forms.TextInput(attrs={
+                'class': 'form-control', 'placeholder': 'Enter name of the animal'}),
+            'description': forms.Textarea(attrs={
+                    'class': 'form-control', 'rows': 5, 'placeholder': 'Write your blog content here...'}),
             'habitat': forms.Textarea(attrs={'class': 'form-control', 'rows': 2, 'placeholder': 'Write short on animal habitat'}),
-            'species': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter species'}),
+            'species': forms.TextInput(attrs={
+                'class': 'form-control', 'placeholder': 'Enter species'}),
         }
-    
+
     def clean_title(self):
         """
         Ensure the title is unique by checking the slug field
@@ -28,10 +31,10 @@ class BlogPostForm(forms.ModelForm):
 
 class CommentForm(forms.ModelForm):
     """
-    Form class for users to comment on a post 
+    Form class for users to comment on a post
     """
     class Meta:
-        model = Comment 
+        model = Comment
         fields = ('body',)
         widgets = {
             'body': forms.Textarea(attrs={
