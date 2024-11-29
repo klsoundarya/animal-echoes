@@ -384,8 +384,6 @@ __Press Enter and your local clone will be created.__
 
 **AllAuth**  
 
-
-Django AllAuth
 Django AllAuth is a versatile framework designed to handle user registration, login, and authentication seamlessly. It ensures secure access control by managing registered and unregistered users, determining what content is accessible on the "Echo of Animals" website.
 
 The setup process for AllAuth included the following steps:
@@ -447,13 +445,10 @@ There are media query breakpoints used: 425px, 680px, 768px, above 1000px. This 
 
 </details>
 
+
 ### Design
 
 ## UX
-
-<details>
-<summary>User Experience</summary>
-<br>
 
 ### Five Planes of User Experience
 
@@ -476,14 +471,15 @@ In the header and main content sections - Georgia and 'Times New Roman' were use
 The website features a nature-inspired color scheme of yellow-green (#9acd32), white (#fff), and blue (#0000ff) to create a vibrant yet calming aesthetic. This palette combines dynamic, earthy tones with light and airy hues, enhancing the visual appeal and reflecting the site's animal-focused theme.
 
 ![Primary colors used](read-me/features/color-scheme.PNG)
+
 </details>
 
-# Project Planning 
+### Project Planning 
 
 <details>
-<summary></summary>
+<summary>Stages of Planning</summary>
 <br>
- 
+
 ## Strategy Plane
 
 The "Echo of Animals" website aims to engage and educate users about animals through interactive content, fun facts, and user-submitted posts, fostering a vibrant community for animal enthusiasts.
@@ -554,7 +550,6 @@ Please refer to the [Wireframes](#wireframes) section.
 [View the live site here.](https://echo-animals-project-6ca0ed3f7e25.herokuapp.com/)
 
 </details>
-
 
 ### Credits
 

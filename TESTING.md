@@ -92,6 +92,12 @@ JSHint was used to look for errors in comment.js. No errors found.
   
 <hr>
 
+### Automated Testing
+
+test_views and test_forms resulted no issues for my echoes app and contact app.
+
+![Automated Testing](read-me/testing-validators/automated-testing.PNG)
+
 ### Python
 
 [CI Python Linter](https://pep8ci.herokuapp.com/#) was used to validate the Python files. Couldn't able to adjust the long characters. I have included some screenshots with the results below.

@@ -13,13 +13,13 @@ class TestBlogViews(TestCase):
             password="myPassword123",
             email="test@test.com"
         )
-        self.post = BlogPost(
-            title="Echoes title",
+        self.post = BlogPost.objects.create(
+            title="Test Blog Post",
+            slug="test-blog-post",
+            intro="This is a test intro.",
+            description="This is a test description for the blog post.",
             author=self.user,
-            slug="echoes-title",
-            excerpt="Echoes excerpt",
-            content="Echoes content",
-            status=1
+            status=1,
         )
         self.post.save()
         self.comment = Comment.objects.create(
@@ -29,18 +29,18 @@ class TestBlogViews(TestCase):
         )
 
     def test_render_animal_detail_page_with_comment_form(self):
-        response = self.client.get(reverse('animal_detail', args=['echoes-title']))
+        response = self.client.get(reverse('animal_detail', args=[self.post.slug]))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Echoes title", response.content)
-        self.assertIn(b"Echoes content", response.content)
+        self.assertIn(b"This is a test description for the blog post.", response.content)
         self.assertIsInstance(response.context['comment_form'], CommentForm)
+
 
     def test_successful_comment_submission(self):
         """Test for posting a comment on a post"""
-
         logged_in = self.client.login(
             username="testUsername", password="myPassword123"
-        )
+            )
+        
         self.assertTrue(logged_in)
 
         post_data = {
@@ -48,13 +48,12 @@ class TestBlogViews(TestCase):
         }
 
         response = self.client.post(
-            reverse('animal_detail', args=['echoes-title']), post_data
+            reverse('animal_detail', args=[self.post.slug]), post_data
         )
 
         self.assertEqual(response.status_code, 302)
 
         response = self.client.get(response.url)
-
         self.assertEqual(response.status_code, 200)
         self.assertIn(
             b'Comment submitted and awaiting approval',
@@ -103,8 +102,8 @@ class TestBlogViews(TestCase):
         url = reverse('submit_blog_post')
         post_data = {
             'title': 'New Test Blog Post',
-            'content': 'This is a new blog post.',
-            'excerpt': 'A new blog post excerpt.'
+            'description': 'This is a new blog post.',
+            'intro ': 'A new blog post intro .'
         }
 
         response = self.client.post(url, post_data)
