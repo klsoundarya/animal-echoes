@@ -14,13 +14,19 @@
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="btn btn-primary" id="custom-submit">Submit</button>
+
+                <div class="mt-3 d-flex justify-content-end">
+                    <button type="button" class="btn btn-success" id="clearBtn">Clear</button>
+                </div>
             </form>
         </div>
 
         <!-- Video -->
         <div class="col-md-6 d-flex justify-content-center align-items-center" id="video-custom">
             <video autoplay loop muted playsinline width="400" height="400" class="img-fluid">
-                <source src="https://res.cloudinary.com/dxlu7xxz9/video/upload/v1731357873/videos/xpkux9eynccpelfltsef.mp4" type="video/mp4">
+                <source
+                    src="https://res.cloudinary.com/dxlu7xxz9/video/upload/v1731357873/videos/xpkux9eynccpelfltsef.mp4"
+                    type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>

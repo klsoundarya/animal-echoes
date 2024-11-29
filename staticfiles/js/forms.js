@@ -12,3 +12,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+
+// clear button for contact page
+document.addEventListener("DOMContentLoaded", function () {
+    const clearBtn = document.getElementById("clearBtn");
+
+    if (clearBtn) {
+        clearBtn.addEventListener("click", function () {
+            const inputs = document.querySelectorAll("input, textarea");
+            inputs.forEach(function (input) {
+                input.value = "";
+            });
+        });
+    }
+});

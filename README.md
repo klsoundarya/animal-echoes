@@ -32,6 +32,7 @@ Through **Echo of Animals**, users can explore a variety of blog posts on differ
   - [Heroku deployment](#heroku-deployment)
   - [Forking](#forking)
   - [Making a Local Clone](#making-a-local-clone)
+- [Testing](#testing)
 - [Features](#features)
   - [Existing Features](#existing-features)
   - [Features to Implement](#features-to-implement)
@@ -51,7 +52,6 @@ Through **Echo of Animals**, users can explore a variety of blog posts on differ
   - [Skeleton \& Surface Planes](#skeleton-surface-planes)
     - [Database Schema - Entity Relationship Diagram](#database-schema---entity-relationship-diagram)
     - [Security](#security)
-- [Testing](#testing)
 - [Credits](#credits)
   - [Tools & Technologies Used](#tools--technologies-used)
   - [Acknowledgments](#acknowledgements)
@@ -332,6 +332,104 @@ __Press Enter and your local clone will be created.__
 
 ## Testing
 - For all testing, please refer to the [TESTING.md](TESTING.md) file.
+
+## Features
+
+<details>
+<summary>Project Features</summary>
+<br>
+
+### Existing Features
+
+**Home Page:**
+
+- Displays a welcoming layout with featured animal posts, images, and essential navigation links.
+- Offers quick access to the most popular or recently updated posts.
+
+**About Page:**
+
+- Provides information about the purpose of the website, its goals, and target audience.
+- Includes details about the development and mission of "Echo of Animals."
+
+**Echoes Page:**
+
+- Lists posts related to animal facts, stories, and updates.
+- Allows users to explore different animal-related content and view the latest blog entries.
+
+**User-Submitted Posts:**
+
+- A feature is given where it allow users to submit their own animal-related posts, subject to admin approval.
+
+**Contact Page:**
+
+- Contains a contact form for users to reach out to the website administrators.
+- Displays relevant contact information, including email and social media links.
+
+**Password Update:**
+
+- Users can update their password via a secure form.
+- Ensures password strength guidelines are followed (e.g., minimum length, no common passwords).
+
+**Profile Update:**
+
+- Allows users to update their personal information, including their name, email, and profile picture.
+- Provides an option to change other user settings such as notification preferences.
+
+**Login:**
+
+- Authenticated users can log in to access personalized features like commenting, liking posts, and updating profiles.
+- Supports username/email and password-based authentication.
+
+**Logout:**
+
+- Logged-in users can log out to end their session and return to the public view of login site.
+
+- When links are broken users can see the custom error code for 400, 403, 404, 500 pages.
+
+There are media query breakpoints used: 425px, 680px, 768px, above 1000px. This convenient feature allows users to easily access different sections of the website, making the browsing experience smoother and more efficient.
+
+| Features        	| Desktop                                            	| Phone                                            	|
+|-----------------	|----------------------------------------------------	|--------------------------------------------------	|
+| Nav             	| ![nav](read-me/features/desktop/nav.PNG)           	| ![nav](read-me/features/phone/nav.PNG)           	|
+| Footer          	| ![footer](read-me/features/desktop/footer.PNG)     	| ![footer](read-me/features/phone/footer.PNG)     	|
+| Home            	| ![home](read-me/features/desktop/1.PNG)            	| ![home](read-me/features/phone/1.PNG)            	|
+| About           	| ![about](read-me/features/desktop/2.PNG)           	| ![about](read-me/features/phone/2.PNG)           	|
+| Echoes          	| ![echoes](read-me/features/desktop/3.PNG)          	| ![echoes](read-me/features/phone/3.PNG)          	|
+| Echoes-Footer   	| ![echoes-footer](read-me/features/desktop/4.PNG)   	| ![echoes-footer](read-me/features/phone/4.PNG)   	|
+| Contact         	| ![contact](read-me/features/desktop/5.PNG)         	| ![contact](read-me/features/phone/5.PNG)         	|
+| Log In          	| ![login](read-me/features/desktop/6.PNG)           	| ![login](read-me/features/phone/6.PNG)           	|
+| Log Out         	| ![logout](read-me/features/desktop/7.PNG)          	| ![logout](read-me/features/phone/7.PNG)          	|
+| Sign Up         	| ![Sign Up](read-me/features/desktop/8.PNG)         	| ![Sign Up](read-me/features/phone/8.PNG)         	|
+| Update Password 	| ![Update Password](read-me/features/desktop/9.PNG) 	| ![Update Password](read-me/features/phone/9.PNG) 	|
+| Update Profile  	| ![Update Profile](read-me/features/desktop/10.PNG) 	| ![Update Profile](read-me/features/phone/10.PNG) 	|
+
+
+## Features to Implement
+
+**User Notifications:**
+
+- Users will receive notifications for activity on their posts (e.g., replies to comments, likes on posts).
+- Admin notifications for new user registrations or post submissions.
+
+**Enhanced Profile Pages:**
+
+- Profiles will display more detailed user information, such as submitted posts, most liked content, and comments.
+- Users will have the ability to edit and delete their posts from their profile.
+
+**Nested Comments:**
+
+- Users will be able to reply to specific comments, creating a nested comment structure.
+- Notifications will be sent when a user is replied to in the comment section.
+
+**Animal Fun Facts Carousel:**
+
+- A carousel of fun facts related to individual animals will be dynamically added to each animal post, enhancing user engagement with animal trivia.
+
+**Tags for Posts:**
+
+- Each animal post will include relevant tags for post pages, allowing users to easily find posts related to specific topics or animals.
+
+</details>
 
 
 
