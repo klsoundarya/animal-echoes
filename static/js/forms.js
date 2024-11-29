@@ -1,3 +1,5 @@
+// delete button for blog post submit
+
 document.addEventListener("DOMContentLoaded", function () {
     const clearFormBtn = document.getElementById("clearFormBtn");
 

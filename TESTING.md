@@ -10,7 +10,6 @@ Return back to the [README.md](README.md) file.
 - [Testing](#testing)
   - [Manual Testing](#manual-testing)
   - [Validator Testing](#validator-testing)
-    - [Manual Testing](#manual-testing)
     - [Lighthouse](#lighthouse)
     - [HTML](#html)
     - [CSS](#css)
@@ -21,15 +20,21 @@ Return back to the [README.md](README.md) file.
   - [Bugs](#bugs)
     - [Unfixed Bugs](#unfixed-bugs)
 
-### Manual Testing
 
+### Manual Testing
 
 | Page   | Action                                                 | Expected Behavior                                                                                                                                                                                                                                                                                                                                                                                                                | Pass/Fail |
 |--------|--------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
-| Home   | ![index](read-me/testing-validators/index-testing.PNG)    | The index page was manually tested and verified it includes a hero banner with the "Echo of Animals" image, followed by an "About Us" section with a "Find Out More" button linking to the About page. Below the About section, featured animal card images are displayed with a "Read More" button leading to individual animal blog posts. For unauthenticated users, a prompt message encouraging registration was tested, while logged-in users see a welcome message with an "Explore More" link directing to the Echoes blog area. | Pass      |
-| About   | ![About](read-me/testing-validators/game-testing.png)      |The about us app/page successfully displays an introduction about the application along with four beautifully presented animal images, ensuring an engaging and visually appealing user experience.                                                                      | Pass      |
-| Echoes   | ![Echoes](read-me/testing-validators/exit-testing.PNG)      | The Echoes app successfully displays blog posts for each individual animal, allowing users to read engaging content. Below the heading, a "Submit Blog Post" button is available, enabling users to submit posts for admin approval before being published in the app. Additionally, beneath the section displaying animal cards, a button is provided to access a slider showcasing fun facts about the animals.                                                    | Pass      |
-| Contact | ![Contact](read-me/testing-validators/footer.PNG) | The Contact app displays a form requiring users to input their first name, last name, email, subject, and message, along with a "Submit" button. Beside the form, a GIF video is included to enhance user-friendliness and engagement.                                                                                                                                               | Pass      |
+| Home   | ![index](read-me/testing-validators/manual-testing/1.png)    | The index page was manually tested and verified it includes a hero banner with the "Echo of Animals" image, followed by an "About Us" section with a "Find Out More" button linking to the About page. Below the About section, featured animal card images are displayed with a "Read More" button leading to individual animal blog posts. For unauthenticated users, a prompt message encouraging registration was tested, while logged-in users see a welcome message with an "Explore More" link directing to the Echoes blog area. | Pass      |
+| About   | ![About](read-me/testing-validators/manual-testing/2.png)      |The about us app/page successfully displays an introduction about the application along with four beautifully presented animal images, ensuring an engaging and visually appealing user experience.                                                                      | Pass      |
+| Echoes   | ![Echoes](read-me/testing-validators/manual-testing/3.png)      | The Echoes app successfully displays blog posts for each individual animal, allowing users to read engaging content. Below the heading, a "Submit Blog Post" button is available, enabling users to submit posts for admin approval before being published in the app and also delete button to clear of the form. Additionally, beneath the section displaying animal cards, a button is provided to access a slider showcasing fun facts about the animals.                                                    | Pass      |
+| Contact | ![Contact](read-me/testing-validators/manual-testing/4.png) | The Contact app displays a form requiring users to input their first name, last name, email, subject, and message, along with a "Submit" button. Beside the form, a GIF video is included to enhance user-friendliness and engagement.                                                                                                                                               | Pass      |
+| Update Profile       	| ![Update Profile](read-me/testing-validators/manual-testing/6.pngpng)  	| The Update Profile feature displays a form with fields for the user to enter their username, first name, last name, and email, along with an "Update Profile" button to submit the changes, and below it an "Update Password" button is also provided.                                                  	| Pass 	|
+| Update Password 	| ![Update Password](read-me/testing-validators/manual-testing/7.png) 	| The Update Password page displays a form with fields for entering a new password and confirming it in the repeat password field. Below the form, an "Update Password" button is provided to submit the form, and a "Update Profile" button allows the user to navigate back to the profile update page. 	| Pass 	|
+| Log out         	| ![Logout](read-me/testing-validators/manual-testing/5.png)          	| The logout page includes a functional "Exit" button to log the user out and a secondary button below it that redirects back to the home page, both of which were tested and confirmed to work as expected.                                                                                              	| Pass 	|
+| Login           	| ![Login](read-me/testing-validators/manual-testing/9.png)           	| The login page includes input fields for email and password, a "Remember Me" checkbox, and a "Login" button, all of which function as expected.                                                                                                                                                         	|      	|
+| Register        	| ![Register](read-me/testing-validators/manual-testing/8.png)        	| The Signup page contains input fields for username, first name, last name, email, password, and repeat password, along with a "Register" button to submit the form.                                                                                                                                     	|    Pass  	|
+
 
 
 <hr>
@@ -127,8 +132,37 @@ User Stories are documented in the Echo of Animals [GitHub Projects Board](https
 | Add Comment Section           	| Yes                      	| Pass      	|
 | Create Model Fields for Posts 	| Yes                      	| Pass      	|
 | Add Tags                      	| Yes                      	| Pass      	|
-| Add Animal Facts              	| Yes                      	|           	|
+| Add Animal Facts              	| Yes                      	| Pass       	|
+| Add delete button              	| Yes                      	| Pass       	|
+| Add comment button            	| Yes                      	| Pass       	|
+| Add delete button              	| Yes                      	| Pass       	|
+| Add edit/update button              	| Yes                      	| Pass       	|
+
 
 <hr>
 
 ### Bugs
+
+<details>
+<summary>Bugs Fixed</summary>
+<br>
+
+| No. 	| Bugs                                            	| Notes 	|
+|-----	|-------------------------------------------------	|-------	|
+| 1.  	| ![Bug 1](read-me/bugs/html-validator/1.PNG)     	| Fixed 	|
+| 2.  	| ![Bug 2](read-me/bugs/html-validator/2.PNG)     	| Fixed 	|
+| 3.  	| ![Bug 3](read-me/bugs/html-validator/3.PNG)     	| Fixed 	|
+| 4.  	| ![Bug 4](read-me/bugs/html-validator/4.PNG)     	| Fixed 	|
+| 5.  	| ![Bug 5](read-me/bugs/html-validator/5.PNG)     	| Fixed 	|
+| 6.  	| ![Bug 6](read-me/bugs/html-validator/6.PNG)     	| Fixed 	|
+| 7.  	| ![Bug 7](read-me/bugs/css-validator/1.PNG)      	| Fixed 	|
+| 8.  	| ![Bug 8](read-me/bugs/js-hint-validator/1.PNG)  	| Fixed 	|
+| 9.  	| ![Bug 9](read-me/bugs/js-hint-validator/2.PNG)  	| Fixed 	|
+| 10. 	| ![Bug 10](read-me/bugs/js-hint-validator/3.PNG) 	| Fixed 	|
+
+
+### Unfixed Bugs
+
+There are no more bugs to be fixed, apart from CI linter errors for long characters.
+
+</details>

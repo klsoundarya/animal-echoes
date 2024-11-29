@@ -78,6 +78,35 @@ body {
     font-size: 1rem;
 }
 
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.form-control.is-invalid {
+    border-color: red;
+}
+
+.error-list {
+    margin-bottom: 15px;
+}
+
+.alert-danger {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.alert-danger ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.alert-danger li {
+    font-size: 14px;
+}
+
+
 /* ------- nav-bar styles ------- */
 
 
@@ -289,6 +318,31 @@ hr {
     margin-top: 120px;
 }
 
+/* carousel styling */
+
+#funFactsCarousel {
+    margin-bottom: 50px;
+}
+
+.carousel-item img {
+
+    max-height: 300px;
+    object-fit: contain;
+}
+
+.carousel-caption {
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+}
+
 #echo-audio {
     display: flex;
     justify-content: center;
@@ -358,17 +412,17 @@ hr {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-  }
-  
-  .carousel-inner {
+}
+
+.carousel-inner {
     display: flex;
     flex-wrap: nowrap;
-  }
-  
-  .carousel-item {
+}
+
+.carousel-item {
     flex: 0 0 auto;
     margin-right: 15px;
-  }  
+}
 
 
 /* Card Styling */
@@ -489,11 +543,11 @@ hr {
     display: block;
     margin-left: 150px;
     background-color: yellow;
-    padding:9px;
+    padding: 9px;
     border-radius: 5px;
 }
 
-.delete-custom{
+.delete-custom {
     display: block;
     margin: 0 auto;
 }

@@ -3,6 +3,8 @@ from django import forms
 from django.contrib.auth.models import User
 from allauth.account.forms import SignupForm
 from django.contrib.auth.forms import UserChangeForm, SetPasswordForm
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 
 class PasswordChangeForm(SetPasswordForm):
@@ -120,6 +122,22 @@ class CustomSignupForm(SignupForm):
         self.fields['password2'].label = "Repeat Password"
         self.fields['password2'].widget.attrs.update({'placeholder': '****Repeat Password****'})
         self.fields['password2'].help_text = "<ul><li>Enter the same password as before, for verification.</li></ul>"
+
+    # Custom validation for password confirmation
+    def clean_password2(self):
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
+
+        if password1 and password2 and password1 != password2:
+            raise ValidationError(_("The two password fields must match."))
+        return password2
+
+    # Custom validation for password strength
+    def clean_password1(self):
+        password = self.cleaned_data.get('password1')
+        if password and len(password) < 8:
+            raise ValidationError(_("Password must be at least 8 characters long."))
+        return password
 
     def save(self, request):
         user = super(CustomSignupForm, self).save(request)

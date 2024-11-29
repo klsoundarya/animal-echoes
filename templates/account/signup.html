@@ -5,57 +5,71 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 mt-3 offset-md-2">
-      <h2 class="custom-heading mt-5 fw-bold text-center">{% trans "Sign Up" %}</h2>
-      <hr class="mb-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 mt-3 offset-md-2">
+        <h2 class="custom-heading mt-5 fw-bold text-center">{% trans "Sign Up" %}</h2>
+        <hr class="mb-2">
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-8 mt-3 offset-md-2">
-      <div class="signup-box mb-3">
-        <p>
-          <span class="text-muted custom-signup-p mt-2">Please fill in your details</span>
-          <a class="custom-link" href="{% url 'account_login' %}">Already have an account? Please log in.</a>
-        </p>
-        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-          {% csrf_token %}
-          <div class="mb-3">
-            <label for="id_username" class="form-label d-block">Username</label>
-            {{ form.username }}
-          </div>
-          <div class="mb-3">
-            <label for="id_first_name" class="form-label d-block">First Name</label>
-            {{ form.first_name }}
-          </div>
-          <div class="mb-3">
-            <label for="id_last_name" class="form-label d-block">Last Name</label>
-            {{ form.last_name }}
-          </div>
-          <div class="mb-3">
-            <label for="id_email" class="form-label d-block">Email</label>
-            {{ form.email }}
-          </div>
-          <div class="mb-3">
-            <label for="id_password1" class="form-label">Password</label>
-            {{ form.password1 }}
-            <div class="form-text text-muted">{% if form.password1.help_text %} {{ form.password1.help_text|safe }} {% endif %}</div>
-          </div>
-          <div class="mb-3">
-            <label for="id_password2" class="form-label">Repeat Password</label>
-            {{ form.password2 }}
-            <div class="form-text text-muted">{% if form.password2.help_text %}{{ form.password2.help_text|safe }}{% endif %}</div>
-          </div>
-          {% if redirect_field_value %}
-          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+    <div class="row">
+      <div class="col-md-8 mt-3 offset-md-2">
+        <div class="signup-box mb-3">
+          <p>
+            <span class="text-muted custom-signup-p mt-2">Please fill in your details</span>
+            <a class="custom-link" href="{% url 'account_login' %}">Already have an account? Please log in.</a>
+          </p>
+          
+          <!-- Global Error Feedback -->
+          {% if form.errors %}
+            <div class="alert alert-danger">
+              <ul class="mb-0">
+                {% for field in form %}
+                  {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                  {% endfor %}
+                {% endfor %}
+              </ul>
+            </div>
           {% endif %}
-          <button class="btn btn-signup" id="custom-register-btn" type="submit">
-            {% trans "Register" %} &raquo;
-          </button>
-        </form>
+          
+          <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="id_username" class="form-label d-block">Username</label>
+              {{ form.username }}
+            </div>
+            <div class="mb-3">
+              <label for="id_first_name" class="form-label d-block">First Name</label>
+              {{ form.first_name }}
+            </div>
+            <div class="mb-3">
+              <label for="id_last_name" class="form-label d-block">Last Name</label>
+              {{ form.last_name }}
+            </div>
+            <div class="mb-3">
+              <label for="id_email" class="form-label d-block">Email</label>
+              {{ form.email }}
+            </div>
+            <div class="mb-3">
+              <label for="id_password1" class="form-label">Password</label>
+              {{ form.password1 }}
+              <div class="form-text text-muted">{% if form.password1.help_text %} {{ form.password1.help_text|safe }} {% endif %}</div>
+            </div>
+            <div class="mb-3">
+              <label for="id_password2" class="form-label">Repeat Password</label>
+              {{ form.password2 }}
+              <div class="form-text text-muted">{% if form.password2.help_text %}{{ form.password2.help_text|safe }}{% endif %}</div>
+            </div>
+            {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+            {% endif %}
+            <button class="btn btn-signup" id="custom-register-btn" type="submit">
+              {% trans "Register" %} &raquo;
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 {% endblock %}

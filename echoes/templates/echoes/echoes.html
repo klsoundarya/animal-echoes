@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block content %}
-
 <!-- Animal Echoes Section -->
 <section class="wrapper mt-5">
     <div class="container-fluid mt-5 mb-2">
@@ -32,7 +31,6 @@
 
     <!-- Animal Echoes Cards -->
     <div class="row">
-        <!-- Animal Echoes Loop -->
         {% for post in echo_list %}
         <div class="col-md-4">
             <div class="card mb-4">
@@ -43,26 +41,22 @@
                         </a>
                     </div>
                     <div class="image-container">
-                        {% if post.featured_image_local and post.featured_image_local.url %}
+                        {% if post.featured_image_local %}
                         <img class="card-img-top img-fluid rounded d-block mx-auto"
                             src="{{ post.featured_image_local.url }}" alt="{{ post.title }}"
                             style="width: 200px; height: 200px; object-fit: cover;">
-                        {% elif "placeholder" in post.featured_image.url %}
+                        {% elif post.featured_image %}
+                        <img class="card-img-top img-fluid rounded d-block mx-auto" src="{{ post.featured_image.url }}"
+                            alt="{{ post.title }}" style="width: 200px; height: 200px; object-fit: cover;">
+                        {% else %}
                         <img class="card-img-top img-fluid rounded d-block mx-auto"
                             src="{% static 'images/default.jpg' %}" alt="No Image Available"
                             style="width: 200px; height: 200px; object-fit: cover;">
-                        {% else %}
-                        <img class="card-img-top img-fluid rounded d-block mx-auto" src="{{ post.featured_image.url }}"
-                            alt="{{ post.title }}">
                         {% endif %}
                     </div>
                     <a href="{% url 'animal_detail' post.slug %}" class="post-link">
                         <div class="card-text">{{ post.intro|safe }}</div>
                     </a>
-                    <p class="card-text text-muted h6 text-center"
-                        style="position: absolute; bottom: 10px; left: 0; right: 0;">
-                        {{ post.created_on }}
-                    </p>
                 </div>
             </div>
         </div>
@@ -72,20 +66,54 @@
         {% endif %}
         {% endfor %}
     </div>
-    <!-- Include Slider Facts Below Animal Cards -->
-    {% if user.is_authenticated %}
-    <div class="container my-5">
-        <div class="col-md-12 text-center alert alert-info p-4 shadow-lg rounded"
-            style="background-color: #00000027; color:rgba(71, 142, 255, 0.877); border: 2px solid transparent;">
-            <h3>Check out Fun Facts about Animals!</h3>
-            <hr class="mb-4">
-            <div class="slider-container">
-                <a href="{% url 'slider_facts' %}" class="btn btn-secondary btn-lg">See Slider Facts</a>
-            </div>
-        </div>
-    </div>
-    {% endif %}
 
+    {% if user.is_authenticated %}
+    <!-- Carousel wrapper -->
+    <div id="funFactsCarousel" class="carousel slide text-center carousel-dark" data-bs-ride="carousel"
+        data-bs-interval="3000">
+        <div class="carousel-inner">
+            {% for fact in slider_facts %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <div class="slider-content">
+                    <!-- Check for Cloudinary image first, fallback to local image -->
+                    {% if fact.slider_image %}
+                    <img src="{{ fact.slider_image.url }}" alt="Image for {{ fact.blog_post.title }}"
+                        class="rounded-circle shadow-1-strong mb-4" style="width: 200px; height: 150px;">
+                    {% elif fact.slider_image_local %}
+                    <img src="{{ fact.slider_image_local.url }}" alt="Image for {{ fact.blog_post.title }}"
+                        class="rounded-circle shadow-1-strong mb-4" style="width: 200px; height: 150px;">
+                    {% else %}
+                    <img src="{% static 'images/default.jpg' %}" alt="Default Image"
+                        class="rounded-circle shadow-1-strong mb-4" style="width: 200px; height: 150px;">
+                    {% endif %}
+
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-8">
+                            <h5 class="mb-3">{{ fact.blog_post.title|safe }}</h5>
+                            <p class="text-muted">
+                                <i class="fas fa-quote-left pe-2"></i>
+                                {{ fact.fact_text|safe }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#funFactsCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#funFactsCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!-- Carousel wrapper -->
+    {% endif %}
+    </div>
 </section>
 
 <!-- Register section -->
@@ -100,7 +128,6 @@
         </div>
     </div>
 </div>
-
 
 
 <!-- Pagination -->

@@ -4,18 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
-from .models import BlogPost, Comment, FunFactSlider, GuestUser
+from .models import BlogPost, Comment, GuestUser, FunFactSlider
 from .forms import CommentForm, BlogPostForm
-
-
-@login_required
-def slider_facts_view(request):
-    echo_list = BlogPost.objects.filter(status=1)
-    slider_facts = FunFactSlider.objects.all()
-    return render(request, 'echoes/slider_facts.html', {
-        'echo_list': echo_list,
-        'slider_facts': slider_facts,
-    })
 
 
 def EchoList(request):
@@ -28,31 +18,24 @@ def EchoList(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
+    # Add slider_facts to the context
+    slider_facts = FunFactSlider.objects.all()
+
     context = {
         'echo_list': page_obj,
+        'slider_facts': slider_facts,
         'is_authenticated': request.user.is_authenticated,
         'is_paginated': paginator.num_pages > 1,
     }
 
     return render(request, 'echoes/echoes.html', context)
 
-
 def animal_detail(request, slug):
     """
     Display an individual BlogPost with its comments, like status, and the ability to submit new comments.
+    """
 
-    **Context**
-    - ``post``: The BlogPost instance.
-    - ``comments``: All comments for the post, ordered by creation date.
-    - ``comment_count``: The count of approved comments.
-    - ``comment_form``: The form for submitting a new comment.
-    - ``liked``: Whether the current user has liked the post.
-    - ``total_likes``: The total number of likes for the post.
-
-    **Template:** echoes/animal_detail.html"""
-
-    queryset = BlogPost.objects.filter(status=1).order_by('-created_at')[:6]
-    post = get_object_or_404(queryset, slug=slug)
+    post = get_object_or_404(BlogPost, status=1, slug=slug)
 
     # Like and comment logic
     liked = (
@@ -82,13 +65,15 @@ def animal_detail(request, slug):
     return render(
         request,
         "echoes/animal_detail.html",
-        {"post": post,
+        {
+            "post": post,
             "comments": comments,
             "comment_count": comment_count,
             "comment_form": comment_form,
             "liked": liked,
-            "total_likes": post.total_likes(), },
-            )
+            "total_likes": post.total_likes(),
+        },
+    )
 
 
 def Like_view(request, pk):
@@ -173,15 +158,13 @@ def submit_blog_post(request):
         if form.is_valid():
             blog_post = form.save(commit=False)
 
-            # Handle guest author for unauthenticated users
             if request.user.is_authenticated:
                 blog_post.author = request.user
             else:
-                # Use or create a GuestUser for unauthenticated users
                 guest_user, created = GuestUser.objects.get_or_create(name="Guest")
                 blog_post.guest_author = guest_user
 
-            blog_post.status = 0  # Pending approval status
+            blog_post.status = 0
             blog_post.save()
 
             messages.success(request, "Your blog post is under review!")

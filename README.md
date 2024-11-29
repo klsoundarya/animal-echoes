@@ -330,7 +330,8 @@ __Press Enter and your local clone will be created.__
 
 </details>
 
-
+## Testing
+- For all testing, please refer to the [TESTING.md](TESTING.md) file.
 
 
 
