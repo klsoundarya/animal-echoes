@@ -7,7 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
         clearFormBtn.addEventListener("click", function () {
             const inputs = document.querySelectorAll("input, textarea");
             inputs.forEach(function (input) {
-                input.value = "";
+                if (input.name !== "csrfmiddlewaretoken") {
+                    input.value = ""; // Clear only non-CSRF fields
+                }  
             });
         });
     }
@@ -22,7 +24,9 @@ document.addEventListener("DOMContentLoaded", function () {
         clearBtn.addEventListener("click", function () {
             const inputs = document.querySelectorAll("input, textarea");
             inputs.forEach(function (input) {
-                input.value = "";
+                if (input.name !== "csrfmiddlewaretoken") {
+                    input.value = ""; // Clear only non-CSRF fields
+                }
             });
         });
     }
