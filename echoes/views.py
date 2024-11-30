@@ -91,6 +91,7 @@ def animal_detail(request, slug):
     )
 
 
+# like and unlike view
 def Like_view(request, pk):
     """
     Handles the like/unlike functionality for a post.
@@ -101,11 +102,14 @@ def Like_view(request, pk):
         liked_posts = request.session.get('liked_posts', [])
         if pk in liked_posts:
             liked_posts.remove(pk)  # Unlike
+            post.unauthenticated_likes = max(0, post.unauthenticated_likes - 1)
         else:
             liked_posts.append(pk)  # Like
+            post.unauthenticated_likes += 1
 
         request.session['liked_posts'] = liked_posts
         request.session.modified = True
+        post.save()
 
     else:
 

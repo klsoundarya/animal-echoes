@@ -49,6 +49,7 @@ class BlogPost(models.Model):
     date = models.DateField("Post Date", default=date.today)
     updated_on = models.DateTimeField(auto_now=True)
     likes = models.ManyToManyField(User, related_name='blog_posts', blank=True)
+    unauthenticated_likes = models.PositiveIntegerField(default=0)
     tags = models.ManyToManyField('Tag', related_name="blog_posts", blank=True)
     fun_facts = models.ManyToManyField('AnimalFact', related_name="blog_posts_facts", blank=True, verbose_name="Fun Facts")
     approve = models.BooleanField(default=False)
@@ -60,7 +61,7 @@ class BlogPost(models.Model):
         ordering = ["date", "author"]
 
     def total_likes(self):
-        return self.likes.count()
+        return self.likes.count() + self.unauthenticated_likes
 
     def save(self, *args, **kwargs):
         """
