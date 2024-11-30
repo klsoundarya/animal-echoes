@@ -373,6 +373,10 @@ __Press Enter and your local clone will be created.__
 - Allows users to update their personal information, including their name, email, and profile picture.
 - Provides an option to change other user settings such as notification preferences.
 
+**Delete Account:**
+
+- Allows users to delete their account from echo of animals.
+
 **Login:**
 
 - Authenticated users can log in to access personalized features like commenting, liking posts, and updating profiles.
@@ -416,6 +420,7 @@ There are media query breakpoints used: 425px, 680px, 768px, above 1000px. This 
 | Sign Up         	| ![Sign Up](read-me/features/desktop/8.PNG)         	| ![Sign Up](read-me/features/phone/8.PNG)         	|
 | Update Password 	| ![Update Password](read-me/features/desktop/9.PNG) 	| ![Update Password](read-me/features/phone/9.PNG) 	|
 | Update Profile  	| ![Update Profile](read-me/features/desktop/10.PNG) 	| ![Update Profile](read-me/features/phone/10.PNG) 	|
+| Delete Account 	| ![Delete Account](read-me/features/desktop/11.PNG) 	| ![Delete Account](read-me/features/phone/11.PNG) 	|
 
 
 ## Features to Implement

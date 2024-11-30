@@ -24,13 +24,15 @@
                         {% if redirect_field_value %}
                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
                         {% endif %}
-                        <button class="btn btn-danger" type="submit">
-                            {% trans "Delete My Account" %} &raquo;
+                        <button class="btn btn-danger custom-delete" type="submit">
+                            {% trans "Delete" %} &raquo;
                         </button>
-                        <a href="{% url 'home' %}" class="btn btn-secondary">
+                    </form>
+                    <div class="mt-2">
+                        <a href="{% url 'home' %}" class="btn btn-secondary text-center">
                             {% trans "Cancel" %} &raquo;
                         </a>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

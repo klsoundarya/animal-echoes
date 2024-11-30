@@ -179,5 +179,6 @@ There are no other bugs to be fixed, apart from these two:
 - There is a known issue where error messages are not displayed when attempting to log in with a deleted account or unregistered email address. This is due to the current integration with django-allauth signals and the custom login view. I am aware of this issue and will work to fix it soon.
 
 Until then, users may not see a message when trying to log in with an unregistered or deleted email. Please bear with me while I resolve this.
+![Bug 11](read-me/bugs/error-msg.PNG)
 
 </details>

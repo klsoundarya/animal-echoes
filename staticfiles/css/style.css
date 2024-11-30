@@ -427,7 +427,7 @@ hr {
 }
 
 
-/*---- Card Styling -----*/
+/* Card Styling */
 .card {
     border: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -614,6 +614,7 @@ hr {
 /* ---------- accounts styling ------ */
 
 /* --------- Profile -------- */
+
 .profile-box {
     background-color: #f9f9f9;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
@@ -822,6 +823,12 @@ hr {
 .btn-primary:hover {
     background-color: #45a049;
     color: #fff;
+}
+
+/* ------ delete account------- */
+.custom-delete {
+    display: block;
+    margin:auto;
 }
 
 
