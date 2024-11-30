@@ -19,6 +19,10 @@ class BlogPostForm(forms.ModelForm):
             'species': forms.TextInput(attrs={
                 'class': 'form-control', 'placeholder': 'Enter species'}),
         }
+        help_texts = {
+        'featured_image': 'Upload an image file (e.g., JPG, PNG).',
+        'sound_cloudinary': 'Upload an audio file (e.g., MP3, WAV).',
+        }
 
     def clean_title(self):
         """
