@@ -3,6 +3,11 @@ from .forms import ContactForm
 
 
 class TestContactForm(TestCase):
+    """
+    Test suite for ContactForm validation.
+
+    Includes tests for required fields and form validity with valid and invalid input data.
+    """
 
     def test_form_is_valid(self):
         """ Test for all fields """

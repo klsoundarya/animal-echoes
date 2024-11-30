@@ -343,6 +343,8 @@ hr {
     width: 5%;
 }
 
+/*---  echo audio, comment styling -- */
+
 #echo-audio {
     display: flex;
     justify-content: center;
@@ -425,7 +427,7 @@ hr {
 }
 
 
-/* Card Styling */
+/*---- Card Styling -----*/
 .card {
     border: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -551,6 +553,7 @@ hr {
     display: block;
     margin: 0 auto;
 }
+
 
 /* ------- Contact form ------ */
 

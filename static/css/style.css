@@ -343,6 +343,8 @@ hr {
     width: 5%;
 }
 
+/*---  echo audio, comment styling -- */
+
 #echo-audio {
     display: flex;
     justify-content: center;
@@ -551,6 +553,7 @@ hr {
     display: block;
     margin: 0 auto;
 }
+
 
 /* ------- Contact form ------ */
 
