@@ -35,6 +35,8 @@ Return back to the [README.md](README.md) file.
 | Log out         	| ![Logout](read-me/testing-validators/manual-testing/5.png)          	| The logout page includes a functional "Exit" button to log the user out and a secondary button below it that redirects back to the home page, both of which were tested and confirmed to work as expected.                                                                                              	| Pass 	|
 | Login           	| ![Login](read-me/testing-validators/manual-testing/9.png)           	| The login page includes input fields for email and password, a "Remember Me" checkbox, and a "Login" button, all of which function as expected.                                                                                                                                                         	|      	|
 | Register        	| ![Register](read-me/testing-validators/manual-testing/8.png)        	| The Signup page contains input fields for username, first name, last name, email, password, and repeat password, along with a "Register" button to submit the form.                                                                                                                                     	|    Pass  	|
+| Delete Account 	| ![delete-account](read-me/testing-validators/manual-testing/10.png) 	| The delete account functionality has been manually tested; it successfully deletes the user account and displays a confirmation message indicating that the account has been deleted. 	| Pass 	|
+
 
 
 
@@ -142,8 +144,9 @@ User Stories are documented in the Echo of Animals [GitHub Projects Board](https
 | Add Animal Facts              	| Yes                      	| Pass       	|
 | Add delete button              	| Yes                      	| Pass       	|
 | Add comment button            	| Yes                      	| Pass       	|
-| Add delete button              	| Yes                      	| Pass       	|
-| Add edit/update button              	| Yes                      	| Pass       	|
+| Add clear button            	| Yes                      	| Pass       	|
+| Add profile delete button              	| Yes                      	| Pass       	|
+| Add edit/update button             	| Yes                      	| Pass       	|
 
 
 <hr>
@@ -170,6 +173,11 @@ User Stories are documented in the Echo of Animals [GitHub Projects Board](https
 
 ### Unfixed Bugs
 
-There are no more bugs to be fixed, apart from CI linter errors for long characters.
+There are no other bugs to be fixed, apart from these two:
+
+- CI linter errors for long characters.
+- There is a known issue where error messages are not displayed when attempting to log in with a deleted account or unregistered email address. This is due to the current integration with django-allauth signals and the custom login view. I am aware of this issue and will work to fix it soon.
+
+Until then, users may not see a message when trying to log in with an unregistered or deleted email. Please bear with me while I resolve this.
 
 </details>

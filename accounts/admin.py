@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
+from .models import DeletedUser
+
 
 # Unregister the default User model
 admin.site.unregister(User)
@@ -31,3 +33,8 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('username', 'email', 'password1', 'password2'),
         }),
     )
+
+@admin.register(DeletedUser)
+class DeletedUserAdmin(admin.ModelAdmin):
+    list_display = ('username', 'email', 'deleted_at')
+    ordering = ('-deleted_at',)

@@ -79,7 +79,8 @@
 
                         <!-- Accounts Dropdown -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle {% if request.resolver_match.url_name == 'profile' or request.resolver_match.url_name == 'account_login' or request.resolver_match.url_name == 'account_signup' %}active{% endif %}"
+                            <a class="nav-link dropdown-toggle 
+        {% if request.resolver_match.url_name == 'profile' or request.resolver_match.url_name == 'account_login' or request.resolver_match.url_name == 'account_signup' %}active{% endif %}"
                                 href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">Accounts</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -88,6 +89,9 @@
                                         href="{% url 'accounts:userprofile_update' %}">Profile</a></li>
                                 <li><a class="dropdown-item {% if request.resolver_match.url_name == 'account_logout' %}active{% endif %}"
                                         href="{% url 'account_logout' %}">Logout</a></li>
+                                <li><a class="dropdown-item {% if request.resolver_match.url_name == 'delete_account' %}active{% endif %}"
+                                        href="{% url 'accounts:delete_account' %}">Delete</a></li>
+
                                 {% else %}
                                 <li><a class="dropdown-item {% if request.resolver_match.url_name == 'account_login' %}active{% endif %}"
                                         href="{% url 'account_login' %}">Login</a></li>

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Delete Account" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mt-3 offset-md-2">
+            <h2 class="custom-heading mt-5 fw-bold text-center">{% trans "Confirm Account Deletion" %}</h2>
+            <hr class="mb-2">
+            <div class="text-muted text-center mt-4">
+                Are you sure you want to delete your account? <br> This action cannot be undone.
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 mt-3 offset-md-2">
+            <div class="mb-3">
+                <div class="text-center mt-3">
+                    <form method="post">
+                        {% csrf_token %}
+                        {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+                        {% endif %}
+                        <button class="btn btn-danger" type="submit">
+                            {% trans "Delete My Account" %} &raquo;
+                        </button>
+                        <a href="{% url 'home' %}" class="btn btn-secondary">
+                            {% trans "Cancel" %} &raquo;
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

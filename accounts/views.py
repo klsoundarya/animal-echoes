@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from .models import DeletedUser
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -9,6 +10,20 @@ from .forms import (
     PasswordChangeForm,
 )
 
+
+@login_required
+def delete_account(request):
+    if request.method == "POST":
+        # Delete the user and log them out
+        user = request.user
+        # Log the deleted user's details
+        DeletedUser.objects.create(username=user.username, email=user.email)
+        user.delete()
+        logout(request)
+        messages.success(request, "Your account has been deleted successfully.")
+        return redirect('account_login')
+    else:
+        return render(request, 'accounts/delete_account.html')
 
 # Profile Update View
 @login_required
@@ -116,28 +131,30 @@ def signup_view(request):
     else:
         return render(request, 'accounts/signup.html', {'form': form})
 
-
-# Login View
+#login view
 def login_view(request):
     """
     View to handle user login.
-    Authenticates the user based on provided credentials and logs them in.
-    Redirects to 'home' on successful login, or back to login on failure.
-    
-    Returns:
-        - A redirect to 'home' if login is successful.
-        - A redirect back to the login page if login fails.
-        - A rendered login form on a GET request.
     """
     if request.method == 'POST':
-        email = request.POST('email')
-        password = request.POST('password')
-        user = authenticate(request, email=email, password=password)
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        # Try to get the user by email
+        user = User.objects.filter(email=email).first()
 
         if user is not None:
-            login(request, user)
-            return redirect('home')
+            # Authenticate the user
+            user = authenticate(request, username=email, password=password)
+
+            if user is not None and user.is_active:
+                login(request, user)
+                return redirect('home')
+            elif user is not None and not user.is_active:
+                messages.error(request, "This account has been deleted.")
+                return redirect('account_login')  # Redirect to login page
         else:
-            return redirect('login')
-    else:
-        return render(request, 'accounts/login.html', {})
+            messages.error(request, "This email is not registered.")
+            return redirect('account_login')  # Redirect back to login page
+
+    return render(request, 'accounts/login.html')
