@@ -434,6 +434,7 @@ There are media query breakpoints used: 425px, 680px, 768px, above 1000px. This 
 
 - Profiles will display more detailed user information, such as submitted posts, most liked content, and comments.
 - Users will have the ability to edit and delete their posts from their profile.
+- Search field to find the animals easily.
 
 **Nested Comments:**
 

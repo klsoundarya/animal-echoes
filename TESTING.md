@@ -175,12 +175,18 @@ User Stories are documented in the Echo of Animals [GitHub Projects Board](https
 
 ### Unfixed Bugs
 
-There are no other bugs to be fixed, apart from these two:
+There are no other bugs to be fixed, apart from these three:
 
 - CI linter errors for long characters.
+<hr>
 - There is a known issue where error messages are not displayed when attempting to log in with a deleted account or unregistered email address. This is due to the current integration with django-allauth signals and the custom login view. I am aware of this issue and will work to fix it soon.
 
 Until then, users may not see a message when trying to log in with an unregistered or deleted email. Please bear with me while I resolve this.
 ![Bug 11](read-me/bugs/error-msg.PNG)
+<hr>
+- When a user submits a form on either the blog post creation page or the contact details page, if they use the erase functionality (e.g., clearing or editing the form) and attempt to fill in the details and resubmit, a 403 Forbidden CSRF token error occurs. However, if the page is refreshed before submitting the form, the submission works as expected.
+
+This bug needs to be investigated and resolved, but it is documented here as a known issue for tracking purposes.
+![Bug 12](read-me/bugs/contact.JPG)
 
 </details>
