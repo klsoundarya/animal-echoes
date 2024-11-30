@@ -8,12 +8,22 @@ class TestCommentForm(TestCase):
     """Test cases for CommentForm."""
 
     def test_form_is_valid(self):
-        """Check if the form is valid when body is provided."""
+        """
+        Test if the form is valid when the body is provided.
+
+        - Expectation
+        The form should be valid if the 'body' field is not empty.
+        """
         form = CommentForm({'body': 'This is a valid comment'})
         self.assertTrue(form.is_valid(), msg="Comment form should be valid.")
 
     def test_form_is_invalid(self):
-        """Check if the form is invalid when body is missing."""
+        """
+        Test if the form is invalid when the body is missing.
+
+        **Expectation**
+        The form should be invalid if the 'body' field is empty.
+        """
         form = CommentForm({'body': ''})
         self.assertFalse(
             form.is_valid(), msg="Comment form should be invalid.")
@@ -23,7 +33,12 @@ class TestBlogPostForm(TestCase):
     """Test cases for BlogPostForm."""
 
     def setUp(self):
-        """Set up required data for tests."""
+        """
+        Set up required data for the tests.
+
+        This method runs before each test case to set up the necessary data, 
+        including creating a user and a BlogPost instance with a duplicate title.
+        """
         self.user = User.objects.create_user(
             username='san', password='password123'
         )
@@ -36,7 +51,13 @@ class TestBlogPostForm(TestCase):
         )
 
     def test_form_is_valid(self):
-        """Check if the form is valid with all required fields."""
+        """
+        Test if the form is valid with all required fields.
+
+        - Expectation
+        The form should be valid if all required fields are filled, including title, slug, intro, 
+        description, and status.
+        """
         form_data = {
             "title": "Valid Blog Post",
             "slug": "valid-blog-post",
@@ -50,7 +71,12 @@ class TestBlogPostForm(TestCase):
         )
 
     def test_form_is_invalid_with_empty_title(self):
-        """Check if the form is invalid when the title is missing."""
+        """
+        Test if the form is invalid when the title is missing.
+
+        - Expectation
+        The form should be invalid if the title field is empty.
+        """
         form = BlogPostForm({
             'title': '',
             'description': 'Content about animals',
@@ -61,7 +87,12 @@ class TestBlogPostForm(TestCase):
         )
 
     def test_form_is_invalid_with_empty_content(self):
-        """Check if the form is invalid when content is missing."""
+        """
+        Test if the form is invalid when content (description) is missing.
+
+        - Expectation
+        The form should be invalid if the description field is empty.
+        """
         form = BlogPostForm({
             'title': 'Valid Title',
             'description': '',
@@ -72,7 +103,13 @@ class TestBlogPostForm(TestCase):
         )
 
     def test_clean_title(self):
-        """Check title validation logic."""
+        """
+        Test the title validation logic in the form.
+
+        - Expectation
+        The form should be valid when the title is unique, and should fail validation if 
+        the title already exists in the database.
+        """
         # Valid title input
         form_data_valid = {
             'title': 'Unique Title',

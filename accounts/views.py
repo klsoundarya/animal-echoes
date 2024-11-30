@@ -13,6 +13,16 @@ from .forms import (
 # Profile Update View
 @login_required
 def update_profile_view(request):
+    """
+    View to handle profile updates for authenticated users.
+    If the user is logged in, the form to update the profile is displayed and saved.
+    Displays success or error messages based on the form submission result.
+    
+    Returns:
+        - A redirect to 'home' if the form is valid and the profile is updated.
+        - A rendered profile update form if there are errors.
+        - A redirect to 'home' if the user is not authenticated.
+    """
     if request.user.is_authenticated:
         current_user = User.objects.get(id=request.user.id)
         user_form = UpdateProfileForm(
@@ -37,6 +47,16 @@ def update_profile_view(request):
 
 # password update
 def password_update_view(request):
+    """
+    View to handle password updates for authenticated users.
+    If the user is logged in, the form to update the password is displayed and saved.
+    Displays success or error messages based on the form submission result.
+    
+    Returns:
+        - A redirect to the password update page on error.
+        - A redirect to the user profile update page on success.
+        - A redirect to 'home' if the user is not authenticated.
+    """
     if request.user.is_authenticated:
         current_user = request.user
 
@@ -68,6 +88,16 @@ def password_update_view(request):
 
 # Signup View
 def signup_view(request):
+    """
+    View to handle user sign-up.
+    Displays a form for users to sign up, and logs them in if registration is successful.
+    Displays an error message if registration fails.
+    
+    Returns:
+        - A redirect to 'home' after successful sign-up and login.
+        - A redirect to the sign-up page if there is an error in registration.
+        - A rendered sign-up form on a GET request.
+    """
     form = CustomSignupForm()
     if request.method == 'POST':
         form = CustomSignupForm(request.POST)
@@ -89,6 +119,16 @@ def signup_view(request):
 
 # Login View
 def login_view(request):
+    """
+    View to handle user login.
+    Authenticates the user based on provided credentials and logs them in.
+    Redirects to 'home' on successful login, or back to login on failure.
+    
+    Returns:
+        - A redirect to 'home' if login is successful.
+        - A redirect back to the login page if login fails.
+        - A rendered login form on a GET request.
+    """
     if request.method == 'POST':
         email = request.POST('email')
         password = request.POST('password')

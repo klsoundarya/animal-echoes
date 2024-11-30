@@ -9,6 +9,21 @@ from .forms import CommentForm, BlogPostForm
 
 
 def EchoList(request):
+    """
+    View to display a paginated list of published blog posts. 
+    If the user is authenticated, all posts are shown, otherwise, 
+    only the first 6 are displayed.
+
+    - Context
+    ``echo_list``
+        A paginated list of blog posts.
+    ``slider_facts``
+        A list of fun facts for the slider display.
+    ``is_authenticated``
+        Boolean indicating whether the user is authenticated.
+    ``is_paginated``
+        Boolean indicating whether the posts are paginated.
+    """
     if request.user.is_authenticated:
         blog_posts = BlogPost.objects.filter(status=1).order_by("-date")
     else:
@@ -105,7 +120,14 @@ def Like_view(request, pk):
 @login_required
 def comment_edit(request, slug, comment_id):
     """
-    view to edit comments
+    Allows authenticated users to edit their own comments on a blog post. 
+    The comment is set to 'awaiting approval' after being edited.
+
+    - Context
+    ``post``
+        The blog post associated with the comment.
+    ``comment``
+        The comment being edited.
     """
     if request.method == "POST":
 
@@ -130,9 +152,9 @@ def comment_edit(request, slug, comment_id):
 @login_required
 def comment_delete(request, slug, comment_id):
     """
-    Delete an individual comment.
+    Allows authenticated users to delete their own comments on a blog post.
 
-    **Context**
+    - Context
 
     ``post``
         An instance of :model:`blog.Post`.
@@ -153,6 +175,14 @@ def comment_delete(request, slug, comment_id):
 
 
 def submit_blog_post(request):
+    """
+    Allows authenticated and guest users to submit a new blog post. The post 
+    is saved with a 'pending' status and awaits admin approval.
+
+    - Context
+    ``form``
+        The form for submitting a new blog post.
+    """
     if request.method == "POST":
         form = BlogPostForm(request.POST, request.FILES)
         if form.is_valid():

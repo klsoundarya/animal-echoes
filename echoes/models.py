@@ -10,6 +10,17 @@ STATUS = ((0, "Draft"), (1, "Published"))
 
 
 class GuestUser(models.Model):
+    """
+    Represents a guest user who can contribute blog posts without authentication.
+
+    **Fields**
+    ``name``
+        The name of the guest user.
+    ``email``
+        The email address of the guest user (optional).
+    ``created_at``
+        The timestamp when the guest user was created.
+    """
     name = models.CharField(max_length=100, default="Guest")
     email = models.EmailField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -72,7 +83,7 @@ class BlogPost(models.Model):
 
         # Assign a guest user if no authenticated user is available
         if not self.author:
-            # You can create a default guest user if needed
+            # Create a default guest user if needed
             guest_user, created = GuestUser.objects.get_or_create(name="Guest")
             self.guest_author = guest_user  # Use guest_author for unauthenticated users
 
@@ -83,6 +94,9 @@ class BlogPost(models.Model):
 
 
 class BlogPostImage(models.Model):
+    """
+    Stores images related to a blog post, used for the image gallery.
+    """
 
     blog_post = models.ForeignKey(BlogPost, related_name="image_gallery", on_delete=models.CASCADE)
     image_gallery = CloudinaryField('image', null=True, blank=True, default=None)
@@ -98,6 +112,13 @@ class BlogPostImage(models.Model):
 
 
 class Tag(models.Model):
+    """
+    Stores tags related to blog posts.
+
+    **Fields**
+    ``name``
+        The unique name of the tag.
+    """
     name = models.CharField(max_length=50, unique=True)
 
     def __str__(self):

@@ -4,7 +4,9 @@ from django.utils.text import slugify
 
 
 class BlogPostForm(forms.ModelForm):
-
+    """
+    A form for creating and submitting blog post.
+    """
     class Meta:
         model = BlogPost
         fields = ['title', 'featured_image', 'description', 'habitat', 'species', 'sound_cloudinary']

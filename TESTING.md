@@ -14,6 +14,7 @@ Return back to the [README.md](README.md) file.
     - [HTML](#html)
     - [CSS](#css)
     - [JavaScript](#javascript)
+    - [Automated Testing](#automated-testing)
     - [Python](#python)
     - [Browser Compatibility](#browser-compatibility)
     - [Testing User Stories](#testing-user-stories)

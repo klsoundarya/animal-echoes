@@ -8,6 +8,14 @@ from django.utils.translation import gettext_lazy as _
 
 
 class PasswordChangeForm(SetPasswordForm):
+    """
+    Form to handle password change for the user.
+    Validates the new password according to specific criteria and updates the user's password.
+    
+    Fields:
+        - new_password1: The new password.
+        - new_password2: Confirmation of the new password.
+    """
     class Meta:
         model = User
         fields = ['new_password1', 'new_password2']
@@ -38,8 +46,17 @@ class PasswordChangeForm(SetPasswordForm):
 
 # Profile Update Form
 class UpdateProfileForm(UserChangeForm):
-    # Hide password field
-    password = None
+    """
+    Form to update user profile details (first name, last name, username, and email).
+    Password field is excluded from this form as it's not intended for password changes.
+
+    Fields:
+        - username: The username of the user.
+        - first_name: The user's first name.
+        - last_name: The user's last name.
+        - email: The user's email address.
+    """
+    password = None # Hide password field
 
     first_name = forms.CharField(max_length=180, required=True)
     last_name = forms.CharField(max_length=100, required=True)
@@ -60,6 +77,9 @@ class UpdateProfileForm(UserChangeForm):
         ]
 
     def __init__(self, *args, **kwargs):
+        """
+        Initializes the UpdateProfileForm with customized widgets and labels for better user experience.
+        """
         super(UpdateProfileForm, self).__init__(*args, **kwargs)
 
         self.fields['email'].label = "Email"
@@ -77,6 +97,18 @@ class UpdateProfileForm(UserChangeForm):
 
 # signup form
 class CustomSignupForm(SignupForm):
+    """
+    Custom signup form that extends the default allauth signup form to include first name, last name,
+    and email fields. It also validates passwords with custom rules and ensures password confirmation.
+
+    Fields:
+        - username: The desired username.
+        - first_name: The user's first name.
+        - last_name: The user's last name.
+        - email: The user's email address.
+        - password1: The user's password.
+        - password2: The confirmation for the password.
+    """
     first_name = forms.CharField(max_length=180, required=True)
     last_name = forms.CharField(max_length=100, required=True)
     email = forms.EmailField(max_length=200, required=True)
@@ -125,6 +157,13 @@ class CustomSignupForm(SignupForm):
 
     # Custom validation for password confirmation
     def clean_password2(self):
+        """
+        Validates that the two password fields match. Raises a ValidationError if they do not match.
+        
+        Returns:
+            - The cleaned password2 if both passwords match.
+            - Raises ValidationError if passwords do not match.
+        """
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
 
@@ -134,11 +173,27 @@ class CustomSignupForm(SignupForm):
 
     # Custom validation for password strength
     def clean_password1(self):
+        """
+        Validates that the password is at least 8 characters long.
+        
+        Returns:
+            - The cleaned password1 if it meets the criteria.
+            - Raises ValidationError if the password is shorter than 8 characters.
+        """
         password = self.cleaned_data.get('password1')
         if password and len(password) < 8:
             raise ValidationError(_("Password must be at least 8 characters long."))
         return password
 
     def save(self, request):
+        """
+        Saves the user object after successful validation of the signup form.
+        
+        Args:
+            request: The HTTP request object.
+        
+        Returns:
+            - The created user instance after saving.
+        """
         user = super(CustomSignupForm, self).save(request)
         return user
