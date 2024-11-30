@@ -11,7 +11,6 @@ class PasswordChangeForm(SetPasswordForm):
     """
     Form to handle password change for the user.
     Validates the new password according to specific criteria and updates the user's password.
-    
     Fields:
         - new_password1: The new password.
         - new_password2: Confirmation of the new password.
@@ -56,7 +55,7 @@ class UpdateProfileForm(UserChangeForm):
         - last_name: The user's last name.
         - email: The user's email address.
     """
-    password = None # Hide password field
+    password = None
 
     first_name = forms.CharField(max_length=180, required=True)
     last_name = forms.CharField(max_length=100, required=True)
@@ -159,7 +158,6 @@ class CustomSignupForm(SignupForm):
     def clean_password2(self):
         """
         Validates that the two password fields match. Raises a ValidationError if they do not match.
-        
         Returns:
             - The cleaned password2 if both passwords match.
             - Raises ValidationError if passwords do not match.
@@ -175,7 +173,6 @@ class CustomSignupForm(SignupForm):
     def clean_password1(self):
         """
         Validates that the password is at least 8 characters long.
-        
         Returns:
             - The cleaned password1 if it meets the criteria.
             - Raises ValidationError if the password is shorter than 8 characters.
@@ -188,10 +185,10 @@ class CustomSignupForm(SignupForm):
     def save(self, request):
         """
         Saves the user object after successful validation of the signup form.
-        
+
         Args:
             request: The HTTP request object.
-        
+
         Returns:
             - The created user instance after saving.
         """

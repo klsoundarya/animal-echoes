@@ -34,7 +34,9 @@ class CustomUserAdmin(UserAdmin):
         }),
     )
 
+
 @admin.register(DeletedUser)
 class DeletedUserAdmin(admin.ModelAdmin):
     list_display = ('username', 'email', 'deleted_at')
     ordering = ('-deleted_at',)
+    

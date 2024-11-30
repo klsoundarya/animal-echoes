@@ -64,10 +64,12 @@ All pages passed through the Lighthouse test
 - [Lighthouse test for all Apps in Mobile](read-me/testing-validators/lighthouse-mobile/mobile-part-1.png)
 - [Lighthouse test for all Apps in Mobile](read-me/testing-validators/lighthouse-mobile/mobile-part-2.png)
 - [Lighthouse test for all Apps in Mobile](read-me/testing-validators/lighthouse-mobile/mobile-part-3.png)
+- [Lighthouse test for all Apps in Mobile](read-me/testing-validators/lighthouse-mobile/mobile-part-4.png)
 
 - [Lighthouse test for all Apps in Desktop](read-me/testing-validators/lighthouse-desktop/desktop-part-1.png)
 - [Lighthouse test for all Apps in Desktop](read-me/testing-validators/lighthouse-desktop/desktop-part-2.png)
 - [Lighthouse test for all Apps in Desktop](read-me/testing-validators/lighthouse-desktop/desktop-part-3.png)
+- [Lighthouse test for all Apps in Desktop](read-me/testing-validators/lighthouse-desktop/desktop-part-4.png)
 
 <hr>
 

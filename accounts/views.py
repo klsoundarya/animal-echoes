@@ -26,13 +26,14 @@ def delete_account(request):
         return render(request, 'accounts/delete_account.html')
 
 # Profile Update View
+
+
 @login_required
 def update_profile_view(request):
     """
     View to handle profile updates for authenticated users.
     If the user is logged in, the form to update the profile is displayed and saved.
     Displays success or error messages based on the form submission result.
-    
     Returns:
         - A redirect to 'home' if the form is valid and the profile is updated.
         - A rendered profile update form if there are errors.
@@ -66,7 +67,6 @@ def password_update_view(request):
     View to handle password updates for authenticated users.
     If the user is logged in, the form to update the password is displayed and saved.
     Displays success or error messages based on the form submission result.
-    
     Returns:
         - A redirect to the password update page on error.
         - A redirect to the user profile update page on success.
@@ -107,7 +107,6 @@ def signup_view(request):
     View to handle user sign-up.
     Displays a form for users to sign up, and logs them in if registration is successful.
     Displays an error message if registration fails.
-    
     Returns:
         - A redirect to 'home' after successful sign-up and login.
         - A redirect to the sign-up page if there is an error in registration.
@@ -131,7 +130,9 @@ def signup_view(request):
     else:
         return render(request, 'accounts/signup.html', {'form': form})
 
-#login view
+# login view
+
+
 def login_view(request):
     """
     View to handle user login.
